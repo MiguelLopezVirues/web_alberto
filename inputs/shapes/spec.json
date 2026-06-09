@@ -1,0 +1,92 @@
+[
+  {
+    "file": "blob-bg-hero.svg",
+    "type": "blob",
+    "role": "Ornamento de fondo hero — detrás del titular y la foto de Alberto",
+    "uses": ["hero", "sección principal"],
+    "color": "currentColor",
+    "opacity": 0.16,
+    "params": {
+      "irregularity": 0.62,
+      "points": 9,
+      "ratioW": 1,
+      "ratioH": 1,
+      "width": 680,
+      "height": 680,
+      "seed": 7
+    }
+  },
+  {
+    "file": "blob-bg-section.svg",
+    "type": "blob",
+    "role": "Ornamento de sección secundaria — testimonios, sobre mí, servicios",
+    "uses": ["fondos alternos de sección"],
+    "color": "currentColor",
+    "opacity": 0.13,
+    "params": {
+      "irregularity": 0.55,
+      "points": 8,
+      "ratioW": 1.3,
+      "ratioH": 1,
+      "width": 620,
+      "height": 540,
+      "seed": 13
+    }
+  },
+  {
+    "file": "mask-photo-organic.svg",
+    "type": "mask",
+    "role": "Máscara orgánica para foto de perfil de Alberto",
+    "uses": ["foto hero", "foto sobre-mí"],
+    "params": {
+      "maskType": "soft",
+      "width": 400,
+      "height": 480,
+      "seed": 21
+    }
+  },
+  {
+    "file": "curve-section-in.svg",
+    "type": "curve",
+    "role": "Transición de entrada entre hero y primera sección",
+    "uses": ["separador hero/servicios", "transición ground→ground-soft"],
+    "color": "currentColor",
+    "opacity": 1,
+    "params": {
+      "amplitude": 0.13,
+      "direction": "in",
+      "width": 1440,
+      "height": 110,
+      "seed": 3
+    }
+  },
+  {
+    "file": "curve-section-out.svg",
+    "type": "curve",
+    "role": "Transición de salida entre sección y siguiente bloque",
+    "uses": ["separador servicios/testimonios", "salida de sección estructural"],
+    "color": "currentColor",
+    "opacity": 1,
+    "params": {
+      "amplitude": 0.11,
+      "direction": "out",
+      "width": 1440,
+      "height": 100,
+      "seed": 5
+    }
+  },
+  {
+    "file": "divider-subtle.svg",
+    "type": "divider",
+    "role": "Divisor orgánico fino entre bloques de contenido",
+    "uses": ["entre servicios", "antes de CTA de contacto"],
+    "params": {
+      "amplitude": 0.05,
+      "width": 800,
+      "height": 36,
+      "stroke": "currentColor",
+      "strokeWidth": 1,
+      "seed": 9
+    }
+  }
+]

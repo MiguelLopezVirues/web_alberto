@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 700" fill="currentColor">
+  <!-- Solid ribbon flowing S-curve — left edge goes up, right edge comes back down -->
+  <path d="
+    M 32,700
+    C 28,510  440,500  440,350
+    C 440,200  22,190  128,42
+    L 222,48
+    C 118,196  534,204  534,350
+    C 534,496  118,510  122,700
+    Z
+  "/>
+</svg>
+

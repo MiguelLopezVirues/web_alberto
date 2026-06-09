@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<!--
+  palette-alberto-extracted.html
+  Paleta extraída de la web de Alberto Aguado — ambiente "Bruma clara"
+  Fuente: inputs/extracted/styles.css + sections-1.jsx + sections-2.jsx + app.jsx
+
+  Ambiente aplicado (AMBIENTES["Bruma clara"] en app.jsx):
+    --paper    #F4F1E9  (Salvia suave tenía #F4F1E9)
+    --paper-2  #EDE8DC
+    --paper-3  #E5DDCD
+    --soft-bg  #E0EADB
+    --footer-bg #46584D
+
+  El resto de tokens (tinta, verde, moss, accent-deep, footer-ink) son invariantes de ambiente.
+  Tokens originales conservados tal cual — no mapeados a esquema canónico.
+  Las combinaciones y la demo web reproducen las secciones reales de la página:
+    - Hero: --paper + --ink + btn-primary (--moss / #F4EFE3)
+    - section.soft: --soft-bg + --soft-ink + eyebrow --accent-deep
+    - Testimonial card: --soft-bg sobre --paper
+    - Form card: --paper sobre --soft-bg, inputs --paper-2
+    - Footer: --footer-bg + --footer-ink
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palette — Alberto Aguado · Bruma clara (extracted)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #f0f0f0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    padding: 48px 40px;
+    color: #33423A;
+  }
+  h2 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #5D6A5E;
+    margin-bottom: 20px;
+  }
+  section { margin-bottom: 56px; }
+
+  /* ── 1. Tokens ── */
+  .tokens {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+  }
+  .token {
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .token-color { height: 72px; }
+  .token-info  { padding: 10px 12px; }
+  .token-role  { font-size: 11px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
+  .token-hex   { font-size: 11px; font-family: monospace; color: #555; margin-bottom: 4px; }
+  .token-use   { font-size: 10px; color: #888; line-height: 1.4; }
+
+  /* ── 2. Combinaciones ── */
+  .combos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .combo {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+  .combo-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    background: #EDE8DC;
+    color: #5D6A5E;
+  }
+  .eyebrow-demo {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+  .card-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+  .card-body  { font-size: 13px; line-height: 1.55; }
+  .tag-demo {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-right: 4px;
+    margin-top: 8px;
+  }
+  .btn-demo {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .step-num { font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+  .step-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .step-desc  { font-size: 12px; line-height: 1.55; }
+  .steps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .footer-brand { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .footer-tag   { font-size: 12px; }
+  .footer-link  { font-size: 12px; margin-top: 4px; }
+  .input-demo {
+    width: 100%;
+    padding: 8px 11px;
+    border-radius: 10px;
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+
+  /* ── 3. Demo web ── */
+  .demo-page {
+    max-width: 720px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  }
+  .demo-nav {
+    padding: 13px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    border-bottom: 1px solid #D5D5CD;
+  }
+  .demo-nav-logo   { font-size: 13px; font-weight: 700; }
+  .demo-nav-sub    { font-size: 9px; font-weight: 600; letter-spacing: 0.04em; margin-left: 6px; }
+  .demo-nav-links  { display: flex; gap: 18px; color: #33423A; opacity: 0.75; }
+  .demo-nav-cta    { padding: 7px 16px; border-radius: 999px; font-size: 11px; font-weight: 600; }
+  .demo-hero {
+    padding: 44px 28px;
+    display: grid;
+    grid-template-columns: 1.02fr 0.98fr;
+    gap: 28px;
+    align-items: center;
+  }
+  .demo-hero h2    { font-size: 22px; font-weight: 700; line-height: 1.25; margin-bottom: 10px; }
+  .demo-hero p     { font-size: 12px; line-height: 1.6; margin-bottom: 16px; }
+  .demo-hero-btn   { display: inline-block; padding: 10px 20px; border-radius: 999px; font-size: 12px; font-weight: 600; text-decoration: none; }
+  .demo-hero-photo { border-radius: 16px; height: 160px; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+  .demo-soft-section { padding: 32px 28px; }
+  .demo-soft-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 8px; }
+  .demo-soft-title   { font-size: 18px; font-weight: 700; line-height: 1.25; margin-bottom: 20px; }
+  .demo-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .demo-step  { padding-top: 10px; border-top: 1px solid rgba(55,70,60,0.12); }
+  .demo-step-n { font-size: 10px; font-weight: 700; margin-bottom: 4px; }
+  .demo-step-t { font-size: 11px; font-weight: 600; margin-bottom: 3px; }
+  .demo-step-d { font-size: 10px; line-height: 1.5; opacity: 0.75; }
+  .demo-tst-section { padding: 32px 28px; }
+  .demo-tst-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+  .demo-tst-card { border-radius: 14px; padding: 18px 16px; }
+  .demo-tst-q    { font-size: 11px; line-height: 1.5; font-weight: 500; margin-bottom: 10px; }
+  .demo-tst-name { font-size: 10px; font-weight: 600; }
+  .demo-tst-meta { font-size: 10px; opacity: 0.65; }
+  .demo-footer { padding: 28px 24px; }
+  .demo-footer-brand { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .demo-footer-tag   { font-size: 11px; }
+  .demo-footer-bottom { margin-top: 16px; padding-top: 12px; font-size: 10px; display: flex; justify-content: space-between; }
+
+  /* ── 4. Contraste ── */
+  .contrast-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .contrast-table th {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; color: #888;
+    padding: 12px 16px; text-align: left; background: #e8e8e8;
+  }
+  .contrast-table td {
+    font-size: 12px; padding: 10px 16px;
+    border-top: 1px solid #eee; color: #1a1a1a;
+  }
+  .pass { color: #2d5a1f; font-weight: 700; }
+  .warn { color: #7a5010; font-weight: 700; }
+  .swatch-pair { display: inline-flex; gap: 6px; align-items: center; margin-right: 8px; }
+  .dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; border: 1px solid rgba(0,0,0,0.08); }
+</style>
+</head>
+<body>
+
+<!-- ── 1. Tokens de color ── -->
+<section>
+  <h2>Tokens de color — Bruma clara (Alberto Aguado, extraído)</h2>
+  <div class="tokens">
+
+    <div class="token">
+      <div class="token-color" style="background:#F4F1E9; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">--paper</div>
+        <div class="token-hex">#F4F1E9</div>
+        <div class="token-use">Fondo principal. Hero, testimonios, nav</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#EDE8DC; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">--paper-2</div>
+        <div class="token-hex">#EDE8DC</div>
+        <div class="token-use">Inputs de formulario, foto placeholder</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#E5DDCD; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">--paper-3</div>
+        <div class="token-hex">#E5DDCD</div>
+        <div class="token-use">Marco orgánico de foto (photo-frame bg)</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#E0EADB; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">--soft-bg</div>
+        <div class="token-hex">#E0EADB</div>
+        <div class="token-use">section.soft: Proceso, Contacto, menú móvil, cards testimonios</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#B0D9B1;"></div>
+      <div class="token-info">
+        <div class="token-role">--sage / --accent</div>
+        <div class="token-hex">#B0D9B1</div>
+        <div class="token-use">Blobs ambientales, tag bg (mix 40%), ok-mark form</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#C7E3C6;"></div>
+      <div class="token-info">
+        <div class="token-role">--sage-2</div>
+        <div class="token-hex">#C7E3C6</div>
+        <div class="token-use">Variante clara del verde de marca</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#7FB587;"></div>
+      <div class="token-info">
+        <div class="token-role">--sage-deep</div>
+        <div class="token-hex">#7FB587</div>
+        <div class="token-use">Blob secundario en hero (opacidad 0.18)</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#527F5C;"></div>
+      <div class="token-info">
+        <div class="token-role">--accent-deep</div>
+        <div class="token-hex">#527F5C</div>
+        <div class="token-use">Números de paso, eyebrow activo, dot credencial, ulink, mm-em</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#46604E;"></div>
+      <div class="token-info">
+        <div class="token-role">--moss</div>
+        <div class="token-hex">#46604E</div>
+        <div class="token-use">btn-primary bg, tag color, channel icon color, accent-color input</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#5D6A5E;"></div>
+      <div class="token-info">
+        <div class="token-role">--ink-soft</div>
+        <div class="token-hex">#5D6A5E</div>
+        <div class="token-use">Lead, texto secundario, brand-sub, meta de credencial</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#37463C;"></div>
+      <div class="token-info">
+        <div class="token-role">--soft-ink</div>
+        <div class="token-hex">#37463C</div>
+        <div class="token-use">Texto sobre --soft-bg (proceso, contacto, quotes testimonios)</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#33423A;"></div>
+      <div class="token-info">
+        <div class="token-role">--ink</div>
+        <div class="token-hex">#33423A</div>
+        <div class="token-use">Texto principal: headings, nav, labels de form</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#DCE5D6; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">--footer-ink</div>
+        <div class="token-hex">#DCE5D6</div>
+        <div class="token-use">Texto base del footer</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#46584D;"></div>
+      <div class="token-info">
+        <div class="token-role">--footer-bg</div>
+        <div class="token-hex">#46584D</div>
+        <div class="token-use">Fondo del footer</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#D5D5CD; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">--line (approx)</div>
+        <div class="token-hex">rgba(55,70,60,.16)</div>
+        <div class="token-use">Bordes de inputs, divisor hero-meta</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#F4EFE3; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">btn-primary text</div>
+        <div class="token-hex">#F4EFE3</div>
+        <div class="token-use">Texto del botón primario sobre --moss</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── 2. Combinaciones en contexto ── -->
+<section>
+  <h2>Combinaciones en contexto</h2>
+  <div class="combos">
+
+    <!-- Hero: paper + ink + btn-primary -->
+    <div class="combo">
+      <div class="combo-label">Hero — --paper + btn-primary (--moss)</div>
+      <div style="background:#F4F1E9; padding:24px;">
+        <div class="eyebrow-demo" style="color:#527F5C;">Psicología sanitaria y neuropsicología</div>
+        <div class="card-title" style="color:#33423A;">Un espacio para entenderte y <span style="color:#527F5C;">volver a ti</span> con calma.</div>
+        <div class="card-body" style="color:#5D6A5E; margin-top:6px;">Acompañamiento psicológico cercano y cuidadoso para adultos, niños y familias.</div>
+        <a href="#" class="btn-demo" style="background:#46604E; color:#F4EFE3;">Pedir una primera cita</a>
+      </div>
+    </div>
+
+    <!-- section.soft: soft-bg + soft-ink + accent-deep -->
+    <div class="combo">
+      <div class="combo-label">section.soft — --soft-bg + --soft-ink + --accent-deep</div>
+      <div style="background:#E0EADB; padding:24px;">
+        <div class="eyebrow-demo" style="color:#527F5C;">Cómo funciona</div>
+        <div class="card-title" style="color:#37463C;">Empezar es más sencillo de lo que parece</div>
+        <div class="steps-grid" style="margin-top:14px;">
+          <div>
+            <div class="step-num" style="color:#527F5C;">Paso 1</div>
+            <div class="step-title" style="color:#37463C;">Primer contacto</div>
+            <div class="step-desc" style="color:#4A584A;">Me escribes y concretamos una primera cita sin compromiso.</div>
+          </div>
+          <div>
+            <div class="step-num" style="color:#527F5C;">Paso 2</div>
+            <div class="step-title" style="color:#37463C;">Nos conocemos</div>
+            <div class="step-desc" style="color:#4A584A;">Una sesión para entender qué te trae. Tú marcas el ritmo.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonial card: soft-bg card sobre paper -->
+    <div class="combo">
+      <div class="combo-label">Testimonial — --soft-bg card sobre --paper</div>
+      <div style="background:#F4F1E9; padding:24px;">
+        <div style="background:#E0EADB; border-radius:16px; padding:18px;">
+          <div style="font-size:13px; font-weight:500; line-height:1.5; color:#37463C; margin-bottom:10px;">"Por primera vez sentí que alguien me escuchaba de verdad. Alberto convirtió algo que me daba miedo en un lugar donde respirar."</div>
+          <div style="font-size:12px;"><span style="font-weight:600; color:#33423A;">Marta G.</span> <span style="color:#5D6A5E;">· Terapia de ansiedad</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Servicios: tag (color-mix accent 40% + paper) + moss text -->
+    <div class="combo">
+      <div class="combo-label">Servicios — tags color-mix(--accent 40%, --paper)</div>
+      <div style="background:#F4F1E9; padding:24px;">
+        <div class="card-title" style="color:#33423A; font-size:15px;">Terapia para adultos</div>
+        <div class="card-body" style="color:#5D6A5E; margin-top:6px;">Acompañamiento individual en ansiedad, estado de ánimo, autoestima, duelo o etapas de cambio.</div>
+        <div style="margin-top:10px;">
+          <!-- color-mix(in srgb, #B0D9B1 40%, #F4F1E9) ≈ #D9E7D3 -->
+          <span class="tag-demo" style="background:#D9E7D3; color:#46604E;">Ansiedad</span>
+          <span class="tag-demo" style="background:#D9E7D3; color:#46604E;">Ánimo</span>
+          <span class="tag-demo" style="background:#D9E7D3; color:#46604E;">Autoestima</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Form card: paper sobre soft-bg, inputs paper-2 -->
+    <div class="combo" style="grid-column: 1 / -1;">
+      <div class="combo-label">Contacto — form-card (--paper) sobre section.soft (--soft-bg) · inputs --paper-2</div>
+      <div style="background:#E0EADB; padding:24px; display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start;">
+        <div>
+          <div class="eyebrow-demo" style="color:#527F5C;">Primera cita</div>
+          <div style="font-size:17px; font-weight:700; color:#37463C; line-height:1.3; margin-bottom:10px;">Cuando estés preparado/a, aquí estoy.</div>
+          <div style="font-size:12px; color:#5D6A5E; line-height:1.6;">Dar el primer paso es lo más difícil. Escríbeme y encontramos juntos el momento.</div>
+          <div style="margin-top:16px; display:flex; align-items:center; gap:10px;">
+            <!-- channel icon: color-mix(accent 45%, paper) ≈ #D5E6D0 -->
+            <span style="width:36px; height:36px; border-radius:50%; background:#D5E6D0; display:grid; place-items:center; color:#46604E; font-size:14px;">✉</span>
+            <span style="font-size:12px; color:#37463C; font-weight:600;">hola@albertoaguado.es</span>
+          </div>
+        </div>
+        <div style="background:#F4F1E9; border-radius:18px; padding:20px; box-shadow:0 20px 40px -30px rgba(55,70,60,0.35);">
+          <div style="margin-bottom:10px;">
+            <label style="font-size:11px; font-weight:600; color:#33423A; display:block; margin-bottom:4px;">Nombre</label>
+            <input class="input-demo" style="background:#EDE8DC; border:1.5px solid rgba(55,70,60,0.16); color:#33423A;" placeholder="Tu nombre" readonly />
+          </div>
+          <div>
+            <label style="font-size:11px; font-weight:600; color:#33423A; display:block; margin-bottom:4px;">¿En qué te puedo ayudar?</label>
+            <input class="input-demo" style="background:#EDE8DC; border:1.5px solid rgba(55,70,60,0.16); color:#33423A;" placeholder="Cuéntame brevemente..." readonly />
+          </div>
+          <a href="#" class="btn-demo" style="background:#46604E; color:#F4EFE3; display:block; text-align:center; margin-top:10px;">Enviar y pedir cita</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer: footer-bg + footer-ink -->
+    <div class="combo" style="grid-column: 1 / -1;">
+      <div class="combo-label">Footer — --footer-bg + --footer-ink</div>
+      <div style="background:#46584D; padding:28px 24px; display:grid; grid-template-columns:1.5fr 1fr 1fr; gap:24px;">
+        <div>
+          <div class="footer-brand" style="color:#F1ECE0;">Alberto Aguado</div>
+          <div class="footer-tag" style="color:#BCC8B9; margin-top:4px;">Psicología sanitaria y neuropsicología para adultos, niños y familias.</div>
+        </div>
+        <div>
+          <div style="font-size:11px; color:#AEBBAB; font-weight:600; margin-bottom:8px;">Navegar</div>
+          <div class="footer-link" style="color:#D6E0D1;">Sobre mí</div>
+          <div class="footer-link" style="color:#D6E0D1;">Servicios</div>
+          <div class="footer-link" style="color:#D6E0D1;">Proceso</div>
+        </div>
+        <div>
+          <div style="font-size:11px; color:#AEBBAB; font-weight:600; margin-bottom:8px;">Contacto</div>
+          <div class="footer-link" style="color:#D6E0D1;">600 000 000</div>
+          <div class="footer-link" style="color:#D6E0D1;">hola@albertoaguado.es</div>
+          <div class="footer-link" style="color:#D6E0D1;">Madrid · y online</div>
+        </div>
+      </div>
+      <div style="background:#46584D; padding:12px 24px; border-top:1px solid rgba(220,229,214,0.18); display:flex; justify-content:space-between;">
+        <span style="font-size:10px; color:#93A191;">© 2025 Alberto Aguado · Psicología</span>
+        <span style="font-size:10px; color:#93A191;">Aviso legal · Privacidad</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── 3. Demo web — paleta en contexto de página ── -->
+<section>
+  <h2>Demo web — página completa</h2>
+  <div class="demo-page">
+
+    <!-- Nav: paper con blur (representado como paper) -->
+    <div class="demo-nav" style="background:#F4F1E9; color:#33423A;">
+      <div>
+        <span class="demo-nav-logo">Alberto Aguado</span>
+        <span class="demo-nav-sub" style="color:#5D6A5E;">Psicología</span>
+      </div>
+      <div class="demo-nav-links">
+        <span>Sobre mí</span>
+        <span>Servicios</span>
+        <span>Proceso</span>
+        <span>Testimonios</span>
+      </div>
+      <div class="demo-nav-cta" style="background:#46604E; color:#F4EFE3;">Reservar cita</div>
+    </div>
+
+    <!-- Hero: paper + ink -->
+    <div class="demo-hero" style="background:#F4F1E9; color:#33423A;">
+      <div>
+        <div class="demo-soft-eyebrow" style="color:#527F5C;">Psicología sanitaria y neuropsicología</div>
+        <h2>Un espacio para entenderte y <span style="color:#527F5C;">volver a ti</span> con calma.</h2>
+        <p style="color:#5D6A5E;">Acompañamiento psicológico cercano y cuidadoso para adultos, niños y familias. Sin prisas y sin juicios: a tu ritmo.</p>
+        <a href="#" class="demo-hero-btn" style="background:#46604E; color:#F4EFE3;">Pedir una primera cita →</a>
+      </div>
+      <!-- Foto con blob de fondo -->
+      <div style="position:relative;">
+        <div style="position:absolute; inset:0; border-radius:50%; background:#B0D9B1; opacity:0.28; filter:blur(8px);"></div>
+        <div class="demo-hero-photo" style="background:#E5DDCD; color:#5D6A5E; position:relative; z-index:1;">Foto de Alberto</div>
+      </div>
+    </div>
+
+    <!-- section.soft: Proceso -->
+    <div class="demo-soft-section" style="background:#E0EADB; color:#37463C;">
+      <div class="demo-soft-eyebrow" style="color:#527F5C;">Cómo funciona</div>
+      <div class="demo-soft-title">Empezar es más sencillo de lo que parece</div>
+      <div class="demo-steps">
+        <div class="demo-step">
+          <div class="demo-step-n" style="color:#527F5C;">Paso 1</div>
+          <div class="demo-step-t" style="color:#37463C;">Primer contacto</div>
+          <div class="demo-step-d" style="color:#4A584A;">Me escribes y concretamos una primera cita. Sin compromiso.</div>
+        </div>
+        <div class="demo-step">
+          <div class="demo-step-n" style="color:#527F5C;">Paso 2</div>
+          <div class="demo-step-t" style="color:#37463C;">Nos conocemos</div>
+          <div class="demo-step-d" style="color:#4A584A;">Una sesión para entender qué te trae. Tú marcas el ritmo.</div>
+        </div>
+        <div class="demo-step">
+          <div class="demo-step-n" style="color:#527F5C;">Paso 3</div>
+          <div class="demo-step-t" style="color:#37463C;">Plan a tu medida</div>
+          <div class="demo-step-d" style="color:#4A584A;">Definimos objetivos realistas y un camino claro.</div>
+        </div>
+        <div class="demo-step">
+          <div class="demo-step-n" style="color:#527F5C;">Paso 4</div>
+          <div class="demo-step-t" style="color:#37463C;">Avanzamos juntos</div>
+          <div class="demo-step-d" style="color:#4A584A;">Trabajamos sesión a sesión, revisando lo que funciona.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonios: paper + soft-bg cards -->
+    <div class="demo-tst-section" style="background:#F4F1E9; color:#33423A;">
+      <div class="demo-soft-eyebrow" style="color:#527F5C;">En sus palabras</div>
+      <div style="font-size:16px; font-weight:700;">Personas que decidieron empezar</div>
+      <div class="demo-tst-grid">
+        <div class="demo-tst-card" style="background:#E0EADB;">
+          <div class="demo-tst-q" style="color:#37463C;">"Por primera vez sentí que alguien me escuchaba de verdad."</div>
+          <div class="demo-tst-name" style="color:#33423A;">Marta G.</div>
+          <div class="demo-tst-meta" style="color:#5D6A5E;">· Terapia de ansiedad</div>
+        </div>
+        <div class="demo-tst-card" style="background:#E0EADB;">
+          <div class="demo-tst-q" style="color:#37463C;">"Su trato cercano nos devolvió la calma a toda la familia."</div>
+          <div class="demo-tst-name" style="color:#33423A;">Javier y Ana</div>
+          <div class="demo-tst-meta" style="color:#5D6A5E;">· Psicología infantil</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="demo-footer" style="background:#46584D; color:#DCE5D6;">
+      <div class="demo-footer-brand" style="color:#F1ECE0;">Alberto Aguado</div>
+      <div class="demo-footer-tag" style="color:#BCC8B9;">Psicología sanitaria · presencial y online</div>
+      <div class="demo-footer-bottom" style="border-top:1px solid rgba(220,229,214,0.18); color:#93A191;">
+        <span>© 2025 Alberto Aguado · Psicología</span>
+        <span>Aviso legal · Privacidad</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── 4. Pares críticos — contraste WCAG ── -->
+<section>
+  <h2>Pares críticos — contraste WCAG</h2>
+  <table class="contrast-table">
+    <thead>
+      <tr><th>Par</th><th>Uso real en la página</th><th>Ratio</th><th>Nivel</th></tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td>
+          <span class="swatch-pair">
+            <span class="dot" style="background:#F4F1E9;"></span>
+            <span class="dot" style="background:#33423A;"></span>
+          </span>
+          --paper / --ink
+        </td>
+        <td>Headings y cuerpo en hero, nav, testimonios</td>
+        <td>11.6:1</td>
+        <td class="pass">✓ AAA</td>
+      </tr>
+
+      <tr>
+        <td>
+          <span class="swatch-pair">
+            <span class="dot" style="background:#F4F1E9;"></span>
+            <span class="dot" style="background:#5D6A5E;"></span>
+          </span>
+          --paper / --ink-soft
+        </td>
+        <td>Lead, texto secundario, brand-sub</td>
+        <td>5.5:1</td>
+        <td class="pass">✓ AA</td>
+      </tr>
+
+      <tr>
+        <td>
+          <span class="swatch-pair">
+            <span class="dot" style="background:#E0EADB;"></span>
+            <span class="dot" style="background:#37463C;"></span>
+          </span>
+          --soft-bg / --soft-ink
+        </td>
+        <td>Texto en section.soft (proceso, contacto, quotes)</td>
+        <td>7.7:1</td>
+        <td class="pass">✓ AAA</td>
+      </tr>
+
+      <tr>
+        <td>
+          <span class="swatch-pair">
+            <span class="dot" style="background:#E0EADB;"></span>
+            <span class="dot" style="background:#527F5C;"></span>
+          </span>
+          --soft-bg / --accent-deep
+        </td>
+        <td>Números de paso, eyebrow sobre sección soft</td>
+        <td>3.5:1</td>
+        <td class="warn">⚠ Solo texto grande/bold (paso 1, eyebrow)</td>
+      </tr>
+
+      <tr>
+        <td>
+          <span class="swatch-pair">
+            <span class="dot" style="background:#46604E;"></span>
+            <span class="dot" style="background:#F4EFE3;"></span>
+          </span>
+          --moss / btn text (#F4EFE3)
+        </td>
+        <td>btn-primary: "Pedir cita", "Enviar y pedir cita"</td>
+        <td>7.3:1</td>
+        <td class="pass">✓ AAA</td>
+      </tr>
+
+      <tr>
+        <td>
+          <span class="swatch-pair">
+            <span class="dot" style="background:#46584D;"></span>
+            <span class="dot" style="background:#DCE5D6;"></span>
+          </span>
+          --footer-bg / --footer-ink
+        </td>
+        <td>Texto base del footer</td>
+        <td>6.9:1</td>
+        <td class="pass">✓ AA</td>
+      </tr>
+
+      <tr>
+        <td>
+          <span class="swatch-pair">
+            <span class="dot" style="background:#EDE8DC;"></span>
+            <span class="dot" style="background:#33423A;"></span>
+          </span>
+          --paper-2 / --ink
+        </td>
+        <td>Labels e inputs del formulario</td>
+        <td>9.1:1</td>
+        <td class="pass">✓ AAA</td>
+      </tr>
+
+    </tbody>
+  </table>
+</section>
+
+</body>
+</html>

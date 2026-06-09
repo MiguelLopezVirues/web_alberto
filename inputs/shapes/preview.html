@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Shape Preview — shapes</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #f5f5f2; padding: 40px 32px; }
+  h1 { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #888; margin-bottom: 24px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+  .card { background: #fff; border-radius: 10px; overflow: hidden; border: 1px solid #e8e8e4; }
+  .preview-box { padding: 20px; display: flex; align-items: center; justify-content: center; min-height: 180px; }
+  .preview-box svg { max-width: 100%; max-height: 160px; }
+  .meta { padding: 12px 16px; border-top: 1px solid #f0f0ec; }
+  .filename { font-size: 11px; font-family: monospace; color: #555; font-weight: 600; }
+  .role { font-size: 10px; color: #888; margin-top: 3px; }
+  .uses { font-size: 9px; color: #aaa; margin-top: 4px; letter-spacing: .04em; }
+  .empty { color: #aaa; font-size: 13px; padding: 60px; text-align: center; grid-column: 1/-1; }
+</style>
+</head>
+<body>
+<h1>Shape Preview — 8 shapes</h1>
+<div class="grid">
+  
+    <div class="card">
+      <div class="preview-box" style="background:#f0f0ec; color:#5b8b4b;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 680" fill="currentColor">
+  <path d="
+    M 340,58
+    C 448,50  562,106  594,210
+    C 622,302  604,400  542,466
+    C 476,536  370,568  258,548
+    C 148,528  68,452  50,346
+    C 30,234  78,128  168,84
+    C 220,60  284,64  340,58
+    Z
+  "/>
+</svg>
+
+      </div>
+      <div class="meta">
+        <div class="filename">blob-bg-hero.svg</div>
+        
+        
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="preview-box" style="background:#f0f0ec; color:#5b8b4b;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 520" fill="currentColor">
+  <path d="
+    M 115,148
+    C 180,62  328,42  456,58
+    C 576,72  688,118  742,212
+    C 794,304  782,402  714,454
+    C 640,510  504,532  366,520
+    C 228,508  106,470   68,382
+    C 28,292  52,228  115,148
+    Z
+  "/>
+</svg>
+
+      </div>
+      <div class="meta">
+        <div class="filename">blob-bg-section.svg</div>
+        
+        
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="preview-box" style="background:#f0f0ec; color:#5b8b4b;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 700" fill="currentColor">
+  <path d="
+    M 340,55
+    C 490,48  640,150  615,300
+    C 640,450  600,580  500,600
+    C 390,640  270,640  160,600
+    C 60,590   40,440   68,290
+    C 30,150   180,48   340,55
+    Z
+  "/>
+</svg>
+
+      </div>
+      <div class="meta">
+        <div class="filename">blob-pebble.svg</div>
+        
+        
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="preview-box" style="background:#f0f0ec; color:#5b8b4b;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 110" preserveAspectRatio="none" fill="currentColor">
+  <path d="
+    M 0,0
+    L 0,38
+    C 260,98  520,112  720,106
+    C 920,100  1180,74  1440,38
+    L 1440,0
+    Z
+  "/>
+</svg>
+
+      </div>
+      <div class="meta">
+        <div class="filename">curve-section-in.svg</div>
+        
+        
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="preview-box" style="background:#f0f0ec; color:#5b8b4b;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none" fill="currentColor">
+  <path d="
+    M 0,100
+    L 0,58
+    C 320,4  680,0  1000,18
+    C 1160,28  1300,50  1440,58
+    L 1440,100
+    Z
+  "/>
+</svg>
+
+      </div>
+      <div class="meta">
+        <div class="filename">curve-section-out.svg</div>
+        
+        
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="preview-box" style="background:#f0f0ec; color:#5b8b4b;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 36" fill="none" stroke="currentColor" stroke-width="1">
+  <path d="
+    M 30,28
+    C 200,8  460,6  770,24
+  " stroke-linecap="round"/>
+</svg>
+
+      </div>
+      <div class="meta">
+        <div class="filename">divider-subtle.svg</div>
+        
+        
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="preview-box" style="background:#f0f0ec; color:#5b8b4b;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 700" fill="currentColor">
+  <!-- Solid ribbon flowing S-curve — left edge goes up, right edge comes back down -->
+  <path d="
+    M 32,700
+    C 28,510  440,500  440,350
+    C 440,200  22,190  128,42
+    L 222,48
+    C 118,196  534,204  534,350
+    C 534,496  118,510  122,700
+    Z
+  "/>
+</svg>
+
+
+      </div>
+      <div class="meta">
+        <div class="filename">line-flow.svg</div>
+        
+        
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="preview-box" style="background:#f0f0ec; color:#5b8b4b;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480">
+  <defs>
+    <clipPath id="mask-portrait" clipPathUnits="objectBoundingBox">
+      <path d="
+        M 0.50,0.04
+        C 0.71,0.03  0.90,0.12  0.94,0.30
+        C 0.98,0.46  0.96,0.63  0.92,0.77
+        C 0.87,0.94  0.70,0.98  0.50,0.97
+        C 0.30,0.96  0.13,0.92  0.08,0.76
+        C 0.02,0.58  0.04,0.40  0.08,0.24
+        C 0.13,0.07  0.31,0.04  0.50,0.04
+        Z
+      "/>
+    </clipPath>
+  </defs>
+  <!-- Usage: <img style="clip-path:url(#mask-portrait); width:400px; height:480px; object-fit:cover"/> -->
+  <rect width="400" height="480" fill="#cdd9ca" clip-path="url(#mask-portrait)" opacity="0.4"/>
+  <path d="
+    M 200,19
+    C 284,14  360,58  376,144
+    C 392,220  384,302  368,370
+    C 348,450  280,470  200,466
+    C 120,462   52,444   32,368
+    C 8,278    16,160   32,96
+    C 52,32   124,22  200,19
+    Z
+  " fill="none" stroke="#5b8b4b" stroke-width="1.5" opacity="0.5"/>
+</svg>
+
+      </div>
+      <div class="meta">
+        <div class="filename">mask-photo-organic.svg</div>
+        
+        
+      </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Guided Growth - Equilibrio Sereno</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed-variant": "#3f4b2c",
+                      "on-background": "#1b1c19",
+                      "outline-variant": "#c3c8c1",
+                      "inverse-surface": "#30312e",
+                      "secondary-fixed-dim": "#becca3",
+                      "outline": "#737872",
+                      "tertiary-fixed": "#e1e6c2",
+                      "on-primary": "#ffffff",
+                      "tertiary-container": "#575b3f",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed": "#0e1f13",
+                      "on-tertiary-fixed": "#1a1d07",
+                      "secondary-fixed": "#dae8be",
+                      "primary-container": "#4a5d4e",
+                      "surface-container": "#f0eee9",
+                      "on-surface": "#1b1c19",
+                      "on-primary-fixed-variant": "#394b3d",
+                      "secondary": "#566342",
+                      "primary-fixed-dim": "#b7ccb9",
+                      "surface-container-high": "#eae8e3",
+                      "primary": "#334537",
+                      "surface-variant": "#e4e2dd",
+                      "on-surface-variant": "#434843",
+                      "on-secondary": "#ffffff",
+                      "surface-dim": "#dbdad5",
+                      "surface-container-lowest": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "on-primary-container": "#c0d5c2",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed-variant": "#45492f",
+                      "background": "#fbf9f4",
+                      "surface-bright": "#fbf9f4",
+                      "tertiary": "#3f442a",
+                      "surface-tint": "#506354",
+                      "secondary-container": "#d7e5bb",
+                      "primary-fixed": "#d3e8d5",
+                      "inverse-primary": "#b7ccb9",
+                      "inverse-on-surface": "#f2f1ec",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed-dim": "#c5c9a7",
+                      "surface": "#fbf9f4",
+                      "on-tertiary-container": "#ced3b0",
+                      "on-secondary-container": "#5a6745",
+                      "on-error-container": "#93000a",
+                      "surface-container-low": "#f5f3ee",
+                      "surface-container-highest": "#e4e2dd",
+                      "on-secondary-fixed": "#141f05"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "20px",
+                      "gutter": "24px",
+                      "section-gap-md": "80px",
+                      "unit": "8px",
+                      "section-gap-lg": "120px",
+                      "container-max": "1140px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": [
+                              "Playfair Display"
+                      ],
+                      "label-sm": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-display": [
+                              "Playfair Display"
+                      ],
+                      "body-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-md": [
+                              "Playfair Display"
+                      ],
+                      "headline-lg": [
+                              "Playfair Display"
+                      ],
+                      "body-md": [
+                              "Be Vietnam Pro"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-display": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.7",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "36px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-color: #fbf9f4; /* surface */
+            color: #1b1c19; /* on-surface */
+        }
+        .ambient-shadow {
+            box-shadow: 0 10px 30px rgba(74, 93, 78, 0.05); /* primary color tint */
+        }
+        .btn-hover-scale {
+            transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        }
+        .btn-hover-scale:hover {
+            transform: scale(1.02);
+            background-color: #566342; /* secondary */
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-body-md text-body-md selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopNavBar -->
+<nav class="sticky bg-background/80 dark:bg-background/80 backdrop-blur-md z-50 docked full-width top-0 bg-background dark:bg-background flat no shadows">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-gutter max-w-container-max mx-auto h-20">
+<!-- Brand -->
+<a class="font-headline-md text-headline-md font-semibold text-primary dark:text-primary-fixed-dim hover:opacity-80 transition-opacity" href="#">
+                Guided Growth
+            </a>
+<!-- Desktop Navigation -->
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 font-body-md text-body-md" href="#">Services</a>
+<a class="text-primary dark:text-primary-fixed-dim font-bold border-b-2 border-primary dark:border-primary-fixed-dim pb-1 hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 font-body-md text-body-md" href="#">About</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 font-body-md text-body-md" href="#">Clinic</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-300 font-body-md text-body-md" href="#">Contact</a>
+</div>
+<!-- Primary Action -->
+<div class="hidden md:block">
+<a class="inline-flex items-center justify-center px-6 py-3 bg-primary text-on-primary rounded-xl font-label-sm text-label-sm btn-hover-scale" href="#">
+                    Book a Session
+                </a>
+</div>
+<!-- Mobile Menu Button -->
+<button class="md:hidden text-primary p-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+</div>
+</nav>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="pt-section-gap-md pb-section-gap-lg px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<!-- Text Content -->
+<div class="md:col-span-5 md:col-start-1 space-y-6 z-10">
+<div class="inline-flex items-center space-x-2 bg-secondary-container px-4 py-2 rounded-full">
+<span class="material-symbols-outlined text-on-secondary-container text-sm">psychiatry</span>
+<span class="font-label-sm text-label-sm text-on-secondary-container">Professional Support</span>
+</div>
+<h1 class="font-headline-display text-headline-display text-on-background">
+                        Find your <span class="text-primary italic">serene</span> balance.
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">
+                        A safe, warm, and highly professional environment dedicated to your emotional well-being and guided personal growth.
+                    </p>
+<div class="pt-4 flex flex-wrap gap-4">
+<a class="inline-flex items-center justify-center px-8 py-4 bg-primary text-on-primary rounded-xl font-label-sm text-label-sm btn-hover-scale" href="#">
+                            Start Your Journey
+                        </a>
+<a class="inline-flex items-center justify-center px-8 py-4 bg-surface-container-high text-on-surface rounded-xl font-label-sm text-label-sm hover:bg-surface-variant transition-colors" href="#">
+                            Learn More
+                        </a>
+</div>
+</div>
+<!-- Image -->
+<div class="md:col-span-6 md:col-start-7 mt-12 md:mt-0">
+<div class="relative rounded-[2rem] overflow-hidden ambient-shadow aspect-[4/5] md:aspect-auto h-full min-h-[500px]">
+<img alt="Friendly professional psychologist" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZjL8MCdpQEAh-y6qXjkUBxUO8Cx3Vx619iCq5BCNkaBRySGv4ZUlWFNLQ8nGjvk1l2qbgPUAvBQ4hfwBQ5vQJYf8WLzzimY1T3eWVcLaV1tMZy1i1bA8D-CVTO9r5zz7Pw-gc4rMPqAwzWo5xMvKXeL0m-xo3tSaxHUpW2kvfm8D61FnPs3IqHeoN74stTZ4qqWuz2JW_2UhJpl4fghg9QzXz7IrvlEyhdaiB5biDXFova2c0yBQ2LkKiXIN1RtpV7kX1rSOejrM"/>
+<!-- Soft Gradient Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- The Clinic Section (Asymmetric Bento) -->
+<section class="py-section-gap-lg bg-surface-container-low px-margin-mobile md:px-gutter">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-16 max-w-2xl mx-auto space-y-4">
+<h2 class="font-headline-lg text-headline-lg text-on-background">A Space Designed for Healing</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Our clinic is thoughtfully curated to provide a calming, grounding atmosphere from the moment you step through our doors.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter auto-rows-[280px]">
+<!-- Main Image Span -->
+<div class="md:col-span-8 row-span-2 rounded-[2rem] overflow-hidden relative group ambient-shadow">
+<img alt="Serene clinic interior" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A serene, high-end psychology clinic waiting area. Sunlight streams through sheer white curtains onto polished concrete floors. Minimalist furniture in soft cream and light wood tones. Lush green potted plants add life to corners. The atmosphere is warm, safe, and impeccably clean, following a light-mode organic minimalist aesthetic with subtle sage green accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgnBdnDG4G3HKAGuigM4enxyDc3JR8Qxn-tBaWnWAJ7QrvQ_yvT3naXMg_8VcTlTd-Zn0DMcvbRBGwrBnwcmGXXOyX7to2NTQYctTWCapIfeYiitaoUgeDDYUrM1JrjI0xXHNMt0aZ5Nbij400r_6Zr5DGgphJQCqdnrxS0Q6kUsgrj5R2iRz4Cia7G4pIharmOkcYV0Qmd7Qm_rP5NrFsy6Rk3KzKlfOiAz6J6EZa2bk6GP2HkLp2jxfINzJIwtne7C_mvQOIhy8"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors duration-500"></div>
+<div class="absolute bottom-8 left-8 right-8 text-white">
+<h3 class="font-headline-md text-headline-md mb-2">Tranquil Environment</h3>
+<p class="font-body-md text-body-md opacity-90 max-w-md">Every detail is designed to reduce anxiety and promote peace.</p>
+</div>
+</div>
+<!-- Side Card 1 -->
+<div class="md:col-span-4 row-span-1 bg-surface-container-lowest rounded-[2rem] p-8 ambient-shadow flex flex-col justify-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-4" style="font-variation-settings: 'FILL' 0;">nature_people</span>
+<h4 class="font-headline-md text-headline-md text-on-background mb-2">Organic Elements</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Integrating nature to support emotional regulation.</p>
+</div>
+<!-- Side Card 2 -->
+<div class="md:col-span-4 row-span-1 bg-primary-container rounded-[2rem] p-8 shadow-sm flex flex-col justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-4xl mb-4" style="font-variation-settings: 'FILL' 0;">verified_user</span>
+<h4 class="font-headline-md text-headline-md mb-2">Total Privacy</h4>
+<p class="font-body-md text-body-md opacity-90">Soundproofed rooms ensuring a secure, confidential experience.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Helping Hand / Approach Section -->
+<section class="py-section-gap-lg px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-center">
+<!-- Image Left -->
+<div class="md:col-span-5 md:col-start-2 mb-12 md:mb-0 relative">
+<div class="rounded-t-full rounded-b-[3rem] overflow-hidden aspect-[3/4] ambient-shadow relative z-10 border-4 border-surface-container-lowest">
+<img alt="Helping hand" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOVrcgtbgrA04GRSYSUXWlih3t2fJsxGYWs5aATIJtS-AIrGdEtZcPwzc9IDBETXIcCA1MLMhgF-Ag6yxWwgS_YpqxwsPcL8pmI1K5MJH4QD0Vx1zAuE7_QCqP_yCuK8v7nswqHggq835A5fkKfVoLsQDv_6T_AaSKzLelHlzeCKEiAlhwfarSGlH4Xssp5c46GXd-0k6GmFZoNMg-p_kNgDyAjhWTieJGPQiLSfh6LsP7tbP3bqysoSZ8QM8KqFdaEUiv6VbQNs0"/>
+</div>
+<!-- Decorative background blob -->
+<div class="absolute -bottom-8 -left-8 w-64 h-64 bg-secondary-container rounded-full blur-3xl opacity-50 z-0"></div>
+</div>
+<!-- Content Right -->
+<div class="md:col-span-5 md:col-start-8 space-y-8 z-10">
+<div class="space-y-4">
+<h2 class="font-headline-lg text-headline-lg text-on-background">A Compassionate Approach</h2>
+<div class="w-16 h-1 bg-primary/30 rounded-full"></div>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                        We believe that true healing happens in relationship. Our approach is grounded in empathy, offering a steady hand to help you navigate life's complexities.
+                    </p>
+<ul class="space-y-4 pt-4">
+<li class="flex items-start">
+<span class="material-symbols-outlined text-primary mr-4 mt-1" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<h4 class="font-label-sm text-label-sm text-on-background mb-1">Evidence-Based Therapy</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Utilizing proven methods tailored to your unique needs.</p>
+</div>
+</li>
+<li class="flex items-start">
+<span class="material-symbols-outlined text-primary mr-4 mt-1" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<h4 class="font-label-sm text-label-sm text-on-background mb-1">Client-Centered Focus</h4>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">Your voice and your goals direct our work together.</p>
+</div>
+</li>
+</ul>
+<div class="pt-6">
+<a class="inline-flex items-center text-primary font-label-sm text-label-sm hover:text-secondary transition-colors group" href="#">
+                            Meet Our Therapists
+                            <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform" style="font-variation-settings: 'FILL' 0;">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container-low w-full py-section-gap-md px-margin-mobile md:px-gutter max-w-container-max mx-auto border-t border-outline-variant flat no shadows">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+<div class="md:col-span-2">
+<a class="font-headline-md text-headline-md font-semibold text-primary dark:text-primary-fixed-dim inline-block mb-4" href="#">
+                    Guided Growth
+                </a>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm">
+                    Fostering emotional well-being through professional, empathetic psychological care.
+                </p>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-on-background mb-4 uppercase tracking-wider">Legal</h4>
+<ul class="space-y-3">
+<li><a class="text-on-surface-variant dark:text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-300 font-body-md text-body-md" href="#">Privacy Policy</a></li>
+<li><a class="text-on-surface-variant dark:text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-300 font-body-md text-body-md" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-sm text-label-sm text-on-background mb-4 uppercase tracking-wider">Connect</h4>
+<ul class="space-y-3">
+<li><a class="text-on-surface-variant dark:text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-300 font-body-md text-body-md" href="#">FAQ</a></li>
+<li><a class="text-on-surface-variant dark:text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-300 font-body-md text-body-md" href="#">Instagram</a></li>
+<li><a class="text-on-surface-variant dark:text-on-surface-variant hover:text-secondary dark:hover:text-secondary-fixed transition-colors duration-300 font-body-md text-body-md" href="#">LinkedIn</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-body-md text-body-md text-on-surface-variant text-sm">
+                © 2024 Guided Growth Psychological Practice. All rights reserved.
+            </p>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">health_and_safety</span>
+<span class="font-label-sm text-label-sm text-xs">Certified Practice</span>
+</div>
+</div>
+</footer>
+</body></html>

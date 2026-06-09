@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alberto Aguado Calvo — Psicólogo y Neuropsicólogo</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ysabeau:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Atkinson+Hyperlegible+Next:wght@400;500;600&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════════ */
+:root {
+  --ground:        #f9f9f7;
+  --ground-raised: #ffffff;
+  --ground-soft:   #f4f4f2;
+  --ground-deep:   #2f3130;
+  --accent-light:  #ccead3;
+  --accent:        #476250;
+  --accent-deep:   #607b68;
+  --border:        #c2c8c1;
+  --ink:           #1a1c1b;
+  --ink-muted:     #424843;
+  --ink-ghost:     #727973;
+  --ink-on-brand:  #ffffff;
+
+  --font-display: 'Ysabeau', sans-serif;
+  --font-body:    'Atkinson Hyperlegible Next', sans-serif;
+  --font-ui:      'Open Sans', sans-serif;
+
+  --space-xs:  0.5rem;
+  --space-sm:  1rem;
+  --space-md:  1.5rem;
+  --space-lg:  2rem;
+  --space-xl:  3rem;
+  --space-2xl: clamp(2.5rem, 5vw, 4rem);
+  --space-3xl: clamp(3rem, 6vw, 5rem);
+  --sx:        3rem;       /* section padding-x */
+  --container: 1200px;
+
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --btn-radius: 8px;
+
+  --ease-out:    cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-reveal: cubic-bezier(0.33, 0, 0.2, 1);
+  --dur-base: 840ms;
+  --dur-fast: 180ms;
+}
+
+/* ═══════════════════════════════════════════════
+   RESET
+═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--ground);
+  color: var(--ink);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; border: none; background: none; font: inherit; }
+
+/* ═══════════════════════════════════════════════
+   BLOBS AMBIENT — CSS (no SVG)
+   Posición fixed en body — atraviesan secciones
+═══════════════════════════════════════════════ */
+.blob {
+  position: fixed;
+  border-radius: 50%;
+  background: var(--accent-light);
+  filter: blur(100px);
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+.blob-1 { width: 600px; height: 600px; top: -120px;  right: -160px; }
+.blob-2 { width: 480px; height: 480px; bottom: 15%;  left:  -140px; }
+
+/* ═══════════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════════ */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--sx);
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ═══════════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════════ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity   var(--dur-base) var(--ease-reveal),
+    transform var(--dur-base) var(--ease-reveal);
+}
+[data-reveal].visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ═══════════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════════ */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ui);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ink-on-brand);
+  background: var(--accent-deep);
+  padding: 0.875rem 1.75rem;
+  border-radius: var(--btn-radius);
+  transition: background var(--dur-fast) var(--ease-out);
+  width: fit-content;
+}
+.btn-primary:hover { background: var(--accent); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--accent-deep);
+  border: 1.5px solid var(--accent-deep);
+  padding: 0.625rem 1.375rem;
+  border-radius: var(--btn-radius);
+  width: fit-content;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    color     var(--dur-fast) var(--ease-out);
+}
+.btn-secondary:hover {
+  background: var(--accent-deep);
+  color: var(--ink-on-brand);
+}
+
+/* ═══════════════════════════════════════════════
+   SECTION TYPOGRAPHY
+═══════════════════════════════════════════════ */
+.eyebrow {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.875rem;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 2.5vw + 0.5rem, 2.25rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+/* ═══════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--ground);
+  border-bottom: 1px solid var(--border);
+  height: 3.75rem;
+}
+.nav-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--sx);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-left: auto;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-cta {
+  font-family: var(--font-ui);
+  font-size: 0.875rem;
+  font-weight: 700;
+  background: var(--accent-deep);
+  color: var(--ink-on-brand);
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--btn-radius);
+  flex-shrink: 0;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.nav-cta:hover { background: var(--accent); }
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  margin-left: auto;
+  padding: 6px;
+}
+.nav-burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--ink-muted);
+  border-radius: 1px;
+}
+
+/* ═══════════════════════════════════════════════
+   HERO
+   58% texto / 42% foto integrada por color
+═══════════════════════════════════════════════ */
+#hero {
+  background: var(--ground);
+  display: flex;
+  min-height: clamp(28rem, 48vh, 36rem);
+  position: relative;
+  z-index: 1;
+}
+.hero-text {
+  flex: 58;
+  padding: clamp(3.5rem, 7vw, 5.5rem) var(--space-xl) clamp(3.5rem, 7vw, 5.5rem) var(--sx);
+  max-width: calc(var(--container) * 0.62);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.hero-eyebrow {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+}
+.hero-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 4vw + 0.5rem, 3.5rem);
+  font-weight: 700;
+  line-height: 1.07;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+.hero-h1 em {
+  font-style: italic;
+  color: var(--accent);
+}
+.hero-sub {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink-muted);
+  margin-bottom: 2.25rem;
+  max-width: 400px;
+}
+
+/* Columna de foto — mismo color que fondo foto de Alberto */
+.hero-photo {
+  flex: 42;
+  background: var(--accent-light); /* #ccead3 ≈ fondo de la foto */
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+}
+.hero-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* ═══════════════════════════════════════════════
+   INTERPELACIÓN
+═══════════════════════════════════════════════ */
+#interpelacion {
+  background: var(--ground-soft);
+  padding: 4rem 0;
+  position: relative;
+  z-index: 1;
+}
+.interp-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--sx);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+.interp-lead {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.2vw + 0.5rem, 2.25rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--ink);
+}
+.interp-frases {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.interp-frase {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.interp-frase:first-child { border-top: 1px solid var(--border); }
+
+/* ═══════════════════════════════════════════════
+   SOBRE ALBERTO
+   Foto izquierda sin contenedor · texto derecha
+   Tratamiento borde derecho foto delegado a /screen iteración
+═══════════════════════════════════════════════ */
+#sobre-mi {
+  background: var(--ground-soft);
+  display: flex;
+  min-height: clamp(28rem, 48vh, 36rem);
+  position: relative;
+  z-index: 1;
+}
+.sobre-photo {
+  width: 42%;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.sobre-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+.sobre-text {
+  flex: 1;
+  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(2rem, 4vw, 3rem) clamp(2.5rem, 5vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.625rem;
+  max-width: 600px;
+}
+.sobre-eyebrow-conv {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-weight: 400;
+  color: var(--ink-muted);
+  margin-bottom: 0.875rem;
+}
+.sobre-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+.sobre-bio {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.72;
+  color: var(--ink-muted);
+  margin-bottom: 1.125rem;
+}
+.sobre-cierre {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--ink-muted);
+}
+.sobre-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.badge {
+  font-family: var(--font-ui);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--ink-muted);
+  background: var(--ground-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 5px 10px;
+}
+
+/* ═══════════════════════════════════════════════
+   SERVICIOS
+   Lista editorial con borde izquierdo
+═══════════════════════════════════════════════ */
+#servicios {
+  background: var(--ground);
+  padding: var(--space-3xl) 0;
+  position: relative;
+  z-index: 1;
+}
+.servicios-header { margin-bottom: 2.5rem; }
+.servicios-list   { border-top: 1px solid var(--border); }
+
+.servicio-item {
+  display: grid;
+  grid-template-columns: minmax(min-content, 15rem) 1fr;
+  gap: 2.5rem;
+  align-items: start;
+  padding: 1.125rem 0 1.125rem 1.25rem;
+  border-left: 0.1875rem solid var(--accent);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+.servicio-item.featured {
+  border-left-color: var(--accent-deep);
+  background: color-mix(in srgb, var(--accent) 4%, var(--ground));
+}
+.servicio-item:hover {
+  background: color-mix(in srgb, var(--accent-light) 18%, var(--ground));
+}
+.servicio-titulo {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--ink);
+  padding-top: 3px;
+  line-height: 1.25;
+}
+.servicio-desc {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--ink-muted);
+  margin-bottom: 0.75rem;
+}
+.servicio-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.375rem;
+}
+.servicio-tag {
+  font-family: var(--font-ui);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink-muted);
+  background: var(--ground-raised);
+  border: 1px solid var(--border);
+  border-radius: 0.1875rem;
+  padding: 0.1875rem 0.5rem;
+}
+
+/* ═══════════════════════════════════════════════
+   PROCESO
+   Timeline vertical left-aligned
+═══════════════════════════════════════════════ */
+#proceso {
+  background: var(--ground-raised);
+  padding: var(--space-3xl) 0;
+  position: relative;
+  z-index: 1;
+}
+.proceso-header { margin-bottom: 3rem; }
+.proceso-timeline {
+  position: relative;
+}
+/* La línea vertical pasa por el centro de la columna del punto (28px / 2 = 14px) */
+.proceso-vline {
+  position: absolute;
+  left: 13px;
+  top: 20px;
+  bottom: 20px;
+  width: 2px;
+  background: var(--border);
+  z-index: 0;
+}
+.proceso-step {
+  display: flex;
+  gap: 2rem;
+  padding-bottom: 2.5rem;
+}
+.proceso-step:last-child { padding-bottom: 0; }
+
+/* Columna del punto — anchura fija = 28px, centra el dot sobre la línea */
+.proceso-dot-col {
+  width: 28px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  padding-top: 4px;
+  position: relative;
+  z-index: 1;
+}
+.proceso-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--ground-raised);
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    background   var(--dur-fast) var(--ease-out);
+}
+.proceso-step:hover .proceso-dot {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+.proceso-content { flex: 1; }
+.proceso-sub {
+  font-family: var(--font-ui);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.35rem;
+}
+.proceso-titulo {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+.proceso-desc {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--ink-muted);
+}
+
+/* ═══════════════════════════════════════════════
+   TESTIMONIOS
+   Cita única centrada con navegación
+═══════════════════════════════════════════════ */
+#testimonios {
+  background: var(--ground-soft);
+  padding: var(--space-3xl) 0 var(--space-md);
+  position: relative;
+  z-index: 1;
+}
+.testimonios-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 var(--sx);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.testimonios-inner .eyebrow { margin-bottom: 2.5rem; }
+
+/* Todos los testimonios apilados en la misma celda — sin saltos de altura */
+.testimonios-track {
+  display: grid;
+  width: 100%;
+}
+.testimonio {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity    1000ms cubic-bezier(0.5, 0, 0.2, 1),
+    transform  1000ms cubic-bezier(0.5, 0, 0.2, 1);
+  transform: translateY(10px);
+}
+.testimonio.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+.testimonio-comilla {
+  font-family: var(--font-display);
+  font-size: 5.5rem;
+  line-height: 0.55;
+  color: var(--accent-light);
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  user-select: none;
+  aria-hidden: true;
+}
+.testimonio-cita {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: var(--ink);
+  font-style: italic;
+  margin-bottom: 1.25rem;
+}
+.testimonio-autor {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-ghost);
+}
+.testimonios-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2.25rem;
+}
+.t-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-ghost);
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    color        var(--dur-fast) var(--ease-out);
+}
+.t-btn:hover { border-color: var(--accent); color: var(--accent); }
+.t-dots { display: flex; gap: 7px; align-items: center; }
+.t-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--border);
+  cursor: pointer;
+  transition:
+    background 500ms cubic-bezier(0.5, 0, 0.2, 1),
+    transform  500ms cubic-bezier(0.5, 0, 0.2, 1);
+}
+.t-dot.active {
+  background: var(--accent-deep);
+  transform: scale(1.35);
+}
+
+/* ═══════════════════════════════════════════════
+   CONTACTO
+   Columna centrada minimalista
+═══════════════════════════════════════════════ */
+#contacto {
+  background: color-mix(in srgb, var(--accent-light) 22%, var(--ground));
+  padding: var(--space-md) 0 var(--space-3xl);
+  position: relative;
+  z-index: 1;
+}
+.contacto-inner {
+  max-width: min(60%, 860px);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--sx);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.contacto-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+.contacto-nota {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--ink-muted);
+  margin-bottom: 2.25rem;
+}
+.contacto-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  text-align: left;
+}
+.form-field  { display: flex; flex-direction: column; gap: 0.375rem; }
+.form-label  {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--ink-ghost);
+}
+.form-opt    { font-weight: 400; }
+.form-input,
+.form-textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--ink);
+  background: var(--ground-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.875rem;
+  appearance: none;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              box-shadow   var(--dur-fast) var(--ease-out);
+}
+.form-input::placeholder,
+.form-textarea::placeholder { color: var(--ink-ghost); }
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 14%, transparent);
+}
+.form-textarea { height: 7rem; resize: vertical; }
+.form-submit {
+  margin-top: 0.375rem;
+}
+.form-submit .btn-primary {
+  width: 100%;
+  padding: 0.9375rem;
+  font-size: 1rem;
+}
+.contacto-subnota {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: var(--ink-ghost);
+  margin-top: 1rem;
+}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+footer {
+  background: var(--ground-deep);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--sx);
+  position: relative;
+  z-index: 1;
+}
+.footer-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.65);
+  flex-shrink: 0;
+}
+.footer-links {
+  display: flex;
+  gap: var(--space-md);
+  margin: 0 auto;
+  list-style: none;
+}
+.footer-links a {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: rgba(255,255,255,.35);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.footer-links a:hover { color: rgba(255,255,255,.7); }
+.footer-copy {
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  color: rgba(255,255,255,.25);
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  :root { --sx: 1.5rem; }
+
+  /* Nav */
+  .nav-links, .nav-cta { display: none; }
+  .nav-burger { display: flex; }
+
+  /* Hero */
+  #hero { flex-direction: column; min-height: auto; }
+  .hero-text {
+    flex: none;
+    padding: 3rem var(--sx) 2.5rem;
+    max-width: 100%;
+  }
+  .hero-photo { flex: none; height: clamp(16rem, 50vw, 22rem); width: 100%; min-height: auto; }
+
+  /* Sobre Alberto */
+  #sobre-mi { flex-direction: column; }
+  .sobre-photo { width: 100%; height: clamp(14rem, 45vw, 20rem); }
+  .sobre-text { padding: 2.5rem var(--sx) 3.5rem; max-width: 100%; }
+
+  /* Interpelación */
+  .interp-inner { grid-template-columns: 1fr; gap: 2rem; }
+
+  /* Servicios */
+  .servicio-item { grid-template-columns: 1fr; gap: 0.5rem; }
+
+  /* Footer */
+  footer { height: auto; padding: 1.25rem var(--sx); }
+  .footer-inner { flex-wrap: wrap; justify-content: center; gap: 0.625rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0ms !important; animation-duration: 0ms !important; }
+  [data-reveal] { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Blobs ambient CSS — fondo de página, atraviesan secciones -->
+<div class="blob blob-1" aria-hidden="true"></div>
+<div class="blob blob-2" aria-hidden="true"></div>
+
+<!-- ════════════════════════════════════════
+     NAV
+════════════════════════════════════════ -->
+<nav class="nav" aria-label="Navegación principal">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Alberto Aguado</a>
+    <ul class="nav-links" role="list">
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="#contacto" class="nav-cta">Contacto</a>
+    <!-- TODO: interactividad — hamburger drawer en mobile -->
+    <button class="nav-burger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+
+<!-- ════════════════════════════════════════
+     HERO — foto integrada por color
+     Columna derecha background = accent-light
+     El fondo de la foto de Alberto (#cde8d4) ≈ accent-light (#ccead3)
+     La foto emerge del color sin borde visible
+════════════════════════════════════════ -->
+<section id="hero" aria-labelledby="hero-h1">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Psicólogo General Sanitario · Neuropsicólogo Clínico</p>
+    <h1 class="hero-h1" id="hero-h1">
+      Acompañándote a comprender lo que te ocurre y a construir una vida con mayor bienestar y <em>sentido</em>.
+    </h1>
+    <p class="hero-sub">Atención online y presencial en Madrid.</p>
+    <a href="#contacto" class="btn-primary">Cuéntame qué te ocurre</a>
+  </div>
+  <div class="hero-photo">
+    <img
+      src="../../../inputs/references/Foto del perfil de albertoaguadopsicologov2.png"
+      alt="Alberto Aguado Calvo, psicólogo general sanitario y neuropsicólogo clínico"
+      loading="eager"
+    >
+  </div>
+</section>
+
+
+
+<!-- ════════════════════════════════════════
+     INTERPELACIÓN
+════════════════════════════════════════ -->
+<!-- INTERPELACIÓN — desactivada hasta que Alberto aporte copy propio
+<section id="interpelacion" aria-labelledby="interp-heading">
+  <div class="interp-inner">
+    <div class="interp-left" data-reveal>
+      <p class="eyebrow" style="margin-bottom:1rem;">¿Te reconoces en alguna de estas situaciones?</p>
+      <h2 class="interp-lead" id="interp-heading">
+        Hay muchas formas de pedir ayuda. A veces, la primera es simplemente reconocer que algo no va bien.
+      </h2>
+    </div>
+    <div class="interp-frases" data-reveal>
+      <p class="interp-frase">Eres un adulto que quiere entender y transformar lo que te limita.</p>
+      <p class="interp-frase">Eres padre o madre que busca ayuda especializada para tu hijo.</p>
+      <p class="interp-frase">Tienes o sospechas un diagnóstico de TDAH, altas capacidades o dislexia.</p>
+      <p class="interp-frase">Has sufrido un daño neurológico y quieres recuperar tu autonomía.</p>
+      <p class="interp-frase">Ya lo has intentado antes y no encontraste el espacio adecuado.</p>
+    </div>
+  </div>
+</section>
+-->
+
+
+<!-- ════════════════════════════════════════
+     SOBRE ALBERTO
+     Foto izquierda fluida · eyebrow conversacional
+════════════════════════════════════════ -->
+<section id="sobre-mi" aria-labelledby="sobre-h2">
+  <div class="sobre-photo">
+    <img
+      src="../../../inputs/references/Foto del perfil de albertoaguadopsicologov2.png"
+      alt="Alberto Aguado Calvo"
+      loading="lazy"
+    >
+  </div>
+  <div class="sobre-text">
+    <p class="sobre-eyebrow-conv" data-reveal>Hola, soy Alberto.</p>
+    <h2 class="sobre-h2" id="sobre-h2" data-reveal>
+      Un neuropsicólogo que ayuda a comprenderte y transformar los patrones que limitan tu bienestar.
+    </h2>
+    <p class="sobre-bio" data-reveal>
+      Trabajo con población infantojuvenil, adulta y personas mayores. Mi enfoque se basa en el análisis funcional de la conducta y las terapias contextuales de tercera generación — entender el origen y mantenimiento del malestar para intervenir de forma eficaz y personalizada.
+    </p>
+    <p class="sobre-cierre" data-reveal>
+      Un espacio cercano, seguro y libre de juicios, donde el objetivo es que entiendas lo que te ocurre y aprendas a relacionarte con ello de otra manera.
+    </p>
+    <div class="sobre-badges" data-reveal>
+      <span class="badge">Psicólogo General Sanitario</span>
+      <span class="badge">Neuropsicólogo Clínico · UNIR</span>
+      <span class="badge">Neurocientífico Clínico · UCM</span>
+      <span class="badge">Máster PGS · UNIE</span>
+      <span class="badge">Lic. Psicología · UPSA</span>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ════════════════════════════════════════
+     SERVICIOS — lista editorial borde izquierdo
+════════════════════════════════════════ -->
+<section id="servicios" aria-labelledby="servicios-h2">
+  <div class="container">
+    <div class="servicios-header" data-reveal>
+      <p class="eyebrow">Cómo puedo ayudarte</p>
+      <h2 class="section-title" id="servicios-h2">Especialidades</h2>
+    </div>
+    <div class="servicios-list">
+
+      <article class="servicio-item featured" data-reveal>
+        <h3 class="servicio-titulo">Terapia psicológica</h3>
+        <div>
+          <p class="servicio-desc">Trabajo desde el análisis funcional de la conducta, entendiendo cada dificultad en su contexto para intervenir de forma personalizada. Me baso en terapias contextuales y de tercera generación, centradas en ayudarte a relacionarte de forma más flexible con tus pensamientos y emociones, y avanzar hacia una vida con sentido.</p>
+          <div class="servicio-tags">
+            <span class="servicio-tag">Ansiedad</span>
+            <span class="servicio-tag">Depresión</span>
+            <span class="servicio-tag">Conducta suicida</span>
+            <span class="servicio-tag">Desregulación emocional</span>
+            <span class="servicio-tag">Pánico</span>
+            <span class="servicio-tag">Autoestima</span>
+            <span class="servicio-tag">Rumiación</span>
+            <span class="servicio-tag">Dependencia emocional</span>
+            <span class="servicio-tag">Relaciones afectivas</span>
+            <span class="servicio-tag">Insatisfacción vital</span>
+            <span class="servicio-tag">Bullying</span>
+            <span class="servicio-tag">Obsesiones</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="servicio-item" data-reveal>
+        <h3 class="servicio-titulo">Intervención neuropsicológica</h3>
+        <div>
+          <p class="servicio-desc">Neuroestimulación en población infantil, favoreciendo el desarrollo cognitivo y atencional, y neurorrehabilitación en adultos dirigida a la recuperación y compensación de funciones tras daño neurológico.</p>
+          <div class="servicio-tags">
+            <span class="servicio-tag">TDAH</span>
+            <span class="servicio-tag">Altas Capacidades</span>
+            <span class="servicio-tag">Problemas de conducta</span>
+            <span class="servicio-tag">Ictus</span>
+            <span class="servicio-tag">TCE</span>
+            <span class="servicio-tag">Demencias</span>
+            <span class="servicio-tag">Deterioro cognitivo</span>
+            <span class="servicio-tag">Tumores cerebrales</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="servicio-item" data-reveal>
+        <h3 class="servicio-titulo">Informes clínicos</h3>
+        <div>
+          <p class="servicio-desc">Evaluaciones psicológicas y neuropsicológicas completas para la elaboración de informes clínicos rigurosos, útiles en contextos sanitarios, educativos o legales.</p>
+          <div class="servicio-tags">
+            <span class="servicio-tag">Informe psicológico</span>
+            <span class="servicio-tag">Informe neuropsicológico</span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ════════════════════════════════════════
+     PROCESO — timeline vertical left-aligned
+════════════════════════════════════════ -->
+<section id="proceso" aria-labelledby="proceso-h2">
+  <div class="container">
+    <div class="proceso-header" data-reveal>
+      <p class="eyebrow">Cómo trabajaríamos juntos</p>
+      <h2 class="section-title" id="proceso-h2">El proceso terapéutico</h2>
+    </div>
+    <div class="proceso-timeline">
+      <div class="proceso-vline" aria-hidden="true"></div>
+
+      <div class="proceso-step" data-reveal>
+        <div class="proceso-dot-col" aria-hidden="true"><div class="proceso-dot"></div></div>
+        <div class="proceso-content">
+          <p class="proceso-sub">Sesión inicial</p>
+          <h3 class="proceso-titulo">Nos conocemos</h3>
+          <p class="proceso-desc">En la primera sesión exploramos qué te trae, cómo estás viviendo la situación y qué esperas del proceso. No hay agenda ni preguntas correctas. Es un espacio para que puedas contar lo que quieras, a tu ritmo.</p>
+        </div>
+      </div>
+
+      <div class="proceso-step" data-reveal>
+        <div class="proceso-dot-col" aria-hidden="true"><div class="proceso-dot"></div></div>
+        <div class="proceso-content">
+          <p class="proceso-sub">Evaluación y metas</p>
+          <h3 class="proceso-titulo">Entendemos el contexto</h3>
+          <p class="proceso-desc">Identificamos las áreas de trabajo y definimos metas concretas y alcanzables a corto plazo. El objetivo no es resolver todo de golpe — es saber hacia dónde vamos y por qué.</p>
+        </div>
+      </div>
+
+      <div class="proceso-step" data-reveal>
+        <div class="proceso-dot-col" aria-hidden="true"><div class="proceso-dot"></div></div>
+        <div class="proceso-content">
+          <p class="proceso-sub">Proceso terapéutico</p>
+          <h3 class="proceso-titulo">Avanzamos juntos</h3>
+          <p class="proceso-desc">Trabajamos sesión a sesión con herramientas adaptadas a ti. Cada intervención parte de tu contexto específico, no de un protocolo genérico.</p>
+        </div>
+      </div>
+
+      <div class="proceso-step" data-reveal>
+        <div class="proceso-dot-col" aria-hidden="true"><div class="proceso-dot"></div></div>
+        <div class="proceso-content">
+          <p class="proceso-sub">Revisión de progreso</p>
+          <h3 class="proceso-titulo">Cada 3 meses</h3>
+          <p class="proceso-desc">Revisamos cómo ha evolucionado el trabajo: qué ha cambiado, qué sigue siendo difícil y si hay que ajustar el rumbo. También si hay un cambio importante en tu vida que lo requiera.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ════════════════════════════════════════
+     TESTIMONIOS — cita única con navegación
+════════════════════════════════════════ -->
+<section id="testimonios" aria-labelledby="test-heading">
+  <div class="testimonios-inner">
+    <p class="eyebrow" data-reveal id="test-heading">Experiencias de pacientes</p>
+
+    <div class="testimonios-track">
+    <div class="testimonio active" role="group" aria-label="Testimonio 1 de 3">
+      <p class="testimonio-comilla" aria-hidden="true">"</p>
+      <blockquote class="testimonio-cita">
+        Por fin encontré a alguien que no me hizo sentir raro por lo que me pasaba. Alberto escucha de verdad y las sesiones se sienten como un espacio seguro, sin prisas.
+      </blockquote>
+      <cite class="testimonio-autor">— Marcos T.</cite>
+    </div>
+
+    <div class="testimonio" role="group" aria-label="Testimonio 2 de 3">
+      <p class="testimonio-comilla" aria-hidden="true">"</p>
+      <blockquote class="testimonio-cita">
+        Llevaba años con ansiedad pensando que era mi forma de ser. En pocos meses entendí qué la mantenía y cómo cambiar mi relación con ella.
+      </blockquote>
+      <cite class="testimonio-autor">— Laura G.</cite>
+    </div>
+
+    <div class="testimonio" role="group" aria-label="Testimonio 3 de 3">
+      <p class="testimonio-comilla" aria-hidden="true">"</p>
+      <blockquote class="testimonio-cita">
+        Mi hijo tiene TDAH y las sesiones con Alberto han sido un punto de inflexión. Nos ha dado herramientas a él y a nosotros como familia.
+      </blockquote>
+      <cite class="testimonio-autor">— Carmen R.</cite>
+    </div>
+    </div><!-- /testimonios-track -->
+
+    <nav class="testimonios-nav" aria-label="Navegación de testimonios">
+      <button class="t-btn" id="t-prev" aria-label="Testimonio anterior">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <div class="t-dots" role="list">
+        <button class="t-dot active" aria-label="Ver testimonio 1" aria-current="true" role="listitem"></button>
+        <button class="t-dot" aria-label="Ver testimonio 2" role="listitem"></button>
+        <button class="t-dot" aria-label="Ver testimonio 3" role="listitem"></button>
+      </div>
+      <button class="t-btn" id="t-next" aria-label="Siguiente testimonio">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</section>
+
+
+
+<!-- ════════════════════════════════════════
+     CONTACTO — columna centrada minimalista
+════════════════════════════════════════ -->
+<section id="contacto" aria-labelledby="contacto-h2">
+  <div class="contacto-inner">
+    <h2 class="contacto-h2" id="contacto-h2" data-reveal>¿Hablamos?</h2>
+    <p class="contacto-nota" data-reveal>No necesitas preparar nada.<br>Solo cuéntame qué te ocurre.</p>
+
+    <!-- TODO: interactividad — conectar a backend o Formspree en producción -->
+    <form class="contacto-form" novalidate data-reveal>
+      <div class="form-field">
+        <label class="form-label" for="nombre">Nombre</label>
+        <input class="form-input" type="text" id="nombre" name="nombre"
+          placeholder="Tu nombre" autocomplete="given-name" required>
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="email">Email</label>
+        <input class="form-input" type="email" id="email" name="email"
+          placeholder="tu@email.com" autocomplete="email" required>
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="telefono">
+          Teléfono <span class="form-opt">(opcional)</span>
+        </label>
+        <input class="form-input" type="tel" id="telefono" name="telefono"
+          placeholder="600 000 000" autocomplete="tel">
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="motivo">¿Qué puedo hacer por ti?</label>
+        <textarea class="form-textarea" id="motivo" name="motivo"
+          placeholder="Cuéntame lo que quieras, sin estructura ni formato."></textarea>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="btn-primary">Cuéntame qué te ocurre</button>
+      </div>
+    </form>
+
+    <p class="contacto-subnota" data-reveal>Te responderé lo antes posible.</p>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer aria-label="Pie de página">
+  <div class="footer-inner">
+    <span class="footer-brand">Alberto Aguado Calvo</span>
+    <ul class="footer-links" role="list">
+      <li><a href="#">Aviso legal</a></li>
+      <li><a href="#">Privacidad</a></li>
+      <li><a href="#">Cookies</a></li>
+    </ul>
+    <span class="footer-copy">© 2025 · Col. [número pendiente]</span>
+  </div>
+</footer>
+
+
+<script>
+/* ── Testimonios ── */
+(function () {
+  var items    = document.querySelectorAll('.testimonio');
+  var dots     = document.querySelectorAll('.t-dot');
+  var current  = 0;
+  var busy     = false;
+  var FADE_MS  = 1000; /* debe coincidir con la duración CSS */
+
+  function show(n) {
+    if (busy) return;
+    var next = ((n % items.length) + items.length) % items.length;
+    if (next === current) return;
+    busy = true;
+
+    /* 1 — fade out del actual */
+    items[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    dots[current].removeAttribute('aria-current');
+
+    /* dot del destino cambia ya (transición propia más corta) */
+    dots[next].classList.add('active');
+    dots[next].setAttribute('aria-current', 'true');
+
+    /* 2 — esperar fade out antes de mostrar el siguiente */
+    setTimeout(function () {
+      current = next;
+      items[current].classList.add('active');
+      busy = false;
+    }, FADE_MS);
+  }
+
+  document.getElementById('t-prev').addEventListener('click', function () { show(current - 1); });
+  document.getElementById('t-next').addEventListener('click', function () { show(current + 1); });
+  dots.forEach(function (d, i) { d.addEventListener('click', function () { show(i); }); });
+})();
+
+/* ── Scroll reveal ── */
+(function () {
+  var els = document.querySelectorAll('[data-reveal]');
+  if (!window.IntersectionObserver) {
+    els.forEach(function (el) { el.classList.add('visible'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  els.forEach(function (el) { io.observe(el); });
+})();
+</script>
+
+</body>
+</html>

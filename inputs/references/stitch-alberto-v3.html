@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Refugio Vital - Tu espacio seguro para avanzar</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,700&amp;family=Fraunces:opsz,wght@9..144,400;9..144,600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#cadfd2",
+                    "inverse-surface": "#22342b",
+                    "on-secondary-container": "#53675f",
+                    "error": "#ba1a1a",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed": "#d2e7de",
+                    "on-primary-fixed-variant": "#264e3c",
+                    "tertiary-container": "#6d230f",
+                    "on-secondary-fixed": "#0c1f19",
+                    "secondary-container": "#cfe5db",
+                    "primary": "#002d1c",
+                    "surface-container-low": "#e4f9eb",
+                    "inverse-primary": "#a4d0b8",
+                    "inverse-on-surface": "#e1f6e9",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#3c0800",
+                    "primary-fixed-dim": "#a4d0b8",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#e9fef1",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb4a1",
+                    "on-primary": "#ffffff",
+                    "glass-surface": "rgba(250, 249, 246, 0.8)",
+                    "on-background": "#0d1f17",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#e9fef1",
+                    "surface-container-high": "#d8ede0",
+                    "error-container": "#ffdad6",
+                    "accent-hover": "#C86247",
+                    "background": "#FAF9F6",
+                    "secondary": "#4f635b",
+                    "surface-tint": "#3e6752",
+                    "primary-fixed": "#c0edd3",
+                    "tertiary-fixed": "#ffdbd2",
+                    "on-secondary-fixed-variant": "#374b44",
+                    "secondary-fixed-dim": "#b6cbc2",
+                    "on-surface": "#0d1f17",
+                    "surface-container-highest": "#d3e7db",
+                    "surface-variant": "#d3e7db",
+                    "on-surface-variant": "#414944",
+                    "on-tertiary-fixed-variant": "#7c2e19",
+                    "surface-container": "#def3e6",
+                    "primary-container": "#1a4331",
+                    "outline": "#717973",
+                    "on-primary-fixed": "#002114",
+                    "muted-sage": "#8CA396",
+                    "outline-variant": "#c1c8c2",
+                    "on-tertiary-container": "#f3896d",
+                    "on-primary-container": "#85b098",
+                    "tertiary": "#4f0e00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "120px",
+                    "container-max": "1280px",
+                    "grid-gutter": "24px",
+                    "card-offset": "60px",
+                    "image-overlap": "80px"
+            },
+            "fontFamily": {
+                    "hero-display": [
+                            "Fraunces"
+                    ],
+                    "quote-text": [
+                            "Fraunces"
+                    ],
+                    "label-caps": [
+                            "DM Sans"
+                    ],
+                    "small-text": [
+                            "DM Sans"
+                    ],
+                    "headline-lg": [
+                            "Fraunces"
+                    ],
+                    "headline-sm": [
+                            "Fraunces"
+                    ],
+                    "headline-md": [
+                            "Fraunces"
+                    ],
+                    "body-md": [
+                            "DM Sans"
+                    ],
+                    "body-lg": [
+                            "DM Sans"
+                    ],
+                    "headline-lg-mobile": [
+                            "Fraunces"
+                    ]
+            },
+            "fontSize": {
+                    "hero-display": [
+                            "64px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "quote-text": [
+                            "28px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "0.1em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "small-text": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-sm": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-md": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "36px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        .blob-mask {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            transition: all 8s ease-in-out;
+        }
+        .blob-mask:hover {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+        .organic-blob-1 {
+            border-radius: 41% 59% 70% 30% / 32% 40% 60% 68%;
+        }
+        .organic-blob-2 {
+            border-radius: 63% 37% 32% 68% / 64% 53% 47% 36%;
+        }
+        .organic-blob-3 {
+            border-radius: 35% 65% 26% 74% / 49% 31% 69% 51%;
+        }
+        
+        .shadow-organic {
+            box-shadow: 0 20px 40px rgba(26, 67, 49, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased overflow-x-hidden min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-[100] bg-glass-surface/80 dark:bg-inverse-surface/80 backdrop-blur-md">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-container-max mx-auto">
+<a class="text-headline-sm font-headline-sm font-semibold text-primary dark:text-inverse-primary hover:text-accent-hover transition-all duration-300" href="#">
+                Dr. Aris Thorne
+            </a>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-label-caps font-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors hover:text-accent-hover duration-300" href="#">Our Approach</a>
+<a class="text-label-caps font-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors hover:text-accent-hover duration-300" href="#">Services</a>
+<a class="text-label-caps font-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors hover:text-accent-hover duration-300" href="#">Methodology</a>
+<a class="text-label-caps font-label-caps text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary transition-colors hover:text-accent-hover duration-300" href="#">Resources</a>
+</div>
+<button class="bg-tertiary-container text-on-tertiary px-6 py-2 rounded-full font-label-caps text-label-caps hover:-translate-y-[2px] hover:bg-tertiary transition-all shadow-organic">
+                Book Session
+            </button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-32 pb-section-gap">
+<!-- Hero Section -->
+<section class="max-w-container-max mx-auto px-8 relative mb-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-grid-gutter items-center">
+<!-- Text Content -->
+<div class="md:col-span-6 z-10 relative pt-12 md:pt-0">
+<div class="absolute -top-20 -left-20 w-64 h-64 bg-surface-container-high rounded-full blur-3xl opacity-50 z-0"></div>
+<div class="relative z-10">
+<span class="inline-block px-4 py-1 bg-surface-container rounded-full text-primary font-label-caps text-label-caps mb-6 border border-secondary-fixed">Refugio Vital</span>
+<h1 class="text-hero-display font-hero-display text-primary mb-6 leading-tight">
+                            Tu espacio seguro para avanzar.
+                        </h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant mb-10 max-w-lg">
+                            An active, restorative approach to mental well-being. We move beyond clinical rigidity to create a nurturing environment where your natural growth is guided, supported, and celebrated.
+                        </p>
+<div class="flex flex-wrap gap-6 items-center">
+<button class="bg-tertiary-container text-on-tertiary px-8 py-4 rounded-full font-label-caps text-label-caps hover:-translate-y-[2px] hover:bg-tertiary transition-all shadow-organic">
+                                Comienza hoy
+                            </button>
+<a class="text-primary font-label-caps text-label-caps border-b-2 border-primary pb-1 hover:text-accent-hover hover:border-accent-hover transition-colors" href="#philosophy">
+                                Explora nuestra filosofía
+                            </a>
+</div>
+</div>
+</div>
+<!-- Asymmetrical Image Grid -->
+<div class="md:col-span-6 relative mt-16 md:mt-0 h-[600px] hidden md:block">
+<!-- Base Organic Blob -->
+<div class="absolute inset-0 bg-surface-container-low organic-blob-1 transform translate-x-8 -translate-y-8 z-0"></div>
+<!-- Main Portrait -->
+<div class="absolute right-0 top-1/2 -translate-y-1/2 w-4/5 h-[500px] z-10 shadow-organic blob-mask overflow-hidden border-4 border-background">
+<img alt="Professional psychologist portrait" class="w-full h-full object-cover" data-alt="A candid, warm portrait of a professional psychologist standing in a modern, sunlit clinic. The lighting is soft and natural, emphasizing a feeling of safety and active growth. The color palette incorporates deep forest greens, subtle pale mints, and warm terracotta accents, fitting a modern organic minimal light-mode aesthetic. The subject exudes approachability and expertise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBZpB0PnP-cw2aZe1GK1ZkBj5zAwsxjlVCltM2o4MrlSKyLrhlI3VGNhMMU7bp7NV-507YfD04o47h5mYg2aos9l2OPqqfo3WFeeLZ4mc_uOb-TdWlYSnoGct2Ihp5lgsZMLRPLkVqZnBd-olLNzi68TCFCAD9csVpGQgZuWsk0Dc6BVIep4Ym0teQ0ppqzzkdnHWOYdgAijXQiL-QQplc8c_eEWp9AJ_z-2Q503XOMPFfESbyyZK1G_DNG8mSY_W8umLmz6bm7Ak"/>
+</div>
+<!-- Overlapping Decorative Element -->
+<div class="absolute bottom-8 left-0 w-48 h-64 bg-secondary-container organic-blob-2 z-20 shadow-organic flex items-center justify-center p-6 text-center transform -translate-y-[-40px]">
+<p class="font-quote-text text-quote-text text-primary">"Crecimiento natural."</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Philosophy Teaser Section -->
+<section class="max-w-container-max mx-auto px-8 relative mb-section-gap" id="philosophy">
+<div class="text-center mb-16 max-w-2xl mx-auto">
+<h2 class="text-headline-lg font-headline-lg text-primary mb-4">Nuestra Filosofía</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">We believe in a dynamic, natural approach to therapy that adapts to your unique rhythm, deeply rooted in safety and proactive growth.</p>
+</div>
+<!-- Zigzag Grid -->
+<div class="space-y-32">
+<!-- Row 1 -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-grid-gutter items-center">
+<div class="md:col-span-5 relative order-2 md:order-1 mt-12 md:mt-0">
+<div class="absolute -inset-4 bg-secondary-fixed-dim organic-blob-3 z-0 opacity-40"></div>
+<div class="relative z-10 h-80 rounded-2xl overflow-hidden shadow-organic">
+<img alt="Modern clinic interior" class="w-full h-full object-cover" data-alt="A bright, modern clinic waiting area featuring organic architecture and soft curves. Sunlight streams through large windows, illuminating pale mint walls and lush green potted plants. The furniture is minimalist but comfortable, featuring natural wood textures and warm terracotta cushions. The mood is calm, restorative, and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyvXGeXP-RM4o8lTrkc36SBE2unIZaU_ZzJFzQnsxkqDsLdTHACQR-vs2dK-cc2tOnTdyE19p9vIhpNmFMN5oP9-0CZFWQQKg6FRqskytebOPpmJJWWpiHIl8fKiQ0EJ0LRv6-DKvjQmqlg_ZMxCW7zigcjABj-YsvXLQxKnA3HsgiS7kLwiomiu4ymq5ACXMRDyHMoVl0fSun_CukxIjJHcbqrjZQg54YOLeXHUXRA9Q_XODax_bKpyyYMvbLQGEg_8c-LmZmw1g"/>
+</div>
+</div>
+<div class="md:col-span-1 hidden md:block order-none"></div>
+<div class="md:col-span-6 order-1 md:order-2">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center relative">
+<span class="material-symbols-outlined text-primary relative z-10" style="font-variation-settings: 'FILL' 1;">psychiatry</span>
+<div class="absolute inset-0 bg-primary-fixed opacity-50 organic-blob-1 scale-110"></div>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary">Un entorno restaurador</h3>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant mb-6">
+                            We've moved away from clinical, sterile environments. Our space is designed to feel like a sanctuary—a place where you can breathe, reflect, and engage in the therapeutic process without the weight of traditional medical settings.
+                        </p>
+<a class="text-primary font-label-caps text-label-caps border-b-2 border-primary pb-1 hover:text-accent-hover hover:border-accent-hover transition-colors inline-flex items-center gap-2" href="#">
+                            Descubre el espacio <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-grid-gutter items-center">
+<div class="md:col-span-6">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center relative">
+<span class="material-symbols-outlined text-primary relative z-10" style="font-variation-settings: 'FILL' 1;">eco</span>
+<div class="absolute inset-0 bg-primary-fixed opacity-50 organic-blob-2 scale-110"></div>
+</div>
+<h3 class="text-headline-sm font-headline-sm text-primary">Crecimiento guiado</h3>
+</div>
+<p class="text-body-md font-body-md text-on-surface-variant mb-6">
+                            Like a forest, personal growth is rarely linear. We embrace the asymmetrical, sometimes chaotic nature of healing, providing structural support while allowing your unique path to unfold organically over time.
+                        </p>
+<a class="text-primary font-label-caps text-label-caps border-b-2 border-primary pb-1 hover:text-accent-hover hover:border-accent-hover transition-colors inline-flex items-center gap-2" href="#">
+                            Nuestra metodología <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="md:col-span-1 hidden md:block"></div>
+<div class="md:col-span-5 relative mt-12 md:mt-0">
+<div class="absolute -inset-4 bg-tertiary-fixed-dim organic-blob-1 z-0 opacity-40"></div>
+<div class="relative z-10 h-80 rounded-2xl overflow-hidden shadow-organic translate-y-8">
+<img alt="Hands holding a plant, signifying growth" class="w-full h-full object-cover" data-alt="A close-up shot of hands gently holding a small, thriving plant sapling in a modern ceramic pot. The lighting is bright and airy, casting soft shadows. The background is a soft, out-of-focus blur of pale mint and natural wood tones. The image evokes a sense of nurturing, natural dynamism, and careful guidance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU9TEVbEO1AtCz142saiirscXIWJMx6bIAcELoEMGg9EItVZKFfEeZ7R75TMDp8ImnO9IwG4M55R2HUKUB35sbch0Z7H7Fjzz26fv63OrBYzyttoPivq8M1JbrzWtqlmb13lYYfPC8VqEcE8NH5HDFSsilXZpJdAmqq0O5Q-vIAyBtYuf4eZLWyQB2A2_cLuhOX_pp9iPq2okIJP1iOR1tB3SDBi8uFgwlOV6qLuHsncSwQ14Ql8JK4oXlH_GhrA7Qg8Nm2Mi9Pfc"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="relative w-full pt-20 pb-10 bg-primary dark:bg-inverse-surface text-on-primary dark:text-inverse-on-surface">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-grid-gutter px-8 max-w-container-max mx-auto">
+<div class="md:col-span-4 mb-8 md:mb-0">
+<span class="text-headline-md font-headline-md text-on-primary dark:text-inverse-on-surface block mb-4">Dr. Aris Thorne</span>
+<p class="text-body-md font-body-md text-secondary-fixed opacity-80 max-w-sm">
+                    Providing an active, restorative approach to mental well-being in a nurturing environment.
+                </p>
+</div>
+<div class="md:col-span-8 flex flex-col md:flex-row justify-end gap-8 md:gap-16">
+<div class="flex flex-col gap-3">
+<span class="text-label-caps font-label-caps text-tertiary-fixed">Legal</span>
+<a class="text-small-text font-small-text text-secondary-fixed opacity-80 hover:opacity-100 hover:text-tertiary-fixed transition-all hover:scale-105 inline-block w-fit" href="#">Privacy Policy</a>
+<a class="text-small-text font-small-text text-secondary-fixed opacity-80 hover:opacity-100 hover:text-tertiary-fixed transition-all hover:scale-105 inline-block w-fit" href="#">Terms of Service</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="text-label-caps font-label-caps text-tertiary-fixed">Contact</span>
+<a class="text-small-text font-small-text text-secondary-fixed opacity-80 hover:opacity-100 hover:text-tertiary-fixed transition-all hover:scale-105 inline-block w-fit" href="#">Emergency Contacts</a>
+<a class="text-small-text font-small-text text-secondary-fixed opacity-80 hover:opacity-100 hover:text-tertiary-fixed transition-all hover:scale-105 inline-block w-fit" href="#">Clinic Locations</a>
+</div>
+</div>
+<div class="md:col-span-12 mt-16 pt-8 border-t border-on-primary-fixed-variant flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-small-text font-small-text text-secondary-fixed opacity-80">© 2024 Dr. Aris Thorne Psychology. Nurturing Natural Growth.</p>
+</div>
+</div>
+</footer>
+</body></html>

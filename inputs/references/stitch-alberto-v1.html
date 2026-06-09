@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Alberto Aguado Calvo | Psicólogo y Neuropsicólogo</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400;1,700&amp;family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;family=Ysabeau:ital,wght@0,1..1000;1,1..1000&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed-variant": "#384b41",
+                    "inverse-surface": "#2f3130",
+                    "outline-variant": "#c2c8c1",
+                    "secondary": "#4f6358",
+                    "surface-sage-light": "#E8EEE9",
+                    "text-muted": "#545956",
+                    "primary": "#476250",
+                    "surface-container-low": "#f4f4f2",
+                    "outline": "#727973",
+                    "secondary-container": "#d2e8da",
+                    "surface-container-highest": "#e2e3e1",
+                    "primary-fixed": "#ccead3",
+                    "inverse-primary": "#b0ceb8",
+                    "surface-variant": "#e2e3e1",
+                    "on-background": "#1a1c1b",
+                    "inverse-on-surface": "#f1f1ef",
+                    "surface-container": "#eeeeec",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#dadad8",
+                    "secondary-fixed": "#d2e8da",
+                    "on-secondary-fixed": "#0d1f17",
+                    "on-tertiary-fixed-variant": "#4f4538",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#334c3c",
+                    "background": "#f9f9f7",
+                    "on-secondary": "#ffffff",
+                    "surface": "#f9f9f7",
+                    "on-surface-variant": "#424843",
+                    "on-primary-container": "#f6fff5",
+                    "on-primary": "#ffffff",
+                    "background-cream": "#F9F7F2",
+                    "on-secondary-container": "#55695e",
+                    "on-tertiary-container": "#fffbff",
+                    "primary-container": "#607b68",
+                    "tertiary-fixed-dim": "#d3c4b2",
+                    "on-surface": "#1a1c1b",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#b6ccbe",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#b0ceb8",
+                    "surface-bright": "#f9f9f7",
+                    "tertiary-container": "#7f7363",
+                    "tertiary": "#655a4c",
+                    "on-tertiary-fixed": "#221a0f",
+                    "tertiary-fixed": "#f0e0cd",
+                    "on-primary-fixed": "#062012",
+                    "surface-tint": "#4a6452",
+                    "blob-overlay": "rgba(168, 189, 176, 0.18)",
+                    "surface-container-high": "#e8e8e6",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "clamp(4rem, 10vh, 8rem)",
+                    "gutter": "1.5rem",
+                    "stack-lg": "3rem",
+                    "stack-md": "1.5rem",
+                    "stack-sm": "0.75rem",
+                    "margin-safe": "clamp(1.5rem, 5vw, 4rem)"
+            },
+            "fontFamily": {
+                    "body-md": [
+                            "Atkinson Hyperlegible Next"
+                    ],
+                    "headline-xl": [
+                            "Ysabeau"
+                    ],
+                    "label-md": [
+                            "Open Sans"
+                    ],
+                    "body-lg": [
+                            "Atkinson Hyperlegible Next"
+                    ],
+                    "headline-xl-mobile": [
+                            "Ysabeau"
+                    ],
+                    "headline-lg": [
+                            "Ysabeau"
+                    ],
+                    "body-emphasis": [
+                            "Atkinson Hyperlegible Next"
+                    ],
+                    "headline-md": [
+                            "Ysabeau"
+                    ],
+                    "label-lg": [
+                            "Open Sans"
+                    ]
+            },
+            "fontSize": {
+                    "body-md": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-xl": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "label-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-lg": [
+                            "20px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-xl-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-lg": [
+                            "36px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-emphasis": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-md": [
+                            "28px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-lg": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "letterSpacing": "0.03em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .blob-shape {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            animation: morph 8s ease-in-out infinite alternate;
+        }
+        @keyframes morph {
+            0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        }
+        .organic-image-mask {
+            clip-path: ellipse(45% 55% at 50% 50%);
+        }
+        .soft-glow {
+            box-shadow: 0 20px 40px -10px rgba(71, 98, 80, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen overflow-x-hidden selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Global Background Blobs -->
+<div class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden">
+<div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-surface-sage-light rounded-full mix-blend-multiply filter blur-[80px] opacity-60"></div>
+<div class="absolute top-[20%] right-[-5%] w-[40vw] h-[40vw] bg-secondary-container rounded-full mix-blend-multiply filter blur-[100px] opacity-40"></div>
+<div class="absolute bottom-[-10%] left-[20%] w-[60vw] h-[60vw] bg-surface-sage-light rounded-full mix-blend-multiply filter blur-[120px] opacity-50"></div>
+</div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md transition-all duration-300 border-none">
+<div class="flex justify-between items-center px-margin-safe py-4 max-w-7xl mx-auto">
+<a class="font-headline-md text-headline-md text-primary hover:opacity-80 transition-opacity duration-400" href="#">
+                Alberto Aguado Calvo
+            </a>
+<!-- Desktop Nav -->
+<div class="hidden md:flex items-center gap-8">
+<a class="text-primary font-body-emphasis border-b-2 border-primary pb-1 transition-colors duration-400" href="#home">Home</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-400" href="#services">Services</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-400" href="#about">About</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors duration-400" href="#contact">Contact</a>
+<a class="ml-4 px-6 py-3 bg-primary text-on-primary rounded-full font-label-md hover:bg-secondary transition-colors duration-400 hover:scale-95 transform shadow-sm" href="#contact">
+                    Begin your path
+                </a>
+</div>
+<!-- Mobile Menu Button -->
+<button class="md:hidden text-primary p-2">
+<span class="material-symbols-outlined text-3xl">menu</span>
+</button>
+</div>
+</nav>
+<main class="pt-24 md:pt-32">
+<!-- Hero Section -->
+<section class="px-margin-safe py-section-gap max-w-7xl mx-auto relative flex flex-col md:flex-row items-center gap-12 md:gap-24" id="home">
+<div class="flex-1 space-y-6 md:space-y-8 z-10">
+<h1 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary max-w-2xl leading-tight">
+                    Un espacio de calma para reencontrarte.
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                    Terapia psicológica y neuropsicología clínica con un enfoque humano, pausado y seguro. Atención online.
+                </p>
+<div class="pt-4">
+<a class="inline-flex items-center justify-center px-8 py-4 bg-primary text-on-primary rounded-full font-label-lg hover:bg-secondary transition-colors duration-400 shadow-sm group min-h-[48px]" href="#contact">
+                        Comenzar camino
+                        <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform duration-300">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="flex-1 relative w-full aspect-square max-w-lg mx-auto mt-12 md:mt-0">
+<!-- Decorative background shape -->
+<div class="absolute inset-0 bg-surface-sage-light blob-shape transform -rotate-12 scale-105 opacity-80 z-0"></div>
+<!-- Image Container -->
+<div class="relative w-full h-full organic-image-mask overflow-hidden z-10 shadow-lg">
+<img alt="Fotografía evocadora de un espacio de terapia tranquilo con luz natural" class="w-full h-full object-cover object-center" data-alt="A serene, light-filled interior space evoking a sense of calm and safety, typical of a modern, welcoming therapy room. The image features soft natural light streaming through sheer curtains, illuminating gentle organic shapes like a potted plant with large green leaves and a comfortable, neutral-toned armchair. The color palette is composed of soft creams, muted sage greens, and warm earth tones, creating a tranquil, professional, and empathetic atmosphere in a minimalist, organic style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMhwTJLbyL2ikN3C_05ceIcyS8zRAaPQZInfXTF8FnBa15uO-qYQN58Sw_ZejIb8OsNLADt7_t85aTB6z3NB0lXeIVhSyx56UJz67-4MJRRJzeuGrRmGKSFyByveWMWt_Ovy-k8xIl-kayzmsZZDt76NOp15wOE17jT5vEtxl9Q6wHnH3sGSqszZaWWGbxuHCaxejIibSiEBogpvnnWkH3php7vt0MUQmp6JotTKF2ICqeclvd1nlDlBdwC3UnxBMTqtCGXsen5I3Q"/>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="px-margin-safe py-section-gap max-w-7xl mx-auto relative" id="services">
+<div class="text-center mb-16 md:mb-24">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">Áreas de Acompañamiento</h2>
+<p class="font-body-md text-body-md text-text-muted max-w-2xl mx-auto">Intervenciones basadas en la evidencia, adaptadas a tu ritmo y necesidades específicas.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+<!-- Service Card 1 -->
+<div class="bg-surface-sage-light rounded-[2rem] p-8 md:p-10 soft-glow hover:-translate-y-2 transition-transform duration-500 ease-out group relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-fixed rounded-bl-full opacity-50 transition-transform group-hover:scale-110 duration-700"></div>
+<div class="relative z-10 h-full flex flex-col">
+<div class="w-14 h-14 bg-background-cream rounded-full flex items-center justify-center mb-6 shadow-sm">
+<span class="material-symbols-outlined text-primary text-2xl" data-weight="fill">psychology</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-4">Psicoterapia General</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow mb-6">
+                            Espacio seguro para abordar ansiedad, depresión, gestión emocional y conducta suicida.
+                        </p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-4 py-1.5 bg-background-cream text-on-surface-variant font-label-md text-label-md rounded-full text-sm">Ansiedad</span>
+<span class="px-4 py-1.5 bg-background-cream text-on-surface-variant font-label-md text-label-md rounded-full text-sm">Depresión</span>
+</div>
+</div>
+</div>
+<!-- Service Card 2 -->
+<div class="bg-surface-container-low rounded-[2rem] p-8 md:p-10 soft-glow hover:-translate-y-2 transition-transform duration-500 ease-out group relative overflow-hidden md:translate-y-8">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary-container rounded-bl-full opacity-50 transition-transform group-hover:scale-110 duration-700"></div>
+<div class="relative z-10 h-full flex flex-col">
+<div class="w-14 h-14 bg-surface-sage-light rounded-full flex items-center justify-center mb-6 shadow-sm">
+<span class="material-symbols-outlined text-primary text-2xl" data-weight="fill">neurology</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-4">Neuropsicología</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow mb-6">
+                            Evaluación y rehabilitación cognitiva integral para adultos y población infantil ante daño neurológico o dificultades del neurodesarrollo.
+                        </p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-4 py-1.5 bg-surface-sage-light text-on-surface-variant font-label-md text-label-md rounded-full text-sm">Adultos</span>
+<span class="px-4 py-1.5 bg-surface-sage-light text-on-surface-variant font-label-md text-label-md rounded-full text-sm">Infantil</span>
+</div>
+</div>
+</div>
+<!-- Service Card 3 -->
+<div class="bg-surface-sage-light rounded-[2rem] p-8 md:p-10 soft-glow hover:-translate-y-2 transition-transform duration-500 ease-out group relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-fixed rounded-bl-full opacity-50 transition-transform group-hover:scale-110 duration-700"></div>
+<div class="relative z-10 h-full flex flex-col">
+<div class="w-14 h-14 bg-background-cream rounded-full flex items-center justify-center mb-6 shadow-sm">
+<span class="material-symbols-outlined text-primary text-2xl" data-weight="fill">description</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-background mb-4">Informes Clínicos</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-grow mb-6">
+                            Elaboración de informes detallados y precisos tras la evaluación psicológica y neuropsicológica.
+                        </p>
+<div class="flex flex-wrap gap-2 mt-auto">
+<span class="px-4 py-1.5 bg-background-cream text-on-surface-variant font-label-md text-label-md rounded-full text-sm">Evaluación</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section class="px-margin-safe py-section-gap max-w-7xl mx-auto" id="about">
+<div class="flex flex-col md:flex-row-reverse items-center gap-12 md:gap-20">
+<div class="flex-1 space-y-6">
+<h2 class="font-headline-lg text-headline-lg text-primary">Sobre mí</h2>
+<div class="space-y-4 font-body-md text-body-md text-on-surface-variant">
+<p>
+                            Soy Alberto Aguado Calvo, psicólogo general sanitario y neuropsicólogo clínico. Mi vocación es ofrecer un acompañamiento respetuoso, alejado de la prisa y centrado en la persona que tengo delante.
+                        </p>
+<p>
+                            Entiendo la terapia como un trabajo conjunto donde mi papel es proporcionar un entorno seguro, libre de juicios, para explorar las dificultades y buscar caminos viables hacia el bienestar emocional y cognitivo.
+                        </p>
+</div>
+<div class="pt-6 border-t border-surface-container-highest">
+<h4 class="font-label-lg text-label-lg text-primary mb-3">Credenciales</h4>
+<ul class="space-y-2 font-body-md text-body-md text-text-muted">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary opacity-70 text-xl mt-0.5">check_circle</span>
+                                Grado en Psicología
+                            </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary opacity-70 text-xl mt-0.5">check_circle</span>
+                                Máster en Psicología General Sanitaria
+                            </li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-primary opacity-70 text-xl mt-0.5">check_circle</span>
+                                Máster en Neuropsicología Clínica
+                            </li>
+</ul>
+</div>
+</div>
+<div class="flex-1 w-full max-w-md mx-auto">
+<div class="relative rounded-[2rem] overflow-hidden bg-surface-container-low aspect-[3/4] soft-glow group">
+<!-- Subtle overlay gradient -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"></div>
+<img alt="Retrato profesional de un psicólogo en un entorno cálido" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A professional yet warm portrait of a male psychologist or therapist looking attentively and empathetically towards the camera. The setting is a bright, calm interior office with soft natural lighting and muted sage and cream colors in the background. The mood conveys trust, safety, and a clinical yet human touch, fitting for a modern mental health professional's website." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5y4UuGGJDxX0_GxHiyTZRFU_krio6egNfuPwkDvTBYuMyyQwtuSsXD5pcrTJq2LJFZVJEFfZ187-nDF_o1ub_s7GDWctR2MmtthJcAN8Z_tyTXjSwJG_mOKon_5hPheoM42AN4ovy5zoO60f5sHr3ckU2MeXbm4CK__CVZ1vkpUQutyRkJj2oODOM3Z4RQ-L-MKDOHL09TjG4sz7m5_w_0Vz_hBvmivViB61SnmQkcRj2BU018zZYo7XuaBkOjJic117qA6EypXkm"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="px-margin-safe py-section-gap max-w-3xl mx-auto relative" id="contact">
+<div class="absolute inset-0 bg-surface-container-low rounded-[3rem] -z-10 transform -rotate-1 opacity-50"></div>
+<div class="bg-surface rounded-[2rem] p-8 md:p-12 soft-glow">
+<div class="text-center mb-10">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-4">Demos el primer paso juntos</h2>
+<p class="font-body-md text-body-md text-text-muted">
+                        Si sientes que es el momento, escríbeme sin compromiso. Te responderé a la mayor brevedad para valorar cómo puedo ayudarte.
+                    </p>
+</div>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block font-label-md text-label-md text-on-background mb-2" for="name">Nombre</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-3 font-body-md text-body-md focus:ring-2 focus:ring-primary/30 transition-shadow bg-surface-container-low placeholder:text-outline" id="name" placeholder="Tu nombre" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-background mb-2" for="email">Correo electrónico</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-3 font-body-md text-body-md focus:ring-2 focus:ring-primary/30 transition-shadow bg-surface-container-low placeholder:text-outline" id="email" placeholder="tu@email.com" type="email"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-background mb-2" for="subject">Motivo de consulta (opcional)</label>
+<select class="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-3 font-body-md text-body-md focus:ring-2 focus:ring-primary/30 transition-shadow bg-surface-container-low text-on-background" id="subject">
+<option value="">Selecciona un área</option>
+<option value="psicoterapia">Psicoterapia General</option>
+<option value="neuropsicologia">Neuropsicología</option>
+<option value="informes">Informes Clínicos</option>
+<option value="otro">Otro</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-background mb-2" for="message">Mensaje</label>
+<textarea class="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-3 font-body-md text-body-md focus:ring-2 focus:ring-primary/30 transition-shadow bg-surface-container-low placeholder:text-outline resize-none" id="message" placeholder="¿En qué te puedo ayudar?" rows="4"></textarea>
+</div>
+<div class="pt-4 text-center">
+<button class="inline-flex items-center justify-center px-10 py-4 bg-primary text-on-primary rounded-full font-label-lg hover:bg-secondary transition-colors duration-400 shadow-sm w-full md:w-auto min-h-[48px]" type="submit">
+                            Enviar mensaje
+                        </button>
+</div>
+<p class="text-center font-body-md text-sm text-text-muted mt-4">
+                        Tus datos serán tratados de forma confidencial y segura.
+                    </p>
+</form>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full rounded-t-xl bg-surface-sage-light dark:bg-on-secondary-fixed-variant flex flex-col md:flex-row justify-between items-center px-margin-safe py-stack-lg gap-gutter tonal layering flat no shadows mt-12">
+<div class="font-headline-sm text-headline-sm text-primary">
+            Alberto Aguado Calvo
+        </div>
+<div class="text-on-surface-variant font-body-md text-body-md text-center md:text-left">
+            © 2024 Alberto Aguado Calvo. Psychologist &amp; Neuropsychologist.
+        </div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-all duration-400 font-body-md opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-400 font-body-md opacity-80 hover:opacity-100" href="#">Legal Notice</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-400 font-body-md opacity-80 hover:opacity-100" href="#">Cookies</a>
+</div>
+</footer>
+<script>
+        // Simple script for smooth scrolling to anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body></html>

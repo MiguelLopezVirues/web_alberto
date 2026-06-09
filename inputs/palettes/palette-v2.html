@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<!--
+  palette-v2.html — Paleta HCT completa
+  Seed: #476250 · preset: organic-presence
+  (neutral + containerTone:dark + chromaFloorGrays:4 + tertiaryHue:35 + secondaryChromaBoost:14)
+  primary-override: #476250
+  Generada por Design System Forge
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palette v2 — Alberto Aguado · HCT completa</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #f0f0f0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    padding: 48px 40px;
+    color: #1b1c1b;
+  }
+  h2 {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #727973;
+    margin-bottom: 20px;
+  }
+  section { margin-bottom: 56px; }
+
+  /* ── 1. Tokens ── */
+  .tokens {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+  }
+  .token {
+    border-radius: 10px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .token-color { height: 72px; }
+  .token-info  { padding: 10px 12px; }
+  .token-role  { font-size: 11px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
+  .token-hex   { font-size: 11px; font-family: monospace; color: #555; margin-bottom: 4px; }
+  .token-use   { font-size: 10px; color: #888; line-height: 1.4; }
+
+  .tokens-divider {
+    grid-column: 1 / -1;
+    height: 1px;
+    background: #ddd;
+    margin: 4px 0;
+    position: relative;
+  }
+  .tokens-divider::after {
+    content: 'Tokens nuevos — familias HCT no disponibles en v1';
+    position: absolute;
+    top: -8px;
+    left: 0;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #aaa;
+    background: #f0f0f0;
+    padding-right: 10px;
+  }
+
+  /* ── 2. Combinaciones ── */
+  .combos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .combo {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }
+  .combo-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    background: #f4f4f2;
+    color: #727973;
+  }
+  .card { border-radius: 12px; padding: 20px; }
+  .card-title { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+  .card-body  { font-size: 13px; line-height: 1.5; }
+  .btn {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 11px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .section-eyebrow { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+  .section-title   { font-size: 22px; font-weight: 700; margin-bottom: 10px; line-height: 1.2; }
+  .section-body    { font-size: 13px; line-height: 1.6; }
+  .footer-brand    { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .footer-sub      { font-size: 12px; }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+  .chip  { font-size: 11px; font-weight: 600; padding: 4px 11px; border-radius: 100px; }
+
+  /* ── 3. Legibilidad ── */
+  .contrast-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  }
+  .contrast-table th {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; color: #888;
+    padding: 12px 16px; text-align: left; background: #e8e8e8;
+  }
+  .contrast-table td {
+    font-size: 12px; padding: 10px 16px;
+    border-top: 1px solid #eee; color: #1a1a1a;
+  }
+  .pass { color: #2d5a1f; font-weight: 700; }
+  .warn { color: #7a5010; font-weight: 700; }
+  .swatch-pair { display: inline-flex; gap: 6px; align-items: center; margin-right: 8px; }
+  .dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; border: 1px solid rgba(0,0,0,0.08); }
+
+  /* ── Demo web ── */
+  .demo-page { max-width: 720px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.12); }
+  .demo-nav { padding: 14px 28px; display: flex; align-items: center; justify-content: space-between; font-size: 11px; }
+  .demo-nav-logo   { font-size: 13px; font-weight: 700; letter-spacing: 0.04em; }
+  .demo-nav-links  { display: flex; gap: 18px; opacity: 0.65; }
+  .demo-nav-cta    { padding: 7px 16px; border-radius: 100px; font-size: 11px; font-weight: 600; }
+  .demo-hero { padding: 44px 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center; }
+  .demo-hero h2    { font-size: 24px; font-weight: 700; line-height: 1.25; margin-bottom: 12px; }
+  .demo-hero p     { font-size: 12px; line-height: 1.6; margin-bottom: 14px; }
+  .demo-hero-btn   { display: inline-block; padding: 10px 22px; border-radius: 100px; font-size: 12px; font-weight: 600; text-decoration: none; }
+  .demo-hero-img   { border-radius: 14px; height: 160px; display: flex; align-items: center; justify-content: center; font-size: 11px; }
+  .demo-chips      { display: flex; gap: 5px; flex-wrap: wrap; }
+  .demo-chip       { font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 100px; }
+  .demo-cards-section { padding: 36px 28px; }
+  .demo-eyebrow    { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 6px; }
+  .demo-section-title { font-size: 18px; font-weight: 700; margin-bottom: 20px; }
+  .demo-cards      { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .demo-card       { border-radius: 12px; padding: 18px 14px; }
+  .demo-card-icon  { width: 26px; height: 26px; border-radius: 7px; margin-bottom: 10px; }
+  .demo-card h4    { font-size: 12px; font-weight: 600; margin-bottom: 5px; line-height: 1.3; }
+  .demo-card p     { font-size: 10px; line-height: 1.5; opacity: 0.65; }
+  .demo-banner     { padding: 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .demo-banner h3  { font-size: 16px; line-height: 1.3; max-width: 280px; }
+  .demo-banner-btn { padding: 9px 20px; border-radius: 100px; font-size: 11px; font-weight: 600; white-space: nowrap; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- ── 1. Tokens de color ── -->
+<section>
+  <h2>Tokens de color — v2 HCT completa · organic-presence</h2>
+  <div class="tokens">
+
+    <!-- Superficies -->
+    <div class="token">
+      <div class="token-color" style="background:#fbf9f6; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">surface</div>
+        <div class="token-hex">#fbf9f6</div>
+        <div class="token-use">Fondo principal de página</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#ffffff; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">surface-container-lowest</div>
+        <div class="token-hex">#ffffff</div>
+        <div class="token-use">Cards, modales, superficies elevadas</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#f5f3f1; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">surface-container-low</div>
+        <div class="token-hex">#f5f3f1</div>
+        <div class="token-use">Nav, secciones alternadas</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#efeeeb; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">surface-container</div>
+        <div class="token-hex">#efeeeb</div>
+        <div class="token-use">Fondo de cards sobre surface</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#e9e8e5; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">surface-container-high</div>
+        <div class="token-hex">#e9e8e5</div>
+        <div class="token-use">Chips sobre card, toggles</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#e3e2e0; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">surface-container-highest</div>
+        <div class="token-hex">#e3e2e0</div>
+        <div class="token-use">Modales, nivel más elevado</div>
+      </div>
+    </div>
+
+    <!-- Inverse / footer -->
+    <div class="token">
+      <div class="token-color" style="background:#30312f;"></div>
+      <div class="token-info">
+        <div class="token-role">inverse-surface</div>
+        <div class="token-hex">#30312f</div>
+        <div class="token-use">Footer, bandas de alto contraste</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#f2f0ee; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">inverse-on-surface</div>
+        <div class="token-hex">#f2f0ee</div>
+        <div class="token-use">Texto sobre footer oscuro</div>
+      </div>
+    </div>
+
+    <!-- Bordes -->
+    <div class="token">
+      <div class="token-color" style="background:#c5c7c3; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">outline-variant</div>
+        <div class="token-hex">#c5c7c3</div>
+        <div class="token-use">Bordes de card, separadores</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#757874;"></div>
+      <div class="token-info">
+        <div class="token-role">outline</div>
+        <div class="token-hex">#757874</div>
+        <div class="token-use">Bordes de input, labels, metadata</div>
+      </div>
+    </div>
+
+    <!-- Primary -->
+    <div class="token">
+      <div class="token-color" style="background:#d4e7d7; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">secondary-container</div>
+        <div class="token-hex">#d4e7d7</div>
+        <div class="token-use">Chips, badges, highlights suaves</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#476250;"></div>
+      <div class="token-info">
+        <div class="token-role">primary</div>
+        <div class="token-hex">#476250</div>
+        <div class="token-use">CTAs, botones, links, eyebrows</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#5a7663;"></div>
+      <div class="token-info">
+        <div class="token-role">primary-container</div>
+        <div class="token-hex">#5a7663</div>
+        <div class="token-use">Secciones estructurales de marca</div>
+      </div>
+    </div>
+
+    <!-- Texto -->
+    <div class="token">
+      <div class="token-color" style="background:#444744;"></div>
+      <div class="token-info">
+        <div class="token-role">on-surface-variant</div>
+        <div class="token-hex">#444744</div>
+        <div class="token-use">Texto secundario, subtítulos</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#1b1c1b;"></div>
+      <div class="token-info">
+        <div class="token-role">on-surface</div>
+        <div class="token-hex">#1b1c1b</div>
+        <div class="token-use">Texto principal, títulos</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#ffffff; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">on-primary</div>
+        <div class="token-hex">#ffffff</div>
+        <div class="token-use">Texto sobre primary y primary-container</div>
+      </div>
+    </div>
+
+    <!-- Divider NEW -->
+    <div class="tokens-divider"></div>
+
+    <!-- Secondary family -->
+    <div class="token">
+      <div class="token-color" style="background:#3a4b3f;"></div>
+      <div class="token-info">
+        <div class="token-role">on-secondary-container</div>
+        <div class="token-hex">#3a4b3f</div>
+        <div class="token-use">Texto sobre chips, badges</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#586059;"></div>
+      <div class="token-info">
+        <div class="token-role">secondary</div>
+        <div class="token-hex">#586059</div>
+        <div class="token-use">Acciones secundarias, variante muted</div>
+      </div>
+    </div>
+
+    <!-- Tertiary family -->
+    <div class="token">
+      <div class="token-color" style="background:#725249;"></div>
+      <div class="token-info">
+        <div class="token-role">tertiary</div>
+        <div class="token-hex">#725249</div>
+        <div class="token-use">Acento cálido tónico (hue 35°)</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#8a685e;"></div>
+      <div class="token-info">
+        <div class="token-role">tertiary-container</div>
+        <div class="token-hex">#8a685e</div>
+        <div class="token-use">Cards acento cálido (pareja, cuerpo)</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#fff4f2; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">on-tertiary-container</div>
+        <div class="token-hex">#fff4f2</div>
+        <div class="token-use">Texto sobre tertiary-container</div>
+      </div>
+    </div>
+
+    <!-- Primary container extras -->
+    <div class="token">
+      <div class="token-color" style="background:#dffee6; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">on-primary-container</div>
+        <div class="token-hex">#dffee6</div>
+        <div class="token-use">Texto sobre primary-container oscuro</div>
+      </div>
+    </div>
+
+    <!-- Inverse primary -->
+    <div class="token">
+      <div class="token-color" style="background:#bbcabd; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">inverse-primary</div>
+        <div class="token-hex">#bbcabd</div>
+        <div class="token-use">Link / CTA sobre footer oscuro</div>
+      </div>
+    </div>
+
+    <!-- Surface dim -->
+    <div class="token">
+      <div class="token-color" style="background:#dbdad7; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">surface-dim</div>
+        <div class="token-hex">#dbdad7</div>
+        <div class="token-use">Scrim, overlays, foto en sombra</div>
+      </div>
+    </div>
+
+    <!-- Error family -->
+    <div class="token">
+      <div class="token-color" style="background:#ba1a1a;"></div>
+      <div class="token-info">
+        <div class="token-role">error</div>
+        <div class="token-hex">#ba1a1a</div>
+        <div class="token-use">Error, validación, destructivo</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#ffdad6; border-bottom:1px solid #eee;"></div>
+      <div class="token-info">
+        <div class="token-role">error-container</div>
+        <div class="token-hex">#ffdad6</div>
+        <div class="token-use">Fondo de mensajes de error</div>
+      </div>
+    </div>
+
+    <div class="token">
+      <div class="token-color" style="background:#93000a;"></div>
+      <div class="token-info">
+        <div class="token-role">on-error-container</div>
+        <div class="token-hex">#93000a</div>
+        <div class="token-use">Texto sobre error-container</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ── 2. Combinaciones en contexto ── -->
+<section>
+  <h2>Combinaciones en contexto</h2>
+  <div class="combos">
+
+    <!-- Card sobre surface -->
+    <div class="combo">
+      <div class="combo-label">Card sobre surface</div>
+      <div style="background:#fbf9f6; padding:24px;">
+        <div class="card" style="background:#ffffff; border:1px solid #c5c7c3;">
+          <div class="card-title" style="color:#1b1c1b;">Tu proceso de cambio empieza aquí</div>
+          <div class="card-body" style="color:#444744;">Abordamos juntos lo que te frena, con herramientas de psicología y neuropsicología basadas en evidencia.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card con CTA -->
+    <div class="combo">
+      <div class="combo-label">Card con CTA primario</div>
+      <div style="background:#fbf9f6; padding:24px;">
+        <div class="card" style="background:#ffffff; border:1px solid #c5c7c3;">
+          <div class="card-title" style="color:#1b1c1b;">Primera consulta gratuita</div>
+          <div class="card-body" style="color:#444744;">Sin compromiso. Evaluamos tu situación y definimos el camino más adecuado para ti.</div>
+          <a href="#" class="btn" style="background:#476250; color:#ffffff;">Reservar cita</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección primary-container -->
+    <div class="combo">
+      <div class="combo-label">Sección estructural (primary-container)</div>
+      <div style="background:#5a7663; padding:32px 24px;">
+        <div class="section-eyebrow" style="color:#dffee6;">Método de trabajo</div>
+        <div class="section-title" style="color:#ffffff;">Un enfoque basado en evidencia y presencia real</div>
+        <div class="section-body" style="color:#ffffff; opacity:0.78;">Combinamos psicología clínica y neuropsicología para acompañarte en cada etapa.</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="combo">
+      <div class="combo-label">Footer (inverse-surface)</div>
+      <div style="background:#30312f; padding:28px 24px;">
+        <div class="footer-brand" style="color:#f2f0ee;">Alberto Aguado Calvo</div>
+        <div class="footer-sub" style="color:#f2f0ee; opacity:0.55;">Psicólogo y Neuropsicólogo · Madrid</div>
+        <div style="margin-top:12px;">
+          <a href="#" style="font-size:11px; font-weight:600; color:#bbcabd; text-decoration:none;">albertoaguadocalvo.com</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección surface-container con chips secondary -->
+    <div class="combo" style="grid-column: 1 / -1;">
+      <div class="combo-label">Sección alternada (surface-container-low) — chips y cuerpo de texto</div>
+      <div style="background:#f5f3f1; padding:40px 32px; display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;">
+        <div>
+          <div class="section-eyebrow" style="color:#476250; margin-bottom:8px;">Especialidades</div>
+          <div class="section-title" style="color:#1b1c1b; font-size:18px; margin-bottom:12px;">Cada persona tiene su propio ritmo de avance</div>
+          <div class="section-body" style="color:#444744;">Desde la primera sesión construimos un mapa claro de tu situación. No hay fórmulas genéricas: el plan se adapta a tus objetivos y a cómo funciona tu mente.</div>
+          <div class="chips">
+            <div class="chip" style="background:#d4e7d7; color:#3a4b3f;">Ansiedad</div>
+            <div class="chip" style="background:#d4e7d7; color:#3a4b3f;">TDAH</div>
+            <div class="chip" style="background:#d4e7d7; color:#3a4b3f;">Adultos</div>
+            <div class="chip" style="background:#d4e7d7; color:#3a4b3f;">Duelo</div>
+          </div>
+        </div>
+        <div>
+          <div class="card" style="background:#ffffff; border:1px solid #c5c7c3;">
+            <div class="card-title" style="color:#1b1c1b;">¿No sabes por dónde empezar?</div>
+            <div class="card-body" style="color:#444744; margin-top:6px;">Una primera llamada de 20 minutos es suficiente para orientarte sin compromiso.</div>
+            <a href="#" class="btn" style="background:#476250; color:#ffffff;">Reservar cita</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tertiary-container — acento cálido en card de pareja -->
+    <div class="combo">
+      <div class="combo-label">Acento cálido — tertiary-container (terapia de pareja)</div>
+      <div style="background:#fbf9f6; padding:24px; display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+        <div style="background:#5a7663; border-radius:12px; padding:18px;">
+          <div style="font-size:12px; font-weight:700; color:#dffee6; margin-bottom:5px;">Terapia individual</div>
+          <div style="font-size:10px; color:#dffee6; opacity:0.85; line-height:1.5;">Proceso personalizado a tu ritmo y objetivos.</div>
+        </div>
+        <div style="background:#8a685e; border-radius:12px; padding:18px;">
+          <div style="font-size:12px; font-weight:700; color:#fff4f2; margin-bottom:5px;">Terapia de pareja</div>
+          <div style="font-size:10px; color:#fff4f2; opacity:0.85; line-height:1.5;">Comunicación, vínculo y resolución de conflictos.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error container -->
+    <div class="combo">
+      <div class="combo-label">Mensaje de error (error-container)</div>
+      <div style="background:#fbf9f6; padding:24px;">
+        <div style="background:#ffdad6; border:1px solid #ba1a1a; border-radius:10px; padding:16px;">
+          <div style="font-size:13px; font-weight:600; color:#93000a; margin-bottom:4px;">No se pudo enviar el formulario</div>
+          <div style="font-size:12px; color:#93000a; opacity:0.8;">Revisa los campos marcados e inténtalo de nuevo.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ── 3. Pares críticos ── -->
+<section>
+  <h2>Pares críticos — contraste WCAG</h2>
+  <table class="contrast-table">
+    <thead>
+      <tr><th>Par</th><th>Uso</th><th>Ratio</th><th>Nivel</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <span class="swatch-pair">
+            <span class="dot" style="background:#fbf9f6;"></span>
+            <span class="dot" style="background:#1b1c1b;"></span>
+          </span>
+          surface / on-surface
+        </td>
+        <td>Texto principal</td>
+        <td>16.3:1</td>
+        <td class="pass">✓ AAA</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="swatch-pair">
+            <span class="dot" style="background:#fbf9f6;"></span>
+            <span class="dot" style="background:#444744;"></span>
+          </span>
+          surface / on-surface-variant
+        </td>
+        <td>Texto secundario</td>
+        <td>~7.9:1</td>
+        <td class="pass">✓ AAA</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="swatch-pair">
+            <span class="dot" style="background:#476250;"></span>
+            <span class="dot" style="background:#ffffff;"></span>
+          </span>
+          primary / on-primary
+        </td>
+        <td>Botones CTA</td>
+        <td>6.71:1</td>
+        <td class="pass">✓ AA</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="swatch-pair">
+            <span class="dot" style="background:#5a7663;"></span>
+            <span class="dot" style="background:#dffee6;"></span>
+          </span>
+          primary-container / on-primary-container
+        </td>
+        <td>Sección estructural</td>
+        <td>4.63:1</td>
+        <td class="pass">✓ AA</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="swatch-pair">
+            <span class="dot" style="background:#d4e7d7;"></span>
+            <span class="dot" style="background:#3a4b3f;"></span>
+          </span>
+          secondary-container / on-secondary-container
+        </td>
+        <td>Chips, categorías</td>
+        <td>7.18:1</td>
+        <td class="pass">✓ AAA</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="swatch-pair">
+            <span class="dot" style="background:#8a685e;"></span>
+            <span class="dot" style="background:#fff4f2;"></span>
+          </span>
+          tertiary-container / on-tertiary-container
+        </td>
+        <td>Card acento cálido</td>
+        <td>~4.8:1</td>
+        <td class="pass">✓ AA</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="swatch-pair">
+            <span class="dot" style="background:#30312f;"></span>
+            <span class="dot" style="background:#f2f0ee;"></span>
+          </span>
+          inverse-surface / inverse-on-surface
+        </td>
+        <td>Footer</td>
+        <td>11.5:1</td>
+        <td class="pass">✓ AAA</td>
+      </tr>
+      <tr>
+        <td>
+          <span class="swatch-pair">
+            <span class="dot" style="background:#fbf9f6;"></span>
+            <span class="dot" style="background:#757874;"></span>
+          </span>
+          surface / outline
+        </td>
+        <td>Labels, placeholders</td>
+        <td>~5.5:1</td>
+        <td class="pass">✓ AA</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+<!-- ── Demo web — página completa ── -->
+<section>
+  <h2>Demo web — página completa</h2>
+  <div class="demo-page">
+
+    <div class="demo-nav" style="background:#ffffff; color:#1b1c1b; border-bottom:1px solid #c5c7c3;">
+      <div class="demo-nav-logo">Alberto Aguado Calvo</div>
+      <div class="demo-nav-links">
+        <span>Sobre mí</span><span>Servicios</span><span>Proceso</span>
+      </div>
+      <div class="demo-nav-cta" style="background:#476250; color:#ffffff;">Reservar cita</div>
+    </div>
+
+    <div class="demo-hero" style="background:#fbf9f6; color:#1b1c1b;">
+      <div>
+        <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#476250; margin-bottom:8px;">Psicólogo General Sanitario</div>
+        <h2 style="color:#1b1c1b;">Psicología y neuropsicología basadas en evidencia</h2>
+        <p style="color:#444744;">Un espacio seguro donde entenderte mejor y construir algo diferente, a tu ritmo.</p>
+        <div class="demo-chips">
+          <div class="demo-chip" style="background:#d4e7d7; color:#3a4b3f;">Ansiedad</div>
+          <div class="demo-chip" style="background:#d4e7d7; color:#3a4b3f;">TDAH</div>
+          <div class="demo-chip" style="background:#d4e7d7; color:#3a4b3f;">Duelo</div>
+        </div>
+        <div style="margin-top:16px;">
+          <a href="#" class="demo-hero-btn" style="background:#476250; color:#ffffff;">Reservar primera cita</a>
+        </div>
+      </div>
+      <div class="demo-hero-img" style="background:#d4e7d7; color:#3a4b3f;">Foto del profesional</div>
+    </div>
+
+    <div class="demo-cards-section" style="background:#ffffff; color:#1b1c1b;">
+      <div class="demo-eyebrow" style="color:#476250;">Servicios</div>
+      <div class="demo-section-title">Cómo puedo ayudarte</div>
+      <div class="demo-cards">
+        <div class="demo-card" style="background:#fbf9f6; border:1px solid #c5c7c3;">
+          <div class="demo-card-icon" style="background:#d4e7d7;"></div>
+          <h4 style="color:#1b1c1b;">Terapia individual</h4>
+          <p style="color:#444744;">Proceso personalizado adaptado a tus objetivos y ritmo de vida.</p>
+        </div>
+        <div class="demo-card" style="background:#fbf9f6; border:1px solid #c5c7c3;">
+          <div class="demo-card-icon" style="background:#d4e7d7;"></div>
+          <h4 style="color:#1b1c1b;">Neuropsicología</h4>
+          <p style="color:#444744;">Evaluación y rehabilitación de funciones cognitivas.</p>
+        </div>
+        <div class="demo-card" style="background:#fbf9f6; border:1px solid #c5c7c3;">
+          <div class="demo-card-icon" style="background:#d4e7d7;"></div>
+          <h4 style="color:#1b1c1b;">Sesión online</h4>
+          <p style="color:#444744;">Atención profesional desde donde estés, con la misma calidad.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-banner" style="background:#5a7663; color:#ffffff;">
+      <h3 style="color:#ffffff;">La primera sesión es sin compromiso</h3>
+      <a href="#" class="demo-banner-btn" style="background:#dffee6; color:#476250;">Reservar ahora</a>
+    </div>
+
+    <div style="background:#30312f; padding:20px 28px; display:flex; justify-content:space-between; align-items:center;">
+      <div>
+        <div style="font-size:13px; font-weight:700; color:#f2f0ee;">Alberto Aguado Calvo</div>
+        <div style="font-size:11px; color:#f2f0ee; opacity:0.55; margin-top:3px;">Psicólogo y Neuropsicólogo · Madrid</div>
+      </div>
+      <a href="#" style="font-size:11px; font-weight:600; color:#bbcabd; text-decoration:none;">albertoaguadocalvo.com</a>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
