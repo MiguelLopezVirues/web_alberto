@@ -15,7 +15,7 @@ const servicios = [
     desc: 'Evaluaciones psicológicas y neuropsicológicas completas para la elaboración de informes clínicos rigurosos, útiles en contextos sanitarios, educativos o legales.',
     tags: ['Informe psicológico', 'Informe neuropsicológico'],
   },
-] as const;
+];
 
 export default function Servicios() {
   return (
