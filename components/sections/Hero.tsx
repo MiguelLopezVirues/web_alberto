@@ -10,7 +10,7 @@ export default function Hero() {
     >
       {/* Photo column — top on mobile, right on desktop */}
       <div
-        className="relative overflow-hidden bg-accent-light order-first md:order-none h-[55vw] min-h-[240px] max-h-[400px] md:h-auto md:min-h-0 md:max-h-none md:[flex:42]"
+        className="relative overflow-hidden bg-accent-light order-first md:order-last h-[55vw] min-h-[240px] max-h-[400px] md:h-auto md:min-h-0 md:max-h-none md:[flex:42]"
       >
         <Image
           src="/images/alberto.png"
