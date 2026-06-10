@@ -24,7 +24,7 @@ const steps = [
 export default function Proceso() {
   return (
     <section id="proceso" className="bg-ground-raised py-[clamp(3rem,6vw,5rem)] relative z-[1]" aria-labelledby="proceso-h2">
-      <div className="max-w-[1200px] mx-auto px-[3rem]">
+      <div className="max-w-[1200px] mx-auto px-5 md:px-[3rem]">
         <div className="mb-12" data-reveal>
           <p className="font-ui text-label font-semibold text-accent uppercase tracking-[0.08em] mb-3.5">
             Cómo trabajaríamos juntos

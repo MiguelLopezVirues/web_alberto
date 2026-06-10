@@ -2,7 +2,7 @@ import { site } from '@/tokens/site';
 
 export default function Footer() {
   return (
-    <footer className="bg-ground-deep px-[3rem] relative z-[1]" aria-label="Pie de página">
+    <footer className="bg-ground-deep px-5 md:px-[3rem] relative z-[1]" aria-label="Pie de página">
       <div className="max-w-[1200px] mx-auto w-full flex flex-wrap items-center gap-4 py-[1.25rem] md:h-[60px] md:py-0">
         <span className="font-display text-[0.875rem] font-semibold text-white/65 shrink-0">
           {site.name}

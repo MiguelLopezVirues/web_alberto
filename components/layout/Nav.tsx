@@ -1,9 +1,10 @@
 import { site } from '@/tokens/site';
+import NavDrawer from './NavDrawer';
 
 export default function Nav() {
   return (
     <nav className="sticky top-0 z-[100] bg-ground border-b border-border h-[3.75rem]" aria-label="Navegación principal">
-      <div className="max-w-[1200px] mx-auto px-[3rem] h-full flex items-center gap-8">
+      <div className="max-w-[1200px] mx-auto px-5 md:px-[3rem] h-full flex items-center gap-8">
         <a href="#" className="font-display text-[1.0625rem] font-semibold tracking-[-0.01em] text-ink shrink-0">
           Alberto Aguado
         </a>
@@ -25,16 +26,7 @@ export default function Nav() {
         >
           Contacto
         </a>
-        {/* TODO: hamburger drawer en mobile */}
-        <button
-          className="flex md:hidden flex-col gap-[5px] ml-auto p-1.5"
-          aria-label="Abrir menú"
-          aria-expanded="false"
-        >
-          <span className="block w-[22px] h-[2px] bg-ink-muted rounded-sm" />
-          <span className="block w-[22px] h-[2px] bg-ink-muted rounded-sm" />
-          <span className="block w-[22px] h-[2px] bg-ink-muted rounded-sm" />
-        </button>
+        <NavDrawer />
       </div>
     </nav>
   );

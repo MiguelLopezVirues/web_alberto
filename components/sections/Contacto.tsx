@@ -45,7 +45,7 @@ export default function Contacto() {
       style={{ background: 'color-mix(in srgb, #ccead3 22%, #f9f9f7)' }}
       aria-labelledby="contacto-h2"
     >
-      <div className="max-w-[min(60%,860px)] w-full mx-auto px-[3rem] flex flex-col items-center text-center">
+      <div className="max-w-[860px] w-full mx-auto px-5 md:px-[3rem] flex flex-col items-center text-center">
         <h2
           id="contacto-h2"
           className="font-display text-[clamp(2rem,3vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.005em] text-ink mb-3"

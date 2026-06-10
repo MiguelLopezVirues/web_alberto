@@ -20,7 +20,7 @@ const servicios = [
 export default function Servicios() {
   return (
     <section id="servicios" className="bg-ground py-[clamp(3rem,6vw,5rem)] relative z-[1]" aria-labelledby="servicios-h2">
-      <div className="max-w-[1200px] mx-auto px-[3rem]">
+      <div className="max-w-[1200px] mx-auto px-5 md:px-[3rem]">
         <div className="mb-10" data-reveal>
           <p className="font-ui text-label font-semibold text-accent uppercase tracking-[0.08em] mb-3.5">
             Cómo puedo ayudarte
@@ -35,14 +35,13 @@ export default function Servicios() {
             <article
               key={s.titulo}
               className={[
-                'grid gap-10 items-start py-[1.125rem] pl-5',
+                'grid grid-cols-1 md:grid-cols-[minmax(min-content,15rem)_1fr] gap-4 md:gap-10 items-start py-[1.125rem] pl-5',
                 'border-l-[3px] border-b border-b-border',
                 'transition-colors duration-[180ms]',
                 s.featured
                   ? 'border-l-accent-deep bg-[color-mix(in_srgb,#476250_4%,#f9f9f7)] hover:bg-[color-mix(in_srgb,#ccead3_18%,#f9f9f7)]'
                   : 'border-l-accent hover:bg-[color-mix(in_srgb,#ccead3_18%,#f9f9f7)]',
               ].join(' ')}
-              style={{ gridTemplateColumns: 'minmax(min-content,15rem) 1fr' }}
               data-reveal
             >
               <h3 className="font-display text-[1.0625rem] font-semibold text-ink leading-[1.25] pt-[3px]">

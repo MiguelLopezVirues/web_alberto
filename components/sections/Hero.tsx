@@ -5,17 +5,26 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="bg-ground flex min-h-[clamp(28rem,48vh,36rem)] relative z-[1]"
+      className="bg-ground flex flex-col md:flex-row min-h-[clamp(28rem,48vh,36rem)] relative z-[1]"
       aria-labelledby="hero-h1"
     >
-      {/* Text column — 58% */}
+      {/* Photo column — top on mobile, right on desktop */}
       <div
-        className="flex flex-col justify-center"
-        style={{
-          flex: '58',
-          padding: 'clamp(3.5rem,7vw,5.5rem) 3rem clamp(3.5rem,7vw,5.5rem) 3rem',
-          maxWidth: 'calc(1200px * 0.62)',
-        }}
+        className="relative overflow-hidden bg-accent-light order-first md:order-none h-[55vw] min-h-[240px] max-h-[400px] md:h-auto md:min-h-0 md:max-h-none md:[flex:42]"
+      >
+        <Image
+          src="/images/alberto.png"
+          alt="Alberto Aguado Calvo, psicólogo general sanitario y neuropsicólogo clínico"
+          fill
+          className="object-cover object-top"
+          priority
+        />
+      </div>
+
+      {/* Text column — bottom on mobile, left on desktop */}
+      <div
+        className="flex flex-col justify-center px-5 py-10 md:[flex:58] md:px-[3rem] md:py-[clamp(3.5rem,7vw,5.5rem)]"
+        style={{ maxWidth: 'calc(1200px * 0.62)' }}
       >
         <p className="font-ui text-label font-semibold text-accent uppercase tracking-[0.08em] mb-5">
           {site.eyebrow}
@@ -36,20 +45,6 @@ export default function Hero() {
         >
           {site.cta}
         </a>
-      </div>
-
-      {/* Photo column — 42%, background matches photo background */}
-      <div
-        className="relative overflow-hidden min-h-[400px] bg-accent-light"
-        style={{ flex: '42' }}
-      >
-        <Image
-          src="/images/alberto.png"
-          alt="Alberto Aguado Calvo, psicólogo general sanitario y neuropsicólogo clínico"
-          fill
-          className="object-cover object-top"
-          priority
-        />
       </div>
     </section>
   );

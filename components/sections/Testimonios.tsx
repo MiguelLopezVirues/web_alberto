@@ -39,7 +39,7 @@ export default function Testimonios() {
       className="bg-ground-soft py-[clamp(3rem,6vw,5rem)] pb-6 relative z-[1]"
       aria-labelledby="test-heading"
     >
-      <div className="max-w-[680px] mx-auto px-[3rem] flex flex-col items-center text-center">
+      <div className="max-w-[680px] mx-auto px-5 md:px-[3rem] flex flex-col items-center text-center">
         <p id="test-heading" className="font-ui text-label text-accent uppercase tracking-[0.08em] mb-10" data-reveal>
           Experiencias de pacientes
         </p>

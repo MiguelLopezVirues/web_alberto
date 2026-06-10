@@ -4,11 +4,11 @@ export default function SobreMi() {
   return (
     <section
       id="sobre-mi"
-      className="bg-ground-soft flex min-h-[clamp(28rem,48vh,36rem)] relative z-[1]"
+      className="bg-ground-soft flex flex-col md:flex-row min-h-[clamp(28rem,48vh,36rem)] relative z-[1]"
       aria-labelledby="sobre-h2"
     >
-      {/* Photo — 42% left, no border-radius */}
-      <div className="relative overflow-hidden shrink-0 w-[42%]">
+      {/* Photo — top on mobile (full-width), left on desktop (42%) */}
+      <div className="relative overflow-hidden w-full h-[60vw] min-h-[260px] max-h-[420px] md:h-auto md:min-h-0 md:max-h-none md:w-[42%] md:shrink-0">
         <Image
           src="/images/alberto.png"
           alt="Alberto Aguado Calvo"
@@ -19,8 +19,7 @@ export default function SobreMi() {
 
       {/* Text */}
       <div
-        className="flex-1 flex flex-col justify-center gap-[1.625rem] max-w-[600px]"
-        style={{ padding: 'clamp(2.5rem,5vw,4.5rem) clamp(2rem,4vw,3rem) clamp(2.5rem,5vw,4.5rem) clamp(1.5rem,3vw,2.5rem)' }}
+        className="flex-1 flex flex-col justify-center gap-[1.625rem] max-w-[600px] px-5 py-8 md:py-[clamp(2.5rem,5vw,4.5rem)] md:pl-[clamp(1.5rem,3vw,2.5rem)] md:pr-[clamp(2rem,4vw,3rem)]"
       >
         <p className="font-display text-eyebrow-conv text-ink-muted" data-reveal>
           Hola, soy Alberto.
