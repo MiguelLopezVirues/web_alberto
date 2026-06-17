@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-export default function SobreMi() {
+export default function SobreMi({ fotoUrl }: { fotoUrl: string }) {
   return (
     <section
       id="sobre-mi"
@@ -10,7 +10,7 @@ export default function SobreMi() {
       {/* Photo — top on mobile (full-width), left on desktop (42%) */}
       <div className="relative overflow-hidden w-full h-[60vw] min-h-[260px] max-h-[420px] md:h-auto md:min-h-0 md:max-h-none md:w-[42%] md:shrink-0">
         <Image
-          src="/images/alberto.png"
+          src={fotoUrl}
           alt="Alberto Aguado Calvo"
           fill
           className="object-cover object-top"

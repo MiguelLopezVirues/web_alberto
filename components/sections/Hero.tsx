@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { site } from '@/tokens/site';
 
-export default function Hero() {
+export default function Hero({ fotoUrl }: { fotoUrl: string }) {
   return (
     <section
       id="hero"
@@ -13,7 +13,7 @@ export default function Hero() {
         className="relative overflow-hidden bg-accent-light order-first md:order-last h-[55vw] min-h-[240px] max-h-[400px] md:h-auto md:min-h-0 md:max-h-none md:[flex:42]"
       >
         <Image
-          src="/images/alberto.png"
+          src={fotoUrl}
           alt="Alberto Aguado Calvo, psicólogo general sanitario y neuropsicólogo clínico"
           fill
           className="object-cover object-top"
