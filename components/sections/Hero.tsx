@@ -23,8 +23,8 @@ export default function Hero() {
 
       {/* Text column — bottom on mobile, left on desktop */}
       <div
-        className="flex flex-col justify-center px-5 py-10 md:[flex:58] md:px-[3rem] md:py-[clamp(3.5rem,7vw,5.5rem)]"
-        style={{ maxWidth: 'calc(1200px * 0.62)' }}
+        className="flex flex-col justify-center px-section-x-sm py-10 md:[flex:58] md:px-section-x md:py-[clamp(3.5rem,7vw,5.5rem)]"
+        style={{ maxWidth: 'calc(var(--space-container) * 0.62)' }}
       >
         <p className="font-ui text-label font-semibold text-accent uppercase tracking-[0.08em] mb-5">
           {site.eyebrow}
@@ -41,7 +41,7 @@ export default function Hero() {
         </p>
         <a
           href="#contacto"
-          className="inline-flex items-center justify-center font-ui text-label-btn font-bold text-ink-on-brand bg-accent-deep px-7 py-3.5 rounded-btn w-fit hover:bg-accent transition-colors duration-[180ms]"
+          className="inline-flex items-center justify-center font-ui text-label-btn font-bold text-ink-on-brand bg-accent-deep px-7 py-3.5 rounded-btn w-fit hover:bg-accent transition-colors duration-fast"
         >
           {site.cta}
         </a>

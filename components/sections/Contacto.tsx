@@ -35,17 +35,17 @@ export default function Contacto() {
     }
   }
 
-  const inputCls = 'w-full font-body text-[0.9375rem] text-ink bg-ground-raised border border-border rounded-md px-3.5 py-3 appearance-none placeholder:text-ink-ghost focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/10 transition-[border-color,box-shadow] duration-[180ms]';
+  const inputCls = 'w-full font-body text-body-base text-ink bg-ground-raised border border-border rounded-md px-3.5 py-3 appearance-none placeholder:text-ink-ghost focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/10 transition-[border-color,box-shadow] duration-fast';
   const labelCls = 'font-ui text-[0.75rem] font-semibold tracking-[0.06em] text-ink-ghost';
 
   return (
     <section
       id="contacto"
       className="py-6 pb-[clamp(3rem,6vw,5rem)] relative z-[1]"
-      style={{ background: 'color-mix(in srgb, #ccead3 22%, #f9f9f7)' }}
+      style={{ background: 'color-mix(in srgb, var(--color-accent-light) 22%, var(--color-ground))' }}
       aria-labelledby="contacto-h2"
     >
-      <div className="max-w-[860px] w-full mx-auto px-5 md:px-[3rem] flex flex-col items-center text-center">
+      <div className="max-w-[860px] w-full mx-auto px-section-x-sm md:px-section-x flex flex-col items-center text-center">
         <h2
           id="contacto-h2"
           className="font-display text-[clamp(2rem,3vw,2.5rem)] font-semibold leading-[1.1] tracking-[-0.005em] text-ink mb-3"
@@ -53,7 +53,7 @@ export default function Contacto() {
         >
           ¿Hablamos?
         </h2>
-        <p className="font-body text-[0.9375rem] text-ink-muted leading-[1.65] mb-9" data-reveal>
+        <p className="font-body text-body-base text-ink-muted mb-9" data-reveal>
           No necesitas preparar nada.<br />Solo cuéntame qué te ocurre.
         </p>
 
@@ -85,7 +85,7 @@ export default function Contacto() {
           <button
             type="submit"
             disabled={status === 'sending'}
-            className="mt-1 w-full font-ui text-label-btn font-bold text-ink-on-brand bg-accent-deep py-[0.9375rem] rounded-btn hover:bg-accent disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-[180ms]"
+            className="mt-1 w-full font-ui text-label-btn font-bold text-ink-on-brand bg-accent-deep py-[0.9375rem] rounded-btn hover:bg-accent disabled:opacity-60 disabled:cursor-not-allowed transition-colors duration-fast"
           >
             {status === 'sending' ? 'Enviando…' : 'Cuéntame qué te ocurre'}
           </button>

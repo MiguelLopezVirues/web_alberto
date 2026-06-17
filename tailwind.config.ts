@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss';
-import { colors, borderRadius, spacing, fontFamily, fontSize } from './tokens/theme';
+import { colors, borderRadius, spacing, maxWidth, transitionDuration, fontFamily, fontSize } from './tokens/theme';
 
 const config: Config = {
   content: [
@@ -11,6 +11,8 @@ const config: Config = {
       colors,
       borderRadius,
       spacing,
+      maxWidth,
+      transitionDuration,
       fontFamily,
       fontSize,
     },

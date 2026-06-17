@@ -20,7 +20,7 @@ const servicios = [
 export default function Servicios() {
   return (
     <section id="servicios" className="bg-ground py-[clamp(3rem,6vw,5rem)] relative z-[1]" aria-labelledby="servicios-h2">
-      <div className="max-w-[1200px] mx-auto px-5 md:px-[3rem]">
+      <div className="max-w-container mx-auto px-section-x-sm md:px-section-x">
         <div className="mb-10" data-reveal>
           <p className="font-ui text-label font-semibold text-accent uppercase tracking-[0.08em] mb-3.5">
             Cómo puedo ayudarte
@@ -37,25 +37,25 @@ export default function Servicios() {
               className={[
                 'grid grid-cols-1 md:grid-cols-[minmax(min-content,15rem)_1fr] gap-4 md:gap-10 items-start py-[1.125rem] pl-5',
                 'border-l-[3px] border-b border-b-border',
-                'transition-colors duration-[180ms]',
+                'transition-colors duration-fast',
                 s.featured
-                  ? 'border-l-accent-deep bg-[color-mix(in_srgb,#476250_4%,#f9f9f7)] hover:bg-[color-mix(in_srgb,#ccead3_18%,#f9f9f7)]'
-                  : 'border-l-accent hover:bg-[color-mix(in_srgb,#ccead3_18%,#f9f9f7)]',
+                  ? 'border-l-accent-deep bg-[color-mix(in_srgb,var(--color-accent)_4%,var(--color-ground))] hover:bg-[color-mix(in_srgb,var(--color-accent-light)_18%,var(--color-ground))]'
+                  : 'border-l-accent hover:bg-[color-mix(in_srgb,var(--color-accent-light)_18%,var(--color-ground))]',
               ].join(' ')}
               data-reveal
             >
-              <h3 className="font-display text-[1.0625rem] font-semibold text-ink leading-[1.25] pt-[3px]">
+              <h3 className="font-display text-h3 font-semibold text-ink pt-[3px]">
                 {s.titulo}
               </h3>
               <div>
-                <p className="font-body text-[0.9375rem] text-ink-muted leading-[1.65] mb-3">
+                <p className="font-body text-body-base text-ink-muted mb-3">
                   {s.desc}
                 </p>
                 <div className="flex flex-wrap gap-1">
                   {s.tags.map(tag => (
                     <span
                       key={tag}
-                      className="font-ui text-[0.6875rem] font-medium tracking-[0.02em] text-ink-muted bg-ground-raised border border-border rounded-[3px] px-2 py-[3px]"
+                      className="font-ui text-tag font-medium tracking-[0.02em] text-ink-muted bg-ground-raised border border-border rounded-[3px] px-2 py-[3px]"
                     >
                       {tag}
                     </span>

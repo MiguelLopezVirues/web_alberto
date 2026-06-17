@@ -19,7 +19,7 @@ export default function SobreMi() {
 
       {/* Text */}
       <div
-        className="flex-1 flex flex-col justify-center gap-[1.625rem] max-w-[600px] px-5 py-8 md:py-[clamp(2.5rem,5vw,4.5rem)] md:pl-[clamp(1.5rem,3vw,2.5rem)] md:pr-[clamp(2rem,4vw,3rem)]"
+        className="flex-1 flex flex-col justify-center gap-[1.625rem] max-w-[600px] px-section-x-sm py-8 md:py-[clamp(2.5rem,5vw,4.5rem)] md:pl-[clamp(1.5rem,3vw,2.5rem)] md:pr-[clamp(2rem,4vw,3rem)]"
       >
         <p className="font-display text-eyebrow-conv text-ink-muted" data-reveal>
           Hola, soy Alberto.
@@ -47,7 +47,7 @@ export default function SobreMi() {
           ].map(badge => (
             <span
               key={badge}
-              className="font-ui text-[0.6875rem] font-semibold tracking-[0.05em] text-ink-muted bg-ground-raised border border-border rounded-sm px-2.5 py-1"
+              className="font-ui text-tag font-semibold tracking-[0.05em] text-ink-muted bg-ground-raised border border-border rounded-sm px-2.5 py-1"
             >
               {badge}
             </span>

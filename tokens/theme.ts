@@ -34,8 +34,18 @@ export const borderRadius = {
 
 export const spacing = {
   'section-x':      '3rem',
-  'section-x-sm':   '1.5rem',
+  'section-x-sm':   '1.25rem',
   'container':      '1200px',
+};
+
+// max-w-* reads from its own theme key, not `spacing` — mirror it here.
+export const maxWidth = {
+  container: spacing.container,
+};
+
+// Interaction timing — keep hover/focus transitions consistent.
+export const transitionDuration = {
+  fast: '180ms',
 };
 
 // CSS variable names injected by next/font — see app/layout.tsx
@@ -51,9 +61,13 @@ export const fontSize: Record<string, FontSizeEntry> = {
   'h1':          ['clamp(2.25rem, 4vw + 0.5rem, 3.5rem)',  { lineHeight: '1.07', letterSpacing: '-0.01em', fontWeight: 700 }],
   'h2':          ['clamp(1.75rem, 2.5vw + 0.5rem, 2.25rem)', { lineHeight: '1.1',  letterSpacing: '-0.005em', fontWeight: 600 }],
   'h2-lg':       ['clamp(1.75rem, 2.5vw + 0.5rem, 2.5rem)',  { lineHeight: '1.1',  letterSpacing: '-0.005em', fontWeight: 600 }],
+  'h3':          ['1.0625rem', { lineHeight: '1.25' }],
+  'h3-lg':       ['1.1rem',    { lineHeight: '1.2'  }],
   'body-lg':     ['1.125rem', { lineHeight: '1.75', fontWeight: 400 }],
   'body-md':     ['1rem',     { lineHeight: '1.7',  fontWeight: 400 }],
+  'body-base':   ['0.9375rem', { lineHeight: '1.65', fontWeight: 400 }],
   'body-sm':     ['0.875rem', { lineHeight: '1.65', fontWeight: 400 }],
+  'tag':         ['0.6875rem', { lineHeight: '1' }],
   'label':       ['0.75rem',  { lineHeight: '1.0',  letterSpacing: '0.08em', fontWeight: 600 }],
   'label-nav':   ['0.875rem', { lineHeight: '1.0',  fontWeight: 500 }],
   'label-btn':   ['0.9375rem',{ lineHeight: '1.0',  letterSpacing: '0.02em', fontWeight: 700 }],

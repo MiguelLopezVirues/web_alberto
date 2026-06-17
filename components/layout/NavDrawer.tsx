@@ -56,7 +56,7 @@ export default function NavDrawer() {
           <button
             onClick={() => setOpen(false)}
             aria-label="Cerrar menú"
-            className="w-9 h-9 flex items-center justify-center text-ink-muted hover:text-ink transition-colors duration-[180ms]"
+            className="w-9 h-9 flex items-center justify-center text-ink-muted hover:text-ink transition-colors duration-fast"
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -71,7 +71,7 @@ export default function NavDrawer() {
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="font-ui text-[1rem] font-medium text-ink py-3.5 border-b border-border/50 hover:text-accent transition-colors duration-[180ms]"
+              className="font-ui text-[1rem] font-medium text-ink py-3.5 border-b border-border/50 hover:text-accent transition-colors duration-fast"
             >
               {link.label}
             </a>
@@ -79,7 +79,7 @@ export default function NavDrawer() {
           <a
             href="#contacto"
             onClick={() => setOpen(false)}
-            className="mt-6 inline-flex items-center justify-center font-ui text-label-btn font-bold text-ink-on-brand bg-accent-deep px-7 py-3.5 rounded-btn hover:bg-accent transition-colors duration-[180ms]"
+            className="mt-6 inline-flex items-center justify-center font-ui text-label-btn font-bold text-ink-on-brand bg-accent-deep px-7 py-3.5 rounded-btn hover:bg-accent transition-colors duration-fast"
           >
             Contacto
           </a>

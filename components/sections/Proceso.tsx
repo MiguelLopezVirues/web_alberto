@@ -24,7 +24,7 @@ const steps = [
 export default function Proceso() {
   return (
     <section id="proceso" className="bg-ground-raised py-[clamp(3rem,6vw,5rem)] relative z-[1]" aria-labelledby="proceso-h2">
-      <div className="max-w-[1200px] mx-auto px-5 md:px-[3rem]">
+      <div className="max-w-container mx-auto px-section-x-sm md:px-section-x">
         <div className="mb-12" data-reveal>
           <p className="font-ui text-label font-semibold text-accent uppercase tracking-[0.08em] mb-3.5">
             Cómo trabajaríamos juntos
@@ -50,17 +50,17 @@ export default function Proceso() {
             >
               {/* Dot column */}
               <div className="w-7 shrink-0 flex justify-center pt-1 relative z-[1]" aria-hidden="true">
-                <div className="w-[18px] h-[18px] rounded-full bg-ground-raised border-2 border-border shrink-0 transition-colors duration-[180ms] group-hover:border-accent group-hover:bg-accent-light" />
+                <div className="w-[18px] h-[18px] rounded-full bg-ground-raised border-2 border-border shrink-0 transition-colors duration-fast group-hover:border-accent group-hover:bg-accent-light" />
               </div>
 
               <div className="flex-1">
-                <p className="font-ui text-[0.6875rem] font-semibold tracking-[0.08em] uppercase text-accent mb-1">
+                <p className="font-ui text-tag font-semibold tracking-[0.08em] uppercase text-accent mb-1">
                   {step.sub}
                 </p>
-                <h3 className="font-display text-[1.1rem] font-semibold text-ink leading-[1.2] mb-2">
+                <h3 className="font-display text-h3-lg font-semibold text-ink mb-2">
                   {step.titulo}
                 </h3>
-                <p className="font-body text-[0.9375rem] text-ink-muted leading-[1.65]">
+                <p className="font-body text-body-base text-ink-muted">
                   {step.desc}
                 </p>
               </div>

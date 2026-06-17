@@ -39,7 +39,7 @@ export default function Testimonios() {
       className="bg-ground-soft py-[clamp(3rem,6vw,5rem)] pb-6 relative z-[1]"
       aria-labelledby="test-heading"
     >
-      <div className="max-w-[680px] mx-auto px-5 md:px-[3rem] flex flex-col items-center text-center">
+      <div className="max-w-[680px] mx-auto px-section-x-sm md:px-section-x flex flex-col items-center text-center">
         <p id="test-heading" className="font-ui text-label text-accent uppercase tracking-[0.08em] mb-10" data-reveal>
           Experiencias de pacientes
         </p>
@@ -71,7 +71,7 @@ export default function Testimonios() {
         <nav className="flex items-center gap-4 mt-9" aria-label="Navegación de testimonios">
           <button
             onClick={() => show(current - 1)}
-            className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-ink-ghost hover:border-accent hover:text-accent transition-colors duration-[180ms]"
+            className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-ink-ghost hover:border-accent hover:text-accent transition-colors duration-fast"
             aria-label="Testimonio anterior"
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -86,7 +86,7 @@ export default function Testimonios() {
                 onClick={() => show(i)}
                 className="w-[7px] h-[7px] rounded-full transition-[background,transform] duration-500"
                 style={{
-                  background: i === current ? '#607b68' : '#c2c8c1',
+                  background: i === current ? 'var(--color-accent-deep)' : 'var(--color-border)',
                   transform: i === current ? 'scale(1.35)' : 'scale(1)',
                   transitionTimingFunction: 'cubic-bezier(0.5,0,0.2,1)',
                 }}
@@ -99,7 +99,7 @@ export default function Testimonios() {
 
           <button
             onClick={() => show(current + 1)}
-            className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-ink-ghost hover:border-accent hover:text-accent transition-colors duration-[180ms]"
+            className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-ink-ghost hover:border-accent hover:text-accent transition-colors duration-fast"
             aria-label="Siguiente testimonio"
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">

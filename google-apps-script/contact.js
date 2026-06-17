@@ -18,7 +18,7 @@
 
 const SPREADSHEET_ID = '11HzN2-3UOEZs6d37UArLN-ePVPljerPRFrNeqyiVGYE';
 const SHEET_NAME     = 'formulario_contacto';
-const NOTIFY_EMAIL   = 'miguel.lopezvirues@gmail.com'; // ← Alberto's email address
+const NOTIFY_EMAIL   = 'albertoaguadopsicologo@gmail.com'; // ← Alberto's email address
 
 function doPost(e) {
   try {

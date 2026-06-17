@@ -1,7 +1,16 @@
 import type { Metadata } from 'next';
 import { Ysabeau, Atkinson_Hyperlegible_Next, Open_Sans } from 'next/font/google';
 import { site } from '@/tokens/site';
+import { colors, spacing } from '@/tokens/theme';
 import './globals.css';
+
+// Expose design tokens as CSS custom properties so raw values never get
+// hard-coded inside color-mix()/calc() expressions. Single source of truth
+// stays in tokens/theme.ts. Colors → --color-*, spacing → --space-*.
+const tokenVars = {
+  ...Object.fromEntries(Object.entries(colors).map(([k, v]) => [`--color-${k}`, v])),
+  ...Object.fromEntries(Object.entries(spacing).map(([k, v]) => [`--space-${k}`, v])),
+} as React.CSSProperties;
 
 const ysabeau = Ysabeau({
   subsets: ['latin'],
@@ -36,6 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="es"
       className={`scroll-smooth ${ysabeau.variable} ${atkinson.variable} ${openSans.variable}`}
+      style={tokenVars}
     >
       <body className="bg-ground text-ink font-body antialiased">
         {children}
