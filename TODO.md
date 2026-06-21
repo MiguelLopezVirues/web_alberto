@@ -58,9 +58,13 @@ Move ~80% of visible text and all images out of hardcoded JSX/`tokens/site.ts` i
 
 ### P1.5: Verify Sanity works on production + improve Studio UX
 - [ ] Deploy to Vercel and confirm site reads images from Sanity CDN
-- [ ] Register Sanity webhook pointing to `https://albertoaguadopsicologia.vercel.app/api/revalidate`
+- [X] Register Sanity webhook pointing to `https://albertoaguadopsicologia.vercel.app/api/revalidate`
 - [ ] **Live preview (Level 1) — do after design is final:** Add a live-preview iframe panel in the Studio (split-view: form on the left, real site on the right) so Alberto sees the site update as he edits — including switching the **Apariencia** palette and seeing all sections re-theme live. Needs a preview/draft route + `presentationTool` or a custom structure view.
 - [ ] **Visual editing (Level 3) — do after design is final:** Upgrade to the Sanity **Presentation** tool with click-to-edit overlays (click a heading/image on the preview → jumps to that field in Studio). Builds on Level 1.
+
+### P1: Mobile layout bugs
+- [ ] **Horizontal scroll on mobile** — the page scrolls to the right; something overflows the viewport width. Find and clamp the overflowing element (`overflow-x: hidden` on the root or fix the source).
+- [ ] **Burger menu doesn't toggle correctly** — the mobile nav menu doesn't open/close as expected. Debug the toggle state/animation in `components/layout/` nav component.
 
 ### P2: Add real legal pages (RGPD / LSSI-CE)
 Aviso legal, Privacidad, and Cookies are dead `#` links in the footer — a real compliance obligation for a Spanish health professional handling contact-form personal data.
