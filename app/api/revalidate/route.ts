@@ -1,5 +1,5 @@
 import { createHmac } from 'crypto';
-import { revalidatePath } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
 function verify(body: string, header: string, secret: string): boolean {
@@ -26,6 +26,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
   }
 
-  revalidatePath('/', 'layout');
+  revalidateTag('sanity');
   return NextResponse.json({ revalidated: true });
 }

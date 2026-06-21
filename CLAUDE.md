@@ -26,6 +26,7 @@ npm run lint      # Run ESLint
 > **Format:** `- [ ] P{1|2|3}: {Title} — {one-sentence why}`
 > **Proposed/unconfirmed:** `- [?] {Title} — {why it came up}`
 
+- [ ] P1: Mobile layout bugs — horizontal scroll (viewport overflow) + burger menu toggle broken on mobile
 - [ ] P1: Design refresh (epic) — remaining: palette refinement (gray-ink contrast ramp) + two hero variants to compare; done so far: palette re-token, display-font fix, Servicios accordion, credenciales copy, depth/texture/shapes (grain + ink-tinted shadows + organic blobs/photo-frame preset)
 - [ ] P1: Theming presets (curated) — let Alberto pick from pre-built/locked palettes, fonts, hero variant & IG content type via a CMS dropdown (never raw tokens)
 - [ ] P1: Make site content CMS-editable — let the non-technical client self-edit ~80% of copy + all images without breaking the design (see `docs/cms-strategy.md`)
