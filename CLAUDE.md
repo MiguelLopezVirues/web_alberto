@@ -26,7 +26,10 @@ npm run lint      # Run ESLint
 > **Format:** `- [ ] P{1|2|3}: {Title} — {one-sentence why}`
 > **Proposed/unconfirmed:** `- [?] {Title} — {why it came up}`
 
+- [ ] P1: Design refresh (epic) — remaining: palette refinement (gray-ink contrast ramp) + two hero variants to compare; done so far: palette re-token, display-font fix, Servicios accordion, credenciales copy, depth/texture/shapes (grain + ink-tinted shadows + organic blobs/photo-frame preset)
+- [ ] P1: Theming presets (curated) — let Alberto pick from pre-built/locked palettes, fonts, hero variant & IG content type via a CMS dropdown (never raw tokens)
 - [ ] P1: Make site content CMS-editable — let the non-technical client self-edit ~80% of copy + all images without breaking the design (see `docs/cms-strategy.md`)
+- [ ] P2: "Sígueme en redes" Instagram section — new section, configurable posts/reels toggle
 - [ ] P2: Add real legal pages (RGPD / LSSI-CE) — Aviso legal/Privacidad/Cookies are dead links; a compliance obligation for a health professional
 - [ ] P3: Blog — roadmap item, drops in as a CMS document type once the CMS exists
 

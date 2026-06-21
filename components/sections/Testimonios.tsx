@@ -36,11 +36,11 @@ export default function Testimonios() {
   return (
     <section
       id="testimonios"
-      className="bg-ground-soft py-[clamp(3rem,6vw,5rem)] pb-6 relative z-[1]"
+      className="bg-band text-band-ink py-[clamp(3.5rem,7vw,6rem)] pb-[clamp(3rem,6vw,5rem)] relative z-[1]"
       aria-labelledby="test-heading"
     >
       <div className="max-w-[680px] mx-auto px-section-x-sm md:px-section-x flex flex-col items-center text-center">
-        <p id="test-heading" className="font-ui text-label text-accent uppercase tracking-[0.08em] mb-10" data-reveal>
+        <p id="test-heading" className="font-ui text-label text-[color-mix(in_srgb,var(--band-ink)_72%,var(--band))] uppercase tracking-[0.08em] mb-10" data-reveal>
           Experiencias de pacientes
         </p>
 
@@ -59,11 +59,11 @@ export default function Testimonios() {
               role="group"
               aria-label={`Testimonio ${i + 1} de ${testimonios.length}`}
             >
-              <p className="font-display text-[5.5rem] leading-[0.55] text-accent-light font-bold mb-5 select-none" aria-hidden="true">&ldquo;</p>
-              <blockquote className="font-body text-body-lg italic text-ink leading-[1.75] mb-5">
+              <p className="font-display text-[5.5rem] leading-[0.55] text-jewel font-bold mb-5 select-none" aria-hidden="true">&ldquo;</p>
+              <blockquote className="font-body text-body-lg italic text-band-ink leading-[1.75] mb-5">
                 {t.cita}
               </blockquote>
-              <cite className="font-ui text-label text-ink-ghost not-italic">— {t.autor}</cite>
+              <cite className="font-ui text-label text-[color-mix(in_srgb,var(--band-ink)_65%,var(--band))] not-italic">— {t.autor}</cite>
             </div>
           ))}
         </div>
@@ -71,7 +71,7 @@ export default function Testimonios() {
         <nav className="flex items-center gap-4 mt-9" aria-label="Navegación de testimonios">
           <button
             onClick={() => show(current - 1)}
-            className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-ink-ghost hover:border-accent hover:text-accent transition-colors duration-fast"
+            className="w-9 h-9 rounded-full border border-[color-mix(in_srgb,var(--band-ink)_28%,var(--band))] flex items-center justify-center text-band-ink hover:border-jewel hover:text-jewel transition-colors duration-fast"
             aria-label="Testimonio anterior"
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -86,7 +86,7 @@ export default function Testimonios() {
                 onClick={() => show(i)}
                 className="w-[7px] h-[7px] rounded-full transition-[background,transform] duration-500"
                 style={{
-                  background: i === current ? 'var(--color-accent-deep)' : 'var(--color-border)',
+                  background: i === current ? 'var(--jewel)' : 'color-mix(in srgb, var(--band-ink) 30%, var(--band))',
                   transform: i === current ? 'scale(1.35)' : 'scale(1)',
                   transitionTimingFunction: 'cubic-bezier(0.5,0,0.2,1)',
                 }}
@@ -99,7 +99,7 @@ export default function Testimonios() {
 
           <button
             onClick={() => show(current + 1)}
-            className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-ink-ghost hover:border-accent hover:text-accent transition-colors duration-fast"
+            className="w-9 h-9 rounded-full border border-[color-mix(in_srgb,var(--band-ink)_28%,var(--band))] flex items-center justify-center text-band-ink hover:border-jewel hover:text-jewel transition-colors duration-fast"
             aria-label="Siguiente testimonio"
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">

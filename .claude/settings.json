@@ -6,7 +6,11 @@
       "Bash(git push *)",
       "Bash(git remote *)",
       "Bash(npm run *)",
-      "WebSearch"
+      "WebSearch",
+      "Read(//c/Users/miguel.lopez/Projects/design-system-forge/.claude/commands/**)",
+      "Read(//c/Users/miguel.lopez/Projects/design-system-forge/.claude/docs/references/**)",
+      "Read(//c/Users/miguel.lopez/Projects/design-system-forge/inputs/references/**)",
+      "Read(//c/Users/miguel.lopez/Projects/design-system-forge/inputs/extracted/**)"
     ]
   }
 }

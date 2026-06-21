@@ -3,20 +3,64 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Organic blob radii — shared across palettes (form, not color). Used by
+       ambient blobs and the organic photo-frame preset (data-foto-shape). */
+    --shape-a: 63% 37% 56% 44% / 57% 46% 54% 43%;
+    --shape-b: 42% 58% 47% 53% / 58% 42% 58% 42%;
+  }
   html { scroll-behavior: smooth; }
   body { overflow-x: hidden; }
   img  { display: block; max-width: 100%; }
   a    { color: inherit; text-decoration: none; }
 }
 
+/* Paper grain — a barely-there fixed overlay (desaturated fractal noise,
+   multiplied) that gives every surface a soft tactile tooth. Tuned very low so
+   it reads as texture, not noise. Gated by data-texture (default on) so it can
+   become an Apariencia toggle later. Static, so reduced-motion is unaffected. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
+}
+html[data-texture="off"] body::before { display: none; }
+
 @layer components {
-  /* Ambient blob circles — fixed, traverse all sections */
+  /* Ambient blobs — fixed, organic, lightly blurred soft color fields that
+     traverse the page. Placed (in app/page.tsx) to bleed across section seams,
+     softening the transition between flat section colors. */
   .blob {
-    @apply fixed rounded-full bg-accent-light pointer-events-none;
-    opacity: 0.4;
+    @apply fixed bg-accent pointer-events-none;
+    border-radius: var(--shape-a);
+    opacity: 0.18;
     z-index: 0;
-    filter: blur(100px);
+    filter: blur(40px);
   }
+  .blob-b { border-radius: var(--shape-b); }
+}
+
+/* Organic photo-frame preset — only active under data-foto-shape="organica"
+   (set on <html> from the Sanity Apariencia singleton). The rectangular default
+   adds no rules, so it renders identically to before. The .foto-frame elements
+   already carry `relative overflow-hidden`, so rounding + an inset margin lifts
+   the photo off the section as a soft organic shape. -a/-b alternate the radius
+   between Hero and Sobre mí for variety. */
+html[data-foto-shape="organica"] .foto-frame {
+  margin: clamp(1rem, 3vw, 2.25rem);
+  border-radius: var(--shape-a);
+  transition: border-radius 1.2s cubic-bezier(0.33, 0, 0.2, 1);
+}
+html[data-foto-shape="organica"] .foto-frame-b {
+  border-radius: var(--shape-b);
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-foto-shape="organica"] .foto-frame { transition: none; }
 }
 
 /* Scroll reveal — outside any Tailwind layer to avoid purge/specificity issues */

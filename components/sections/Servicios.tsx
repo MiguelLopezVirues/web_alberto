@@ -1,3 +1,7 @@
+'use client';
+
+import { useState } from 'react';
+
 const servicios = [
   {
     featured: true,
@@ -18,11 +22,13 @@ const servicios = [
 ];
 
 export default function Servicios() {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   return (
-    <section id="servicios" className="bg-ground py-[clamp(3rem,6vw,5rem)] relative z-[1]" aria-labelledby="servicios-h2">
-      <div className="max-w-container mx-auto px-section-x-sm md:px-section-x">
+    <section id="servicios" className="bg-paper py-[clamp(3rem,6vw,5rem)] relative z-[1]" aria-labelledby="servicios-h2">
+      <div className="max-w-[calc(var(--space-container)+16rem)] mx-auto px-section-x-sm md:px-section-x">
         <div className="mb-10" data-reveal>
-          <p className="font-ui text-label font-semibold text-accent uppercase tracking-[0.08em] mb-3.5">
+          <p className="font-ui text-label font-semibold text-accent-deep uppercase tracking-[0.08em] mb-3.5">
             Cómo puedo ayudarte
           </p>
           <h2 id="servicios-h2" className="font-display text-h2 font-semibold leading-[1.1] tracking-[-0.005em] text-ink">
@@ -30,40 +36,75 @@ export default function Servicios() {
           </h2>
         </div>
 
-        <div className="border-t border-border">
-          {servicios.map(s => (
-            <article
-              key={s.titulo}
-              className={[
-                'grid grid-cols-1 md:grid-cols-[minmax(min-content,15rem)_1fr] gap-4 md:gap-10 items-start py-[1.125rem] pl-5',
-                'border-l-[3px] border-b border-b-border',
-                'transition-colors duration-fast',
-                s.featured
-                  ? 'border-l-accent-deep bg-[color-mix(in_srgb,var(--color-accent)_4%,var(--color-ground))] hover:bg-[color-mix(in_srgb,var(--color-accent-light)_18%,var(--color-ground))]'
-                  : 'border-l-accent hover:bg-[color-mix(in_srgb,var(--color-accent-light)_18%,var(--color-ground))]',
-              ].join(' ')}
-              data-reveal
-            >
-              <h3 className="font-display text-h3 font-semibold text-ink pt-[3px]">
-                {s.titulo}
-              </h3>
-              <div>
-                <p className="font-body text-body-base text-ink-muted mb-3">
-                  {s.desc}
-                </p>
-                <div className="flex flex-wrap gap-1">
-                  {s.tags.map(tag => (
-                    <span
-                      key={tag}
-                      className="font-ui text-tag font-medium tracking-[0.02em] text-ink-muted bg-ground-raised border border-border rounded-[3px] px-2 py-[3px]"
-                    >
-                      {tag}
+        <div className="border-t border-line">
+          {servicios.map((s, i) => {
+            const isOpen = openIndex === i;
+            const panelId = `servicio-panel-${i}`;
+            const btnId = `servicio-btn-${i}`;
+            return (
+              <article
+                key={s.titulo}
+                className={[
+                  'border-b border-b-line-soft border-l-[3px] transition-colors duration-fast',
+                  s.featured ? 'border-l-accent-deep bg-[color-mix(in_srgb,var(--accent)_5%,var(--paper))]' : 'border-l-transparent',
+                ].join(' ')}
+                data-reveal
+              >
+                <h3>
+                  <button
+                    type="button"
+                    id={btnId}
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    onClick={() => setOpenIndex(isOpen ? null : i)}
+                    className="group flex w-full items-center justify-between gap-4 py-[1.125rem] pl-5 pr-4 text-left transition-colors duration-fast hover:bg-[color-mix(in_srgb,var(--accent)_12%,var(--paper))]"
+                  >
+                    <span className="font-display text-h3-xl font-semibold text-ink">
+                      {s.titulo}
                     </span>
-                  ))}
+                    <svg
+                      aria-hidden="true"
+                      viewBox="0 0 24 24"
+                      className={[
+                        'h-5 w-5 shrink-0 text-accent transition-transform duration-fast',
+                        isOpen ? 'rotate-90' : '',
+                      ].join(' ')}
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="m9 6 6 6-6 6" />
+                    </svg>
+                  </button>
+                </h3>
+                <div
+                  id={panelId}
+                  role="region"
+                  aria-labelledby={btnId}
+                  inert={!isOpen}
+                  className={[
+                    'grid transition-[grid-template-rows] duration-fast',
+                    isOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]',
+                  ].join(' ')}
+                >
+                  <div className="overflow-hidden">
+                    <div className="pb-5 pl-5 pr-4">
+                      <p className="font-body text-body-base text-ink-soft mb-3">
+                        {s.desc}
+                      </p>
+                      <ul className="font-ui text-body-base text-ink-soft list-disc pl-5 marker:text-accent space-y-1">
+                        {s.tags.map(tag => (
+                          <li key={tag}>{tag}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
