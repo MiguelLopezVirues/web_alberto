@@ -23,10 +23,10 @@ const steps = [
 
 export default function Proceso() {
   return (
-    <section id="proceso" className="bg-ground-raised py-[clamp(3rem,6vw,5rem)] relative z-[1]" aria-labelledby="proceso-h2">
-      <div className="max-w-container mx-auto px-section-x-sm md:px-section-x">
+    <section id="proceso" className="bg-paper-alt py-[clamp(3rem,6vw,5rem)] relative z-[1]" aria-labelledby="proceso-h2">
+      <div className="max-w-[calc(var(--space-container)+16rem)] mx-auto px-section-x-sm md:px-section-x">
         <div className="mb-12" data-reveal>
-          <p className="font-ui text-label font-semibold text-accent uppercase tracking-[0.08em] mb-3.5">
+          <p className="font-ui text-label font-semibold text-accent-deep uppercase tracking-[0.08em] mb-3.5">
             Cómo trabajaríamos juntos
           </p>
           <h2 id="proceso-h2" className="font-display text-h2 font-semibold leading-[1.1] tracking-[-0.005em] text-ink">
@@ -37,7 +37,7 @@ export default function Proceso() {
         <div className="relative">
           {/* Vertical line — runs through center of dot column (28px / 2 = 14px from left) */}
           <div
-            className="absolute w-[2px] bg-border"
+            className="absolute w-[2px] bg-line"
             style={{ left: 13, top: 20, bottom: 20 }}
             aria-hidden="true"
           />
@@ -50,17 +50,17 @@ export default function Proceso() {
             >
               {/* Dot column */}
               <div className="w-7 shrink-0 flex justify-center pt-1 relative z-[1]" aria-hidden="true">
-                <div className="w-[18px] h-[18px] rounded-full bg-ground-raised border-2 border-border shrink-0 transition-colors duration-fast group-hover:border-accent group-hover:bg-accent-light" />
+                <div className="w-[18px] h-[18px] rounded-full bg-paper-alt border-2 border-line shrink-0 transition-colors duration-fast group-hover:border-accent-deep group-hover:bg-accent" />
               </div>
 
               <div className="flex-1">
-                <p className="font-ui text-tag font-semibold tracking-[0.08em] uppercase text-accent mb-1">
+                <p className="font-ui text-tag font-semibold tracking-[0.08em] uppercase text-accent-deep mb-1">
                   {step.sub}
                 </p>
                 <h3 className="font-display text-h3-lg font-semibold text-ink mb-2">
                   {step.titulo}
                 </h3>
-                <p className="font-body text-body-base text-ink-muted">
+                <p className="font-body text-body-base text-ink-soft">
                   {step.desc}
                 </p>
               </div>

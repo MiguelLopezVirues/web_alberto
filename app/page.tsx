@@ -17,10 +17,12 @@ export default async function Home() {
 
   return (
     <>
-      {/* Ambient blobs — fixed, traverse all sections */}
+      {/* Ambient blobs — fixed, organic soft color fields that wash across the
+          page (and across section seams) to soften the flat color transitions. */}
       <RevealInit />
-      <div className="blob" style={{ width: 600, height: 600, top: -120, right: -160 }} aria-hidden="true" />
-      <div className="blob" style={{ width: 480, height: 480, bottom: '15%', left: -140 }} aria-hidden="true" />
+      <div className="blob" style={{ width: 560, height: 560, top: '-8%', right: '-12%' }} aria-hidden="true" />
+      <div className="blob blob-b bg-accent-deep" style={{ width: 460, height: 460, top: '40%', left: '-12%', opacity: 0.13 }} aria-hidden="true" />
+      <div className="blob blob-b bg-jewel" style={{ width: 380, height: 380, bottom: '-6%', right: '-6%', opacity: 0.12 }} aria-hidden="true" />
       <Nav />
       <main>
         <Hero fotoUrl={fotoUrl} />
