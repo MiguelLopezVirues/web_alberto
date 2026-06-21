@@ -1,14 +1,15 @@
 import type { Metadata } from 'next';
 import { Ysabeau, Atkinson_Hyperlegible_Next, Open_Sans } from 'next/font/google';
 import { site } from '@/tokens/site';
-import { colors, spacing } from '@/tokens/theme';
+import { spacing } from '@/tokens/theme';
+import { paletteCss, resolvePalette } from '@/tokens/palettes';
+import { resolveFotoShape } from '@/tokens/fotoShape';
+import { getAppearance } from '@/sanity/queries';
 import './globals.css';
 
-// Expose design tokens as CSS custom properties so raw values never get
-// hard-coded inside color-mix()/calc() expressions. Single source of truth
-// stays in tokens/theme.ts. Colors → --color-*, spacing → --space-*.
+// Spacing tokens as CSS vars (used inside color-mix()/calc()). Colors are now
+// supplied by the per-direction palette blocks injected below (tokens/palettes.ts).
 const tokenVars = {
-  ...Object.fromEntries(Object.entries(colors).map(([k, v]) => [`--color-${k}`, v])),
   ...Object.fromEntries(Object.entries(spacing).map(([k, v]) => [`--space-${k}`, v])),
 } as React.CSSProperties;
 
@@ -40,14 +41,24 @@ export const metadata: Metadata = {
   description: site.description,
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const appearance = await getAppearance();
+  const palette = resolvePalette(appearance?.palette);
+  const fotoShape = resolveFotoShape(appearance?.fotoShape);
+
   return (
     <html
       lang="es"
+      data-palette={palette}
+      data-foto-shape={fotoShape}
+      data-texture="on"
       className={`scroll-smooth ${ysabeau.variable} ${atkinson.variable} ${openSans.variable}`}
       style={tokenVars}
     >
-      <body className="bg-ground text-ink font-body antialiased">
+      <head>
+        <style dangerouslySetInnerHTML={{ __html: paletteCss() }} />
+      </head>
+      <body className="bg-paper text-ink font-body antialiased" suppressHydrationWarning>
         {children}
       </body>
     </html>
