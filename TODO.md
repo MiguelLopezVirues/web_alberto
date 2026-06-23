@@ -1,7 +1,7 @@
 # web_alberto — Feature Backlog
 
-**Last Updated:** 2026-06-22
-**Status:** v1.0 site live (static content). Post-call with Alberto (2026-06-17): design-first refresh, then CMS. Palette re-token landed as 4 curated CMS-selectable presets (2026-06-21); needs an allocation/contrast refinement pass.
+**Last Updated:** 2026-06-23
+**Status:** v1.0 site live. CMS migration complete (2026-06-23): all content singletons seeded, legal pages live. Design refresh is the active priority.
 
 ---
 
@@ -40,13 +40,14 @@ Build the "let Alberto choose" layer on top of the design refresh, the safe way:
 **Items ordered by leverage:**
 - [ ] **Warm second neutral** — the palette is sage on cool-neutral paper; references all add a cream/blush/clay secondary surface. Consider one warm-tinted section background (warm blush or clay) for an intimate section (Sobre mí is the candidate). Wire as a palette token, not hardcoded; feeds palette refinement.
 
-### P1: Make site content CMS-editable
-Move ~80% of visible text and all images out of hardcoded JSX/`tokens/site.ts` into Sanity so the client (non-technical) can self-edit without breaking the design. CMS is **already chosen + partially live** (Sanity: image slots, Apariencia presets, revalidation webhook, server-fetch→props pattern). Remaining = content migration. Full plan + model in `docs/cms-strategy.md`.
-- [ ] Model: singletons per section + **arrays-of-objects** for repeaters (services/process/testimonials); design-coupled copy as **split fields** (Hero `headlineLead`+`emphasisWord`) + restricted Portable Text (`em`-only) for emphasis paras
-- [ ] **Design-independent migration (safe anytime):** services, process, testimonials, credentials, SEO/site settings, footer Col. number, contact strings — via one consolidated `getPageContent()` GROQ query
-- [ ] **Design-coupled migration (after design signs off):** Hero copy, Sobre mí headline/paragraphs — so schema matches final markup
-- [ ] Wire components: client islands (Servicios/Testimonios) keep `useState`, receive data as props from `page.tsx` (replicate existing `Redes`/`SobreMi` pattern); revalidation already wired
-**Reference:** `docs/cms-strategy.md`
+### P1: Make site content CMS-editable ✅ (2026-06-23)
+All design-independent content migrated and seeded. Schema, queries, components, and 10 Sanity documents live.
+- [x] Schema: 6 content singletons + legalPage type; arrays-of-objects for repeaters; restricted PT (em-only) for emphasis paras
+- [x] `getPageContent()` consolidated GROQ query; full TypeScript types
+- [x] All section components accept CMS props with hardcoded fallbacks; Hero uses HeroCopyCtx
+- [x] 10 documents seeded: siteSettings, hero, sobreMi, servicios, proceso, testimonios, contacto + 3 legal pages
+- [ ] **Design-coupled migration (after design signs off):** reseed Hero and SobreMi body/heading once variants are locked
+**Reference:** `docs/cms-strategy.md`, `docs/cms-migration-plan.md`
 
 ### P1.5: Verify Sanity works on production + improve Studio UX
 - [ ] Deploy to Vercel and confirm site reads images from Sanity CDN
@@ -54,12 +55,12 @@ Move ~80% of visible text and all images out of hardcoded JSX/`tokens/site.ts` i
 - [ ] **Visual editing (Level 3) — do after design is final:** Upgrade to the Sanity **Presentation** tool with click-to-edit overlays (click a heading/image on the preview → jumps to that field in Studio). Builds on Level 1.
 
 
-### P2: Add real legal pages (RGPD / LSSI-CE) — also the infra vehicle for Blog
-Aviso legal, Privacidad, and Cookies are dead `#` links in the footer — a real compliance obligation for a Spanish health professional handling contact-form personal data. **Decision (2026-06-23):** treat this as the deliberate build of the shared **Portable Text renderer + dynamic `[slug]` route**, so Blog (P3) reuses both primitives with no new architecture.
-- [ ] Build shared PT renderer (`@portabletext/react`, branded/restricted serializers) + `app/[slug]` route
-- [ ] Model `legalPage` document type (`title`, `slug`, `body` PT); author the 3 documents
-- [ ] Wire footer links (`components/layout/Footer.tsx:11-13`)
-**Reference:** `docs/cms-strategy.md`
+### P2: Add real legal pages (RGPD / LSSI-CE) ✅ (2026-06-23)
+- [x] PT renderer (`components/ui/PortableTextRenderer.tsx`) + `app/[slug]/page.tsx` dynamic route
+- [x] `legalPage` schema type + `getLegalPage`/`getLegalSlugs` queries
+- [x] 3 documents seeded: Aviso legal, Política de privacidad, Política de cookies — RGPD/LSSI-CE compliant content authored; only NIF, email, and colegiado number remain as [pendiente] placeholders for Alberto to fill in Studio
+- [x] Footer links wired to `/aviso-legal`, `/privacidad`, `/cookies`
+**Reference:** `docs/cms-strategy.md`, `docs/cms-migration-plan.md`
 
 ### P3: Blog
 Roadmap item — the canonical reason Next.js was chosen. Drops in as another CMS document type once the CMS is in place.
@@ -84,11 +85,11 @@ Roadmap item — the canonical reason Next.js was chosen. Drops in as another CM
 2. 🔲 Theming presets (curated) — extends the design outputs into CMS-selectable options
 
 ### Next
-3. 🔲 Make site content CMS-editable
+3. ✅ Make site content CMS-editable (2026-06-23)
 4. ❌ "Sígueme en redes" — Instagram section (built 2026-06-22; DROPPED 2026-06-23 — code parked, not deleted)
 5. ✅ Logo icon → SVG
 6. 🔲 Verify Sanity on production + Studio UX (P1.5)
 
 ### Later
-7. 🔲 Add real legal pages (RGPD / LSSI-CE) — P2
+7. ✅ Add real legal pages (RGPD / LSSI-CE) — P2 (2026-06-23)
 8. 🔲 Blog — P3

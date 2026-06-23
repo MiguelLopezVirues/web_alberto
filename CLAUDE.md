@@ -31,9 +31,8 @@ npm run lint      # Run ESLint
 - [ ] P1: Theming presets (curated) — let Alberto pick from pre-built/locked palettes, fonts & hero variant via a CMS dropdown (never raw tokens)
 - [ ] P1: Audit Design System Forge font-selection process — current fonts read SaaS (Open Sans is the tell); fix the method to be less SaaS/more editorial and generate several font presets — feeds Theming presets
 - [ ] P2: De-standard / character pass — shift from templated/generic → authored/characterful (the axis is not SaaS↔editorial, both can be generic); keystone = Fraunces serif display; then hero composition, Proceso numerals, Testimonios pull-quotes, motivated shapes, accent restraint
-- [ ] P1: Make site content CMS-editable — let the non-technical client self-edit ~80% of copy + all images without breaking the design (see `docs/cms-strategy.md`)
-- [ ] P2: Add real legal pages (RGPD / LSSI-CE) — Aviso legal/Privacidad/Cookies are dead links; a compliance obligation for a health professional
-- [ ] P3: Blog — roadmap item, drops in as a CMS document type once the CMS exists
+- [ ] P1.5: Verify Sanity on production + Studio UX — deploy to Vercel, confirm CDN images; live preview after design is final
+- [ ] P3: Blog — drops in as `post` document type reusing the `PortableTextRenderer` + `app/blog/[slug]` route (infra already built via legal pages)
 
 ## Architecture & Key Concepts
 
