@@ -41,7 +41,7 @@ export default function Contacto() {
   return (
     <section
       id="contacto"
-      className="bg-soft text-soft-ink pt-[clamp(3rem,6vw,5rem)] pb-[clamp(3rem,6vw,5rem)] relative z-[1]"
+      className="bg-soft text-soft-ink pt-[clamp(3rem,6vw,5rem)] pb-[clamp(3rem,6vw,5rem)] relative z-[1] overflow-hidden"
       aria-labelledby="contacto-h2"
     >
       <div className="max-w-[860px] w-full mx-auto px-section-x-sm md:px-section-x flex flex-col items-center text-center">
