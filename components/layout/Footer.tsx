@@ -1,6 +1,10 @@
 import { site } from '@/tokens/site';
 
-export default function Footer() {
+type Props = {
+  copyright?: string;
+};
+
+export default function Footer({ copyright }: Props) {
   return (
     <footer className="bg-footer text-footer-ink px-section-x-sm md:px-section-x relative z-[1]" aria-label="Pie de página">
       <div className="max-w-container mx-auto w-full flex flex-wrap items-center gap-4 py-[1.25rem] md:h-[60px] md:py-0">
@@ -16,7 +20,9 @@ export default function Footer() {
             </li>
           ))}
         </ul>
-        <span className="font-ui text-[0.75rem] text-[color-mix(in_srgb,var(--footer-ink)_35%,var(--footer))] shrink-0">{site.copyright}</span>
+        <span className="font-ui text-[0.75rem] text-[color-mix(in_srgb,var(--footer-ink)_35%,var(--footer))] shrink-0">
+          {copyright ?? site.copyright}
+        </span>
       </div>
     </footer>
   );
