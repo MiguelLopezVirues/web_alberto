@@ -514,6 +514,66 @@ const redes = defineType({
   ],
 });
 
+const legalPage = defineType({
+  name: 'legalPage',
+  title: 'Páginas legales',
+  type: 'document',
+  fields: [
+    defineField({
+      name: 'title',
+      title: 'Título',
+      type: 'string',
+      validation: r => r.required(),
+    }),
+    defineField({
+      name: 'slug',
+      title: 'URL',
+      description: 'Se genera automáticamente desde el título. No cambies una vez publicada.',
+      type: 'slug',
+      options: { source: 'title', maxLength: 64 },
+      validation: r => r.required(),
+    }),
+    defineField({
+      name: 'body',
+      title: 'Contenido',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'block',
+          styles: [
+            { title: 'Normal', value: 'normal' },
+            { title: 'Encabezado', value: 'h2' },
+            { title: 'Subencabezado', value: 'h3' },
+          ],
+          lists: [
+            { title: 'Viñetas', value: 'bullet' },
+            { title: 'Numerada', value: 'number' },
+          ],
+          marks: {
+            decorators: [
+              { title: 'Negrita', value: 'strong' },
+              { title: 'Cursiva', value: 'em' },
+            ],
+            annotations: [
+              defineArrayMember({
+                name: 'link',
+                type: 'object',
+                title: 'Enlace',
+                fields: [
+                  defineField({ name: 'href', type: 'url', title: 'URL' }),
+                ],
+              }),
+            ],
+          },
+        }),
+      ],
+    }),
+  ],
+  preview: {
+    select: { title: 'title', subtitle: 'slug.current' },
+  },
+});
+
 export const schema = {
-  types: [siteSettings, apariencia, hero, sobreMi, servicios, proceso, testimonios, contacto, redes],
+  types: [siteSettings, apariencia, hero, sobreMi, servicios, proceso, testimonios, contacto, redes, legalPage],
 };
