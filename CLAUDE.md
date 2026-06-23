@@ -27,10 +27,11 @@ npm run lint      # Run ESLint
 > **Proposed/unconfirmed:** `- [?] {Title} — {why it came up}`
 
 - [ ] P1: Mobile layout bugs — horizontal scroll (viewport overflow) + burger menu toggle broken on mobile
-- [ ] P1: Design refresh (epic) — remaining: palette refinement (gray-ink contrast ramp) + two hero variants to compare; done so far: palette re-token, display-font fix, Servicios accordion, credenciales copy, depth/texture/shapes (grain + ink-tinted shadows + organic blobs/photo-frame preset)
-- [ ] P1: Theming presets (curated) — let Alberto pick from pre-built/locked palettes, fonts, hero variant & IG content type via a CMS dropdown (never raw tokens)
+- [ ] P1: Design refresh (epic) — remaining: palette refinement (gray-ink contrast ramp); done so far: palette re-token, display-font fix, Servicios accordion, credenciales copy, depth/texture/shapes (grain + ink-tinted shadows + organic blobs/photo-frame preset), hero variants (Apariencia preset; selectable: pregunta [default, split copy+photo, new copy pending sign-off]/fondo/dividido/texto — authored emblema+carta kept in code but deactivated from picker)
+- [ ] P1: Theming presets (curated) — let Alberto pick from pre-built/locked palettes, fonts & hero variant via a CMS dropdown (never raw tokens)
+- [ ] P1: Audit Design System Forge font-selection process — current fonts read SaaS (Open Sans is the tell); fix the method to be less SaaS/more editorial and generate several font presets — feeds Theming presets
+- [ ] P2: De-standard / character pass — shift from templated/generic → authored/characterful (the axis is not SaaS↔editorial, both can be generic); keystone = Fraunces serif display; then hero composition, Proceso numerals, Testimonios pull-quotes, motivated shapes, accent restraint
 - [ ] P1: Make site content CMS-editable — let the non-technical client self-edit ~80% of copy + all images without breaking the design (see `docs/cms-strategy.md`)
-- [ ] P2: "Sígueme en redes" Instagram section — new section, configurable posts/reels toggle
 - [ ] P2: Add real legal pages (RGPD / LSSI-CE) — Aviso legal/Privacidad/Cookies are dead links; a compliance obligation for a health professional
 - [ ] P3: Blog — roadmap item, drops in as a CMS document type once the CMS exists
 
@@ -47,10 +48,14 @@ The project uses **tokens as the single source of truth** for visual identity. B
 
 These tokens are imported into [tailwind.config.ts](tailwind.config.ts) and extend Tailwind's theme.
 
-**CSS custom properties**: The full color palette and spacing scale are also emitted as CSS variables (`--color-*`, `--space-*`) on the `<html>` element by [app/layout.tsx](app/layout.tsx), generated directly from `tokens/theme.ts`. Use these — never raw hex — inside expressions a Tailwind class name can't express, e.g. `color-mix()` or `calc()`:
-- `bg-[color-mix(in_srgb,var(--color-accent)_4%,var(--color-ground))]`
+**CSS custom properties**: Colors and the spacing scale are emitted as CSS variables for use inside expressions a Tailwind class name can't express (`color-mix()`, `calc()`). **Note the two different namings:**
+- **Colors** are emitted per-palette as `--<token>` (NO `--color-` prefix) by `paletteCss()` (`tokens/palettes.ts`) into a `<style>` keyed by `[data-palette]`: `var(--paper)`, `var(--accent)`, `var(--accent-deep)`, `var(--ink)`, `var(--soft)`, … (the 20 `PaletteToken`s + derived `--jewel-tint`/`--line-soft`).
+- **Spacing** is emitted as `--space-*` on `<html>` by [app/layout.tsx](app/layout.tsx) from `tokens/theme.ts`: `var(--space-container)`, …
+
+Use these — never raw hex/px:
+- `bg-[color-mix(in_srgb,var(--accent)_5%,var(--paper))]`
 - `style={{ maxWidth: 'calc(var(--space-container) * 0.62)' }}`
-- inline `style={{ background: 'var(--color-accent-deep)' }}`
+- inline `style={{ background: 'var(--accent-deep)' }}`
 
 **Site content** (name, description, nav links, CTAs) lives in [tokens/site.ts](tokens/site.ts) — keep all text there.
 
@@ -66,7 +71,7 @@ These tokens are imported into [tailwind.config.ts](tailwind.config.ts) and exte
 - **Tailwind**: Extended with custom tokens from `tokens/theme.ts`
 - **Responsive Design**: Mobile-first. Use `md:` breakpoint for desktop changes
 - **Scroll Reveal**: Use `data-reveal` attribute on elements you want to animate on scroll (see [components/ui/RevealInit.tsx](components/ui/RevealInit.tsx))
-- **Ambient Blobs**: Fixed decorative elements (see [app/globals.css](app/globals.css)) that traverse all sections
+- **Shape language**: The site's organic gesture is the **photo frame** (`.foto-frame`, organica `fotoShape` preset) — not floating blobs (dropped: too "wellness-cliché" for a clinician brand, and they clipped at section edges). Section-to-section **seams** are an intentional `Seam` element between sections, styled by the `seam` Apariencia preset (`data-seam` on `<html>`): `hairline` · `arc` · `deckle` (reuses the grain's `feTurbulence`) · `bleed`. See [app/globals.css](app/globals.css) + `components/ui/Seam.tsx`.
 
 ### Typography System
 Font sizes use CSS `clamp()` for fluid scaling between mobile and desktop. Define type in [tokens/theme.ts](tokens/theme.ts) with predefined line-height and letter-spacing; then apply via class names. Full scale: `text-h1`, `text-h2`/`text-h2-lg`, `text-h3`/`text-h3-lg` (card/step titles), `text-body-lg`/`text-body-md`/`text-body-base`/`text-body-sm`, `text-tag` (chips/badges), `text-label`/`text-label-nav`/`text-label-btn`, `text-eyebrow-conv`. Line-height is baked into each token, so don't re-add `leading-*` when it would just duplicate the token. Use `text-tag`/`text-body-base` instead of arbitrary values like `text-[0.6875rem]`/`text-[0.9375rem]`.
@@ -85,7 +90,7 @@ Font sizes use CSS `clamp()` for fluid scaling between mobile and desktop. Defin
 2. If not, add it (prefer consistent naming: `color-*`, `spacing-*`, `fontSize-*`) and wire it into [tailwind.config.ts](tailwind.config.ts)
 3. Use Tailwind classes that reference the token (e.g., `bg-accent`, `text-h1`, `px-section-x`, `max-w-container`, `duration-fast`)
 4. For section wrappers, use `px-section-x-sm md:px-section-x` + `max-w-container`, not arbitrary `px-5`/`max-w-[1200px]`
-5. When a class name can't express the value (`color-mix()`, `calc()`), reference the CSS variables (`var(--color-*)`, `var(--space-*)`) — never raw hex or raw pixel values
+5. When a class name can't express the value (`color-mix()`, `calc()`), reference the CSS variables — colors as `var(--<token>)` (e.g. `var(--accent)`, NO `--color-` prefix), spacing as `var(--space-*)` — never raw hex or raw pixel values
 6. Never hard-code colors, spacing, font sizes, or transition durations directly
 
 ## When Adding Content

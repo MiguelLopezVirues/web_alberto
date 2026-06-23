@@ -1,53 +1,72 @@
 # CMS Strategy — web_alberto
 
-> Analysis of how much and what should be made CMS-editable for the client (Alberto, a non-technical solo psychologist), in a robust and maintainable way.
+> How content for Alberto (a non-technical solo psychologist) is made CMS-editable, robustly and in a way that allows the site to keep evolving (legal pages, blog).
+>
+> **Status (2026-06-23):** CMS decision is **settled — Sanity**, and partially live. This doc is no longer a "which CMS" analysis; it's the content-migration plan on the existing Sanity setup.
 
 ## The short answer
 
-Roughly **80% of the visible text and all images** can and should be CMS-editable. The remaining ~20% (layout, the italic-emphasis styling, design tokens, form logic, animations) should stay in code. The trick to making it *robust* is not "make everything a text box" — it's modeling content as **structured fields that can't break the design**.
+Roughly **80% of the visible text and all images** are CMS-editable; the remaining ~20% (layout, design tokens, the italic-emphasis styling, form logic, animations) stays in code. Robustness comes not from "make everything a text box" but from modeling content as **structured fields that can't break the design** (split fields + restricted Portable Text).
 
-Given a non-technical solo client + a blog already on the roadmap (the brief says Next.js was chosen *specifically* for this), the recommendation is a real headless CMS over editing files.
+## Where it actually stands
 
-## What should be editable — tiered
+**Already live in Sanity** (don't re-architect — replicate the pattern):
+- `siteSettings` (photo slots: `fotoHero`, `fotoSobreMi`, legacy `foto` fallback), `apariencia` (curated palette/font/hero/seam presets), `redes`.
+- `urlFor` image pipeline, a Studio at `app/studio`, and **on-demand revalidation** via an HMAC-verified webhook (`revalidateTag('sanity')`, `app/api/revalidate/route.ts`).
+- The wiring pattern: `app/page.tsx` is a server component that `Promise.all`s its fetches and passes data down as **props**; `SobreMi` already takes `fotoUrl`, `Redes` takes its whole content set as props.
 
-### Tier 1 — definitely CMS (changes often, low risk)
+**Still hardcoded (the remaining work):**
+- Client-component arrays: `Servicios.tsx:5-22`, `Testimonios.tsx:5-18`.
+- Server copy/arrays: `Proceso.tsx:1-22`, `SobreMi.tsx` (greeting, h2, 2 paragraphs, 4 credential badges), `Contacto.tsx` (headings, form labels, button, ok/error strings).
+- `tokens/site.ts`: name, SEO title/description, eyebrow, tagline, CTA, footer `Col. [número pendiente]`, hero copy, navLinks.
+- Legal pages: don't exist (dead `#` links in `Footer.tsx:11-13`).
 
-| Content | Where it lives now | Notes |
+## Architectural leverage
+
+The existing server-fetch → props pattern **is** the right pattern. The migration is mechanical replication:
+- **Fetching stays in `page.tsx`** — consolidate the singletons/arrays into one GROQ `getPageContent()` query (one round trip) alongside the existing `getAppearance()`.
+- **Client islands keep their `useState`** (Servicios accordion, Testimonios carousel) but receive data as props instead of a module-level `const`. No server/client split needed — just hoist the array out.
+
+## Content model
+
+**Singletons per section + arrays-of-objects for repeaters** (decision confirmed 2026-06-23: arrays-of-objects, *not* standalone document types, for the small fixed lists — drag-reorder, fewer loose documents, one query).
+
+| Sanity type | Holds | Shape |
 |---|---|---|
-| Testimonials (quote + author) | `components/sections/Testimonios.tsx:5-18` | Brief says these are *coming soon* and will be added incrementally → the #1 CMS candidate. Model as a repeatable list. |
-| Services (title, description, tags, "featured" flag) | `components/sections/Servicios.tsx:1-18` | Repeatable list; tags as a string array. |
-| Process steps (sub, title, desc) | `components/sections/Proceso.tsx:1-22` | Repeatable list. |
-| Credentials/badges | `components/sections/SobreMi.tsx:41-47` | Will grow as he registers (Col. number, new degrees). |
-| Photos | `public/images/alberto.png` used in `Hero.tsx:16` & `SobreMi.tsx:13` | Brief: "2+ fotos en proceso de recopilar." Needs media management + alt text. |
-| Footer copyright / **Col. number** | `tokens/site.ts:14` | Currently `Col. [número pendiente]` — a real placeholder he'll need to fill himself. |
+| `siteSettings` (extend) | name, SEO title/description, footer/Col. number, nav labels | flat fields |
+| `hero` (singleton) | eyebrow, `headlineLead` + `emphasisWord`, tagline, CTA, `pregunta*` | **split fields** (already the shape in `site.ts`) |
+| `sobreMi` (singleton) | greeting, heading, body paras, `credentials[]` | body = restricted Portable Text; credentials = string array |
+| `servicios` (singleton) | `items[]` {titulo, desc, tags[], featured} | array-of-objects |
+| `proceso` (singleton) | `steps[]` {sub, titulo, desc} | array-of-objects |
+| `testimonios` (singleton) | `items[]` {cita, autor} | array-of-objects |
+| `contacto` (singleton) | heading, intro, labels, button, ok/error strings | flat fields |
 
-### Tier 2 — should be editable, but with guardrails (changes rarely, high design-risk)
+**Robustness rule:** design-coupled copy gets a *split field*, never one free text box.
+- Hero headline → `headlineLead` + `emphasisWord` (already done in `site.ts:17-18` — keep this exact shape in CMS).
+- SobreMi paragraphs that carry italic emphasis → **Portable Text with the mark set restricted to `em` only** (no headings/arbitrary styling). This one restricted-PT config is reused everywhere copy needs emphasis.
 
-- Hero eyebrow / headline / tagline / CTA (`Hero.tsx:29-47`). ⚠️ The headline has an italicized emphasis word (`sentido`). Don't make this one free rich-text field — model it as **`headline` + `emphasisWord`** (or portable-text with a single allowed "emphasis" mark). Otherwise the client either loses the styling or can break it.
-- "Sobre mí" greeting, h2, two body paragraphs (`SobreMi.tsx:24-39`).
-- Section eyebrows/headings ("Especialidades", "El proceso terapéutico", "¿Hablamos?", etc.).
-- Contact form intro + button + success/error messages (`Contacto.tsx:54-101`).
-- SEO `title` / `description` (`tokens/site.ts:9-10`, consumed in `layout.tsx:30-32`).
+### Never CMS (keeps it robust)
+Section order/layout, Tailwind classes, design tokens (`tokens/theme.ts`), fonts, photo frame, seams, animations, form submission logic, nav anchor structure. The sanctioned exception is the **curated Apariencia presets** — Alberto picks from locked options, never raw tokens.
 
-### Tier 3 — needed content, currently missing entirely
+## The evolution unlock: build two primitives once
 
-- **Legal pages** — Aviso legal, Privacidad, Cookies are dead `#` links (`Footer.tsx:11-13`). For a Spanish health professional handling personal data via a contact form, RGPD + LSSI-CE compliance is a real obligation, not optional. These are perfect long-form CMS documents (rich text). **Flag this as a gap regardless of CMS choice.**
-- **Blog** — roadmap item; the canonical reason to pick a CMS now rather than later.
+Legal pages (P2) and Blog (P3) are the **same problem** — a long-form Portable Text document addressed by a slug. Decision (2026-06-23): **legal pages are the deliberate vehicle to build the shared infra**:
 
-### Never CMS (keep in code — this is what keeps it robust)
+1. **A shared Portable Text renderer** (`@portabletext/react` with branded/restricted serializers).
+2. **A dynamic route pattern** — `app/[slug]` for legal, `app/blog/[slug]` later for posts.
 
-Section order/layout, Tailwind classes, design tokens (`tokens/theme.ts`), fonts, ambient blobs, animations, form submission logic + Google Apps Script wiring, nav anchor structure. Exposing these to a CMS is how non-technical clients accidentally break a site.
+Model legal as a `legalPage` document type (`title`, `slug`, `body` PT) → 3 documents (Aviso legal / Privacidad / Cookies) → wire `Footer.tsx:11-13`. Then the **blog drops in as a `post` document type reusing both primitives — no new architecture.** Legal both satisfies the RGPD/LSSI-CE obligation (health professional taking contact-form personal data) and de-risks the blog.
 
-## Recommended approach
+## Sequencing (respects design-first)
 
-**Use a structured headless CMS — primary pick is Sanity** (or Keystatic as the lighter free alternative). Reasoning:
+Hero/SobreMi copy is entangled with the in-flight design refresh (hero variants, the `pregunta` split-copy layout pending sign-off), so migrate in two risk tiers:
 
-- **Maintainable for a non-technical client:** a polished hosted editing UI beats editing JSON/MDX in a Git repo. He won't touch code or run a build.
-- **Image pipeline:** built-in upload, cropping, and alt-text — directly serves the "photos being collected/swapped" need.
-- **Native blog support:** the roadmap blog drops in as another document type, no re-architecture.
-- **Robustness:** structured schemas + Portable Text with a *restricted* mark set mean he can edit copy and add testimonials without ever being able to break layout or typography.
-- **Cost/ops:** free tier covers a site this size comfortably; content is decoupled from deploys (with on-demand revalidation/ISR on Vercel).
+- **Design-independent → safe anytime:** `servicios`, `proceso`, `testimonios`, credentials, SEO/site settings, footer Col. number, contact strings.
+- **Design-coupled → after design signs off:** hero copy, SobreMi headline/paragraphs (so schema matches final markup).
 
-The migration is mechanical: each section's hardcoded array/string becomes a CMS document/field, and components fetch from the CMS instead of importing literals. `tokens/site.ts` becomes a "Site settings" singleton; the per-section arrays become collections.
-
-**Trade-off to decide:** Sanity (best editor UX, external SaaS, native blog) vs. **Keystatic** (Git-backed, free forever, no external service, edits = commits → rebuild, slightly more technical setup). Both are excellent on Next.js 15.
+Recommended order:
+1. Consolidated `getPageContent()` query + migrate the **design-independent** collections (proves the full content pipeline on safe content).
+2. **Legal pages** → builds the PT-renderer + `[slug]` infra (P2, pulled earlier in spirit because it's foundational, even if scheduled "Later").
+3. **Design-coupled** hero/sobremi copy, after the design refresh signs off.
+4. **Blog** reuses step 2's infra (P3).
+5. **Live preview / Presentation** Studio upgrades last (P1.5), once content + design are stable.

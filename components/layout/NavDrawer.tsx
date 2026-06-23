@@ -1,10 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { site } from '@/tokens/site';
 
 export default function NavDrawer() {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -20,21 +23,8 @@ export default function NavDrawer() {
     return () => { document.body.style.overflow = ''; };
   }, [open]);
 
-  return (
+  const portal = (
     <>
-      {/* Hamburger */}
-      <button
-        className="flex md:hidden flex-col gap-[5px] ml-auto p-1.5"
-        aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
-        aria-expanded={open}
-        aria-controls="nav-drawer"
-        onClick={() => setOpen(true)}
-      >
-        <span className="block w-[22px] h-[2px] bg-ink rounded-sm" />
-        <span className="block w-[22px] h-[2px] bg-ink rounded-sm" />
-        <span className="block w-[22px] h-[2px] bg-ink rounded-sm" />
-      </button>
-
       {/* Backdrop */}
       <div
         className={`fixed inset-0 z-[200] bg-ink/40 transition-opacity duration-300 ${open ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
@@ -79,12 +69,33 @@ export default function NavDrawer() {
           <a
             href="#contacto"
             onClick={() => setOpen(false)}
-            className="mt-6 inline-flex items-center justify-center font-ui text-label-btn font-bold text-action-ink bg-action px-7 py-3.5 rounded-btn hover:brightness-95 transition duration-fast"
+            className="mt-6 inline-flex items-center justify-center font-ui text-label-btn font-semibold text-action border border-action px-7 py-3.5 rounded-btn hover:bg-action hover:text-action-ink transition-colors duration-fast"
           >
-            Contacto
+            Reservar primera cita
           </a>
         </div>
       </div>
+    </>
+  );
+
+  return (
+    <>
+      {/* Hamburger — stays inside Nav so it participates in the nav's flex layout */}
+      <button
+        className="flex md:hidden flex-col gap-[5px] ml-auto p-1.5"
+        aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
+        aria-expanded={open}
+        aria-controls="nav-drawer"
+        onClick={() => setOpen(o => !o)}
+      >
+        <span className="block w-[22px] h-[2px] bg-ink rounded-sm" />
+        <span className="block w-[22px] h-[2px] bg-ink rounded-sm" />
+        <span className="block w-[22px] h-[2px] bg-ink rounded-sm" />
+      </button>
+
+      {/* Backdrop + drawer portalled to <body> so backdrop-filter on Nav doesn't
+          create a new containing block and misplace the fixed elements. */}
+      {mounted && createPortal(portal, document.body)}
     </>
   );
 }

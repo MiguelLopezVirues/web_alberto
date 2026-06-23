@@ -24,9 +24,9 @@ export default function Nav() {
         </ul>
         <a
           href="#contacto"
-          className="hidden md:inline-flex font-ui text-[0.875rem] font-bold bg-action text-action-ink px-5 py-2 rounded-btn shrink-0 hover:brightness-95 transition duration-fast"
+          className="hidden md:inline-flex font-ui text-label-btn font-semibold text-action border border-action px-5 py-2 rounded-btn shrink-0 hover:bg-action hover:text-action-ink transition-colors duration-fast"
         >
-          Contacto
+          Reservar primera cita
         </a>
         <NavDrawer />
       </div>

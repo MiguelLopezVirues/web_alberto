@@ -2,10 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Font presets — each is a curated trio (display / body / ui) mapped onto the
+   semantic --font-* slots that Tailwind's font-display / font-body / font-ui
+   utilities consume. All faces are loaded in app/layout.tsx. Body is anchored to
+   Atkinson Hyperlegible in every preset (the legibility anchor); the display face
+   carries the character, the ui face the supporting labels/buttons.
+
+   lino     · Lino     — Ysabeau / Atkinson / Figtree (default · airy, contemporary)
+   tinta    · Tinta    — Fraunces / Atkinson / Atkinson (warm editorial serif)
+   imprenta · Imprenta — Newsreader / Atkinson / Schibsted Grotesk (print authority)
+   remanso  · Remanso  — Lora / Atkinson / Hanken Grotesk (calm flowing serif)
+   tiza     · Tiza     — Bricolage Grotesque / Atkinson / Hanken Grotesk (crafted, characterful)
+   roble    · Roble    — Bitter / Atkinson / Figtree (sturdy warm slab) */
+[data-font-preset="lino"],
+:root {
+  --font-display: var(--font-ysabeau);
+  --font-body: var(--font-atkinson);
+  --font-ui: var(--font-figtree);
+}
+[data-font-preset="tinta"] {
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-atkinson);
+  --font-ui: var(--font-atkinson);
+}
+[data-font-preset="imprenta"] {
+  --font-display: var(--font-newsreader);
+  --font-body: var(--font-atkinson);
+  --font-ui: var(--font-schibsted);
+}
+[data-font-preset="remanso"] {
+  --font-display: var(--font-lora);
+  --font-body: var(--font-atkinson);
+  --font-ui: var(--font-hanken);
+}
+[data-font-preset="tiza"] {
+  --font-display: var(--font-bricolage);
+  --font-body: var(--font-atkinson);
+  --font-ui: var(--font-hanken);
+}
+[data-font-preset="roble"] {
+  --font-display: var(--font-bitter);
+  --font-body: var(--font-atkinson);
+  --font-ui: var(--font-figtree);
+}
+/* Fraunces axis tuning (Tinta only): opsz 72 = display sharpness, SOFT 20 = formal
+   but warm, WONK 1 = distinctive letterforms. */
+[data-font-preset="tinta"] .font-display,
+[data-font-preset="tinta"] h1,
+[data-font-preset="tinta"] h2,
+[data-font-preset="tinta"] h3 {
+  font-variation-settings: "opsz" 72, "SOFT" 20, "WONK" 1;
+}
+
 @layer base {
   :root {
-    /* Organic blob radii — shared across palettes (form, not color). Used by
-       ambient blobs and the organic photo-frame preset (data-foto-shape). */
+    /* Organic radii — shared across palettes (form, not color). Used by the
+       organic photo-frame preset (data-foto-shape) and the arc seam. */
     --shape-a: 63% 37% 56% 44% / 57% 46% 54% 43%;
     --shape-b: 42% 58% 47% 53% / 58% 42% 58% 42%;
   }
@@ -31,19 +83,6 @@ body::before {
 }
 html[data-texture="off"] body::before { display: none; }
 
-@layer components {
-  /* Ambient blobs — fixed, organic, lightly blurred soft color fields that
-     traverse the page. Placed (in app/page.tsx) to bleed across section seams,
-     softening the transition between flat section colors. */
-  .blob {
-    @apply fixed bg-accent pointer-events-none;
-    border-radius: var(--shape-a);
-    opacity: 0.18;
-    z-index: 0;
-    filter: blur(40px);
-  }
-  .blob-b { border-radius: var(--shape-b); }
-}
 
 /* Organic photo-frame preset — only active under data-foto-shape="organica"
    (set on <html> from the Sanity Apariencia singleton). The rectangular default
@@ -51,8 +90,10 @@ html[data-texture="off"] body::before { display: none; }
    already carry `relative overflow-hidden`, so rounding + an inset margin lifts
    the photo off the section as a soft organic shape. -a/-b alternate the radius
    between Hero and Sobre mí for variety. */
+html[data-foto-shape="organica"] .foto-col {
+  padding: clamp(0.75rem, 2.5vw, 2rem);
+}
 html[data-foto-shape="organica"] .foto-frame {
-  margin: clamp(1rem, 3vw, 2.25rem);
   border-radius: var(--shape-a);
   transition: border-radius 1.2s cubic-bezier(0.33, 0, 0.2, 1);
 }
@@ -61,6 +102,125 @@ html[data-foto-shape="organica"] .foto-frame-b {
 }
 @media (prefers-reduced-motion: reduce) {
   html[data-foto-shape="organica"] .foto-frame { transition: none; }
+}
+
+/* Hero "Imagen de fondo" scrim — guarantees the overlaid copy stays legible over
+   ANY CMS photo (not just light ones). The text zone keeps a near-solid paper
+   substrate; the fade only releases the photo well past where the copy ends, so a
+   dark/busy image behind the text is muted to a light wash. Token-driven.
+   Mobile: bottom→up (text anchored at the foot). Desktop: left→right. */
+.hero-scrim {
+  background: linear-gradient(
+    to top,
+    var(--paper) 0%,
+    var(--paper) 16%,
+    color-mix(in srgb, var(--paper) 78%, transparent) 46%,
+    transparent 84%
+  );
+}
+@media (min-width: 768px) {
+  .hero-scrim {
+    background: linear-gradient(
+      to right,
+      var(--paper) 0%,
+      var(--paper) 30%,
+      color-mix(in srgb, var(--paper) 78%, transparent) 52%,
+      transparent 86%
+    );
+  }
+}
+
+/* ── Section seams (data-seam Apariencia preset) ────────────────────────────
+   A <Seam from to /> element sits between sections (see components/ui/Seam.tsx
+   + tokens/seam.ts). Used SPARINGLY (only framing the Testimonios band), never
+   at every boundary. --seam-from / --seam-to are the surfaces above/below the
+   boundary. z-index:2 (> sections' z-[1]) so the hairline notch can straddle the
+   line. `.seam--flip` mirrors the shaped edge vertically (the upper surface
+   descends instead of the lower rising) so the two band seams curve
+   symmetrically. Static — no motion, reduced-motion-safe by default. */
+.seam {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: clamp(28px, 4vw, 44px);
+  overflow: hidden;
+  pointer-events: none;
+  line-height: 0;
+}
+
+/* none — no seam at all (clean butt-join) */
+html[data-seam="none"] .seam {
+  display: none;
+}
+
+/* bleed — surfaces melt via a vertical gradient (no visible edge) */
+html[data-seam="bleed"] .seam {
+  background: linear-gradient(var(--seam-from), var(--seam-to));
+}
+
+/* arc — one shallow organic curve. Default: the lower surface rises into the
+   upper. Flip: the upper surface descends into the lower (mirror). */
+html[data-seam="arc"] .seam {
+  background: var(--seam-from);
+}
+html[data-seam="arc"] .seam::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--seam-to);
+  clip-path: ellipse(130% 86% at 50% 100%);
+}
+html[data-seam="arc"] .seam--flip {
+  background: var(--seam-to);
+}
+html[data-seam="arc"] .seam--flip::after {
+  background: var(--seam-from);
+  clip-path: ellipse(130% 86% at 50% 0%);
+}
+
+/* deckle — torn-paper edge, displaced by the shared #seam-deckle feTurbulence
+   filter (same noise family as the grain). Default: the lower surface fills the
+   bottom with a torn top. Flip: the upper surface fills the top with a torn bottom. */
+html[data-seam="deckle"] .seam {
+  background: var(--seam-from);
+}
+html[data-seam="deckle"] .seam::after {
+  content: "";
+  position: absolute;
+  left: -3%;
+  right: -3%;
+  bottom: 0;
+  height: 64%;
+  background: var(--seam-to);
+  filter: url(#seam-deckle);
+}
+html[data-seam="deckle"] .seam--flip {
+  background: var(--seam-to);
+}
+html[data-seam="deckle"] .seam--flip::after {
+  top: 0;
+  bottom: auto;
+  background: var(--seam-from);
+}
+
+/* hairline — a thin ink-tinted rule + a small centred notch (eyebrow-rule motif) */
+html[data-seam="hairline"] .seam {
+  height: 0;
+  overflow: visible;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 13%, transparent);
+}
+html[data-seam="hairline"] .seam::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent-deep);
+  opacity: 0.5;
 }
 
 /* Scroll reveal — outside any Tailwind layer to avoid purge/specificity issues */

@@ -4,18 +4,21 @@ export default function SobreMi({ fotoUrl }: { fotoUrl: string }) {
   return (
     <section
       id="sobre-mi"
-      className="bg-soft text-soft-ink flex flex-col md:flex-row min-h-[clamp(28rem,48vh,36rem)] relative z-[1]"
+      className="bg-soft text-soft-ink flex flex-col md:flex-row min-h-[clamp(28rem,48vh,36rem)] relative z-[1] overflow-hidden"
       aria-labelledby="sobre-h2"
     >
       {/* Photo — top on mobile (full-width), left on desktop (42%). `foto-frame`
           is keyed by data-foto-shape on <html>: organic preset rounds + insets it. */}
-      <div className="foto-frame foto-frame-b relative overflow-hidden w-full h-[60vw] min-h-[260px] max-h-[420px] md:h-auto md:min-h-0 md:max-h-none md:w-[42%] md:shrink-0">
-        <Image
-          src={fotoUrl}
-          alt="Alberto Aguado Calvo"
-          fill
-          className="object-cover object-top"
-        />
+      <div className="foto-col w-full h-[60vw] min-h-[260px] max-h-[420px] md:h-auto md:min-h-0 md:max-h-none md:w-[42%] md:shrink-0">
+        <div className="foto-frame foto-frame-b relative overflow-hidden w-full h-full">
+          <Image
+            src={fotoUrl}
+            alt="Alberto Aguado Calvo"
+            fill
+            sizes="(min-width: 768px) 42vw, 100vw"
+            className="object-cover object-top"
+          />
+        </div>
       </div>
 
       {/* Text */}
