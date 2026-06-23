@@ -5,22 +5,33 @@ import { defineConfig } from 'sanity';
 import { structureTool, type StructureBuilder } from 'sanity/structure';
 import { schema } from '@/sanity/schema';
 
-// Apariencia and Redes are singletons: one fixed-ID document each, edited in
-// place (no list / "create new"). siteSettings stays a normal list so its
-// existing photo doc is untouched.
+const singleton = (S: StructureBuilder, id: string, title: string, type?: string) =>
+  S.listItem()
+    .title(title)
+    .id(id)
+    .child(S.document().schemaType(type ?? id).documentId(id));
+
 const structure = (S: StructureBuilder) =>
   S.list()
     .title('Contenido')
     .items([
-      S.listItem()
-        .title('Apariencia')
-        .id('apariencia')
-        .child(S.document().schemaType('apariencia').documentId('apariencia')),
-      S.listItem()
-        .title('Instagram (Sígueme en redes)')
-        .id('redes')
-        .child(S.document().schemaType('redes').documentId('redes')),
-      S.documentTypeListItem('siteSettings').title('Ajustes del sitio'),
+      // ── Apariencia ────────────────────────────────────────────────────────
+      singleton(S, 'apariencia', '🎨 Apariencia'),
+      S.divider(),
+      // ── Contenido del sitio ───────────────────────────────────────────────
+      singleton(S, 'siteSettings', '⚙️ Ajustes del sitio'),
+      singleton(S, 'hero',        '🏠 Cabecera (Hero)'),
+      singleton(S, 'sobreMi',     '👤 Sobre mí'),
+      singleton(S, 'servicios',   '🩺 Servicios'),
+      singleton(S, 'proceso',     '🔄 Proceso terapéutico'),
+      singleton(S, 'testimonios', '💬 Testimonios'),
+      singleton(S, 'contacto',    '📬 Contacto'),
+      S.divider(),
+      // ── Instagram ─────────────────────────────────────────────────────────
+      singleton(S, 'redes', '📸 Instagram (Sígueme en redes)'),
+      S.divider(),
+      // ── Páginas legales (list — multiple documents) ───────────────────────
+      S.documentTypeListItem('legalPage').title('⚖️ Páginas legales'),
     ]);
 
 const config = defineConfig({
