@@ -73,11 +73,15 @@ export const transitionDuration = {
   fast: '180ms',
 };
 
-// CSS variable names injected by next/font — see app/layout.tsx
+// Font families use a two-level indirection: next/font injects the raw face vars
+// (--font-ysabeau, --font-fraunces, …), then the [data-font-preset] blocks in
+// globals.css map them onto the semantic --font-display / --font-body / --font-ui
+// slots per curated trio (tokens/fontPreset.ts). Tailwind utilities (font-display,
+// font-body, font-ui) always reference the semantic vars — never the raw face vars.
 export const fontFamily = {
-  display: ['var(--font-ysabeau)', 'Georgia', 'serif'],
-  body:    ['var(--font-atkinson)', 'system-ui', 'sans-serif'],
-  ui:      ['var(--font-open-sans)', 'system-ui', 'sans-serif'],
+  display: ['var(--font-display)', 'Georgia', 'serif'],
+  body:    ['var(--font-body)', 'system-ui', 'sans-serif'],
+  ui:      ['var(--font-ui)', 'system-ui', 'sans-serif'],
 };
 
 type FontSizeEntry = [string, { lineHeight?: string; letterSpacing?: string; fontWeight?: number }];
