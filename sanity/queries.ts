@@ -180,6 +180,29 @@ export async function getRedes(): Promise<Redes | null> {
   );
 }
 
+export type LegalPage = {
+  title: string;
+  slug: string;
+  body: PortableTextBlock[];
+};
+
+export async function getLegalSlugs(): Promise<string[]> {
+  const docs = await client.fetch<{ slug: string }[]>(
+    `*[_type == "legalPage"]{ "slug": slug.current }`,
+    {},
+    { next: { tags: ['sanity'] } },
+  );
+  return docs.map(d => d.slug).filter(Boolean);
+}
+
+export async function getLegalPage(slug: string): Promise<LegalPage | null> {
+  return client.fetch(
+    `*[_type == "legalPage" && slug.current == $slug][0]{ title, "slug": slug.current, body }`,
+    { slug },
+    { next: { tags: ['sanity'] } },
+  );
+}
+
 // Legacy — kept for any callers that haven't migrated to getPageContent yet
 export async function getSiteSettings() {
   return client.fetch(
