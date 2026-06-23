@@ -12,9 +12,13 @@ export default function Footer({ copyright }: Props) {
           {site.name}
         </span>
         <ul className="flex gap-6 mx-auto list-none" role="list">
-          {['Aviso legal', 'Privacidad', 'Cookies'].map(label => (
-            <li key={label}>
-              <a href="#" className="font-ui text-[0.75rem] text-[color-mix(in_srgb,var(--footer-ink)_45%,var(--footer))] hover:text-footer-ink transition-colors duration-fast">
+          {[
+            { label: 'Aviso legal', href: '/aviso-legal' },
+            { label: 'Privacidad',  href: '/privacidad' },
+            { label: 'Cookies',     href: '/cookies' },
+          ].map(({ label, href }) => (
+            <li key={href}>
+              <a href={href} className="font-ui text-[0.75rem] text-[color-mix(in_srgb,var(--footer-ink)_45%,var(--footer))] hover:text-footer-ink transition-colors duration-fast">
                 {label}
               </a>
             </li>
