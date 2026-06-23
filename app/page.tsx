@@ -9,23 +9,24 @@ import Testimonios from '@/components/sections/Testimonios';
 import Contacto from '@/components/sections/Contacto';
 import Redes from '@/components/sections/Redes';
 import { Seam, SeamDefs } from '@/components/ui/Seam';
-import { getSiteSettings, getAppearance, getRedes, urlFor } from '@/sanity/queries';
+import { getPageContent, getAppearance, getRedes, urlFor } from '@/sanity/queries';
 import { resolveHeroVariant } from '@/tokens/heroVariant';
 import { resolveIgLayout, resolveIgContentType } from '@/tokens/igLayout';
+import { site } from '@/tokens/site';
 
 export default async function Home() {
-  const [settings, appearance, redes] = await Promise.all([
-    getSiteSettings(),
+  const [content, appearance, redes] = await Promise.all([
+    getPageContent(),
     getAppearance(),
     getRedes(),
   ]);
 
-  // Two named photo slots, each with the legacy `foto` as a migration fallback:
-  //  - fotoHero (wide)    → Hero, all variants
-  //  - fotoSobreMi (port.) → Sobre mí
+  const { siteSettings, hero, sobreMi, servicios, proceso, testimonios, contacto } = content;
+
+  // Photo slots — prefer named CMS slot, fall back to legacy `foto`, then static file.
   const FALLBACK_FOTO = '/images/alberto.png';
-  const heroFoto = settings?.fotoHero ?? settings?.foto;
-  const sobreFoto = settings?.fotoSobreMi ?? settings?.foto;
+  const heroFoto = siteSettings?.fotoHero ?? siteSettings?.foto;
+  const sobreFoto = siteSettings?.fotoSobreMi ?? siteSettings?.foto;
   const heroFotoUrl = heroFoto ? urlFor(heroFoto).width(1600).url() : FALLBACK_FOTO;
   const sobreFotoUrl = sobreFoto ? urlFor(sobreFoto).width(1000).url() : FALLBACK_FOTO;
 
@@ -33,7 +34,6 @@ export default async function Home() {
   const igLayout = resolveIgLayout(appearance?.igLayout);
   const igContentType = resolveIgContentType(appearance?.igContentType);
 
-  // Resolve each IG post's Sanity image to a CDN URL (manual-upload content).
   const redesPosts = (redes?.posts ?? []).map(p => ({
     url: urlFor(p.image).width(1080).url(),
     alt: p.alt,
@@ -48,19 +48,51 @@ export default async function Home() {
       <SeamDefs />
       <Nav />
       <main>
-        {/* Seams are used SPARINGLY — only to frame the one colored "beat", the
-            Testimonios band, where a shaped transition is earned. Every other
-            boundary is a clean butt-join. The two band seams mirror each other
-            (flip) so the band reads as one deliberate lens, not a repeated stamp.
-            Style is set by the `seam` Apariencia preset (data-seam on <html>). */}
-        <Hero fotoUrl={heroFotoUrl} variant={heroVariant} />
-        <SobreMi fotoUrl={sobreFotoUrl} />
-        <Servicios />
-        <Proceso />
+        {/* Seams frame only the Testimonios beat — two mirrored so it reads as one
+            deliberate lens, not a repeated stamp. Style set by `seam` Apariencia preset. */}
+        <Hero
+          fotoUrl={heroFotoUrl}
+          variant={heroVariant}
+          eyebrow={hero?.eyebrow ?? site.eyebrow}
+          headlineLead={hero?.headlineLead ?? site.hero.headlineLead}
+          headlineEmphasis={hero?.headlineEmphasis ?? site.hero.headlineEmphasis}
+          tagline={hero?.tagline ?? site.tagline}
+          cta={hero?.cta ?? site.cta}
+          preguntaQuestion={hero?.preguntaQuestion ?? site.hero.preguntaQuestion}
+          preguntaResponseLead={hero?.preguntaResponseLead ?? site.hero.preguntaResponseLead}
+          preguntaResponseEmphasis={hero?.preguntaResponseEmphasis ?? site.hero.preguntaResponseEmphasis}
+        />
+        <SobreMi
+          fotoUrl={sobreFotoUrl}
+          greeting={sobreMi?.greeting}
+          heading={sobreMi?.heading}
+          body={sobreMi?.body}
+          credentials={sobreMi?.credentials}
+        />
+        <Servicios
+          eyebrow={servicios?.eyebrow}
+          heading={servicios?.heading}
+          items={servicios?.items}
+        />
+        <Proceso
+          eyebrow={proceso?.eyebrow}
+          heading={proceso?.heading}
+          steps={proceso?.steps}
+        />
         <Seam from="paper-alt" to="band" />
-        <Testimonios />
+        <Testimonios
+          eyebrow={testimonios?.eyebrow}
+          items={testimonios?.items}
+        />
         <Seam from="band" to="soft" flip />
-        <Contacto />
+        <Contacto
+          heading={contacto?.heading}
+          intro={contacto?.intro}
+          ctaButton={contacto?.ctaButton}
+          successMsg={contacto?.successMsg}
+          errorMsg={contacto?.errorMsg}
+          subtext={contacto?.subtext}
+        />
         <Redes
           eyebrow={redes?.eyebrow}
           heading={redes?.heading}
@@ -72,7 +104,7 @@ export default async function Home() {
           contentType={igContentType}
         />
       </main>
-      <Footer />
+      <Footer copyright={siteSettings?.copyright} />
     </>
   );
 }

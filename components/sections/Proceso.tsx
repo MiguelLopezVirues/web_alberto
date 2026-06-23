@@ -1,4 +1,6 @@
-const steps = [
+import type { StepCms } from '@/sanity/queries';
+
+const FALLBACK_STEPS: StepCms[] = [
   {
     sub: 'Sesión inicial',
     titulo: 'Nos conocemos',
@@ -19,36 +21,42 @@ const steps = [
     titulo: 'Cada 3 meses',
     desc: 'Revisamos cómo ha evolucionado el trabajo: qué ha cambiado, qué sigue siendo difícil y si hay que ajustar el rumbo. También si hay un cambio importante en tu vida que lo requiera.',
   },
-] as const;
+];
 
-export default function Proceso() {
+type Props = {
+  eyebrow?: string;
+  heading?: string;
+  steps?: StepCms[];
+};
+
+export default function Proceso({ eyebrow, heading, steps }: Props) {
+  const items = steps?.length ? steps : FALLBACK_STEPS;
+
   return (
     <section id="proceso" className="bg-paper-alt py-[clamp(3rem,6vw,5rem)] relative z-[1]" aria-labelledby="proceso-h2">
       <div className="max-w-[calc(var(--space-container)+16rem)] mx-auto px-section-x-sm md:px-section-x">
         <div className="mb-12" data-reveal>
           <p className="font-ui text-label font-semibold text-accent-deep uppercase tracking-[0.08em] mb-3.5">
-            Cómo trabajaríamos juntos
+            {eyebrow ?? 'Cómo trabajaríamos juntos'}
           </p>
           <h2 id="proceso-h2" className="font-display text-h2 font-semibold leading-[1.1] tracking-[-0.005em] text-ink">
-            El proceso terapéutico
+            {heading ?? 'El proceso terapéutico'}
           </h2>
         </div>
 
         <div className="relative">
-          {/* Vertical line — runs through center of dot column (28px / 2 = 14px from left) */}
           <div
             className="absolute w-[2px] bg-line"
             style={{ left: 13, top: 20, bottom: 20 }}
             aria-hidden="true"
           />
 
-          {steps.map((step, i) => (
+          {items.map((step, i) => (
             <div
               key={i}
-              className={`flex gap-8 group ${i < steps.length - 1 ? 'pb-10' : ''}`}
+              className={`flex gap-8 group ${i < items.length - 1 ? 'pb-10' : ''}`}
               data-reveal
             >
-              {/* Dot column */}
               <div className="w-7 shrink-0 flex justify-center pt-1 relative z-[1]" aria-hidden="true">
                 <div className="w-[18px] h-[18px] rounded-full bg-paper-alt border-2 border-line shrink-0 transition-colors duration-fast group-hover:border-accent-deep group-hover:bg-accent" />
               </div>
@@ -60,9 +68,11 @@ export default function Proceso() {
                 <h3 className="font-display text-h3-lg font-semibold text-ink mb-2">
                   {step.titulo}
                 </h3>
-                <p className="font-body text-body-base text-ink-soft">
-                  {step.desc}
-                </p>
+                {step.desc && (
+                  <p className="font-body text-body-base text-ink-soft">
+                    {step.desc}
+                  </p>
+                )}
               </div>
             </div>
           ))}

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { getPageContent } from '@/sanity/queries';
 import {
   Ysabeau,
   Fraunces,
@@ -120,10 +121,13 @@ const fontPresetVariables: Record<FontPresetSlug, string> = {
   roble:    `${bitter.variable} ${atkinson.variable} ${figtree.variable}`,
 };
 
-export const metadata: Metadata = {
-  title: site.title,
-  description: site.description,
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getPageContent();
+  return {
+    title: content.siteSettings?.seoTitle ?? site.title,
+    description: content.siteSettings?.seoDescription ?? site.description,
+  };
+}
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const appearance = await getAppearance();

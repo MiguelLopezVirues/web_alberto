@@ -1,6 +1,68 @@
 import Image from 'next/image';
+import type { PortableTextBlock } from 'next-sanity';
 
-export default function SobreMi({ fotoUrl }: { fotoUrl: string }) {
+type PTSpan = { _key?: string; _type: string; text?: string; marks?: string[] };
+
+const FALLBACK_GREETING = 'Hola, soy Alberto.';
+const FALLBACK_HEADING = 'Un neuropsicólogo que ayuda a comprenderte y transformar los patrones que limitan tu bienestar.';
+const FALLBACK_BODY_PARAS = [
+  'Trabajo con población infantojuvenil, adulta y personas mayores. Mi enfoque se basa en el análisis funcional de la conducta y las terapias contextuales de tercera generación — entender el origen y mantenimiento del malestar para intervenir de forma eficaz y personalizada.',
+  'Un espacio cercano, seguro y libre de juicios, donde el objetivo es que entiendas lo que te ocurre y aprendas a relacionarte con ello de otra manera.',
+];
+const FALLBACK_CREDENTIALS = [
+  'Graduado en Psicología · UPSA',
+  'Máster Psicólogo General Sanitario · UNIE',
+  'Neuropsicólogo Clínico · UNIR',
+  'Neurocientífico Clínico · UCM',
+];
+
+type Props = {
+  fotoUrl: string;
+  greeting?: string;
+  heading?: string;
+  body?: PortableTextBlock[];
+  credentials?: string[];
+};
+
+function renderBody(body: PortableTextBlock[] | undefined) {
+  if (!body?.length) {
+    return (
+      <>
+        <p className="font-body text-body-md text-soft-ink leading-[1.72]" data-reveal>
+          {FALLBACK_BODY_PARAS[0]}
+        </p>
+        <p className="font-body text-body-md italic text-soft-ink leading-[1.65]" data-reveal>
+          {FALLBACK_BODY_PARAS[1]}
+        </p>
+      </>
+    );
+  }
+
+  return body.map((block, i) => {
+    if (block._type !== 'block' || !Array.isArray(block.children)) return null;
+    const spans = block.children as PTSpan[];
+    const isItalic = spans.every(span => span.marks?.includes('em'));
+    return (
+      <p
+        key={block._key ?? i}
+        className={`font-body text-body-md text-soft-ink ${isItalic ? 'italic leading-[1.65]' : 'leading-[1.72]'}`}
+        data-reveal
+      >
+        {spans.map((span, si) => {
+          const content = span.text ?? '';
+          if (span.marks?.includes('em')) {
+            return <em key={span._key ?? si}>{content}</em>;
+          }
+          return content;
+        })}
+      </p>
+    );
+  });
+}
+
+export default function SobreMi({ fotoUrl, greeting, heading, body, credentials }: Props) {
+  const badges = credentials?.length ? credentials : FALLBACK_CREDENTIALS;
+
   return (
     <section
       id="sobre-mi"
@@ -21,33 +83,22 @@ export default function SobreMi({ fotoUrl }: { fotoUrl: string }) {
         </div>
       </div>
 
-      {/* Text */}
       <div
         className="flex-1 flex flex-col justify-center gap-[1.625rem] max-w-[760px] px-section-x-sm py-8 md:py-[clamp(2.5rem,5vw,4.5rem)] md:pl-[clamp(1.5rem,3vw,2.5rem)] md:pr-[clamp(2rem,4vw,3rem)]"
       >
         <p className="font-display text-eyebrow-conv text-soft-ink" data-reveal>
-          Hola, soy Alberto.
+          {greeting ?? FALLBACK_GREETING}
         </p>
         <h2
           id="sobre-h2"
           className="font-display text-h2 font-semibold leading-[1.15] tracking-[-0.005em] text-soft-ink"
           data-reveal
         >
-          Un neuropsicólogo que ayuda a comprenderte y transformar los patrones que limitan tu bienestar.
+          {heading ?? FALLBACK_HEADING}
         </h2>
-        <p className="font-body text-body-md text-soft-ink leading-[1.72]" data-reveal>
-          Trabajo con población infantojuvenil, adulta y personas mayores. Mi enfoque se basa en el análisis funcional de la conducta y las terapias contextuales de tercera generación — entender el origen y mantenimiento del malestar para intervenir de forma eficaz y personalizada.
-        </p>
-        <p className="font-body text-body-md italic text-soft-ink leading-[1.65]" data-reveal>
-          Un espacio cercano, seguro y libre de juicios, donde el objetivo es que entiendas lo que te ocurre y aprendas a relacionarte con ello de otra manera.
-        </p>
+        {renderBody(body)}
         <div className="flex flex-wrap gap-2 mt-2" data-reveal>
-          {[
-            'Graduado en Psicología · UPSA',
-            'Máster Psicólogo General Sanitario · UNIE',
-            'Neuropsicólogo Clínico · UNIR',
-            'Neurocientífico Clínico · UCM',
-          ].map(badge => (
+          {badges.map(badge => (
             <span
               key={badge}
               className="font-ui text-tag font-semibold tracking-[0.05em] text-soft-ink bg-[color-mix(in_srgb,var(--paper)_55%,var(--soft))] border border-line rounded-sm px-2.5 py-1"

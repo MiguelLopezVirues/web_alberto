@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import type { TestimonioCms } from '@/sanity/queries';
 
-const testimonios = [
+const FALLBACK_ITEMS: TestimonioCms[] = [
   {
     cita: 'Por fin encontré a alguien que no me hizo sentir raro por lo que me pasaba. Alberto escucha de verdad y las sesiones se sienten como un espacio seguro, sin prisas.',
     autor: 'Marcos T.',
@@ -15,9 +16,15 @@ const testimonios = [
     cita: 'Mi hijo tiene TDAH y las sesiones con Alberto han sido un punto de inflexión. Nos ha dado herramientas a él y a nosotros como familia.',
     autor: 'Carmen R.',
   },
-] as const;
+];
 
-export default function Testimonios() {
+type Props = {
+  eyebrow?: string;
+  items?: TestimonioCms[];
+};
+
+export default function Testimonios({ eyebrow, items }: Props) {
+  const testimonios = items?.length ? items : FALLBACK_ITEMS;
   const [current, setCurrent] = useState(0);
   const [busy, setBusy] = useState(false);
   const FADE_MS = 1000;
@@ -41,10 +48,9 @@ export default function Testimonios() {
     >
       <div className="max-w-[680px] mx-auto px-section-x-sm md:px-section-x flex flex-col items-center text-center">
         <p id="test-heading" className="font-ui text-label text-[color-mix(in_srgb,var(--band-ink)_72%,var(--band))] uppercase tracking-[0.08em] mb-10" data-reveal>
-          Experiencias de pacientes
+          {eyebrow ?? 'Experiencias de pacientes'}
         </p>
 
-        {/* All testimonials stacked in same grid cell */}
         <div className="grid w-full">
           {testimonios.map((t, i) => (
             <div
