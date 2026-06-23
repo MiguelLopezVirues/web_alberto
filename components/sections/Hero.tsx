@@ -1,3 +1,5 @@
+'use client';
+
 import { createContext, useContext } from 'react';
 import Image from 'next/image';
 import { site } from '@/tokens/site';
