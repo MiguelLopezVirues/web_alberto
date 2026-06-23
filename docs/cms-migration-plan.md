@@ -41,12 +41,10 @@ For each, use the template below (standard RGPD/LSSI-CE boilerplate for a Spanis
 
 **Política de cookies** — include: qué son cookies, qué cookies usa el sitio (técnicas/sesión, analíticas si las hay), cómo desactivarlas, tabla de cookies.
 
-### 🔲 Phase 4 — Design-coupled copy (DEFERRED — after design refresh signs off)
-Migrate to CMS once the hero variant and SobreMi heading are locked:
-- `hero` singleton: seed `headlineLead`, `headlineEmphasis`, `pregunta*` fields
-- `sobreMi` singleton: seed `greeting`, `heading`, `body` (two paragraphs as PT blocks)
+### ✅ Phase 4 — Design-coupled copy (seeded 2026-06-23 with current copy)
+`hero` and `sobreMi` were included in the `scripts/seed-cms.mjs` run alongside the other singletons. Current copy is live in Sanity now.
 
-These already have CMS wiring and fallbacks in place — seeding is the only remaining step.
+**⚠️ Reseed trigger:** once the design refresh signs off on the final hero variant and SobreMi headline/body wording, re-run the seed (or edit directly in Studio) to update these two documents. The schema fields (`headlineLead`, `headlineEmphasis`, `pregunta*`, `sobreMi.heading`, `sobreMi.body`) are already correctly modeled — no schema change needed, just a content update.
 
 ### 🔲 Phase 5 — Seed remaining design-independent CMS documents
 Open Studio and create these singletons with the current copy (copy from fallbacks in components — they match exactly):

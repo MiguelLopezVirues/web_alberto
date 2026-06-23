@@ -46,7 +46,7 @@ All design-independent content migrated and seeded. Schema, queries, components,
 - [x] `getPageContent()` consolidated GROQ query; full TypeScript types
 - [x] All section components accept CMS props with hardcoded fallbacks; Hero uses HeroCopyCtx
 - [x] 10 documents seeded: siteSettings, hero, sobreMi, servicios, proceso, testimonios, contacto + 3 legal pages
-- [ ] **Design-coupled migration (after design signs off):** reseed Hero and SobreMi body/heading once variants are locked
+- [x] **Design-coupled migration:** seeded with current copy (2026-06-23); reseed hero + sobreMi in Studio once design refresh signs off on final wording — no schema change needed, content update only
 **Reference:** `docs/cms-strategy.md`, `docs/cms-migration-plan.md`
 
 ### P1.5: Verify Sanity works on production + improve Studio UX
