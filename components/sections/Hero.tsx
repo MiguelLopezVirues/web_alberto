@@ -1,3 +1,4 @@
+import { createContext, useContext } from 'react';
 import Image from 'next/image';
 import { site } from '@/tokens/site';
 import LogoAlberto from '@/components/ui/LogoAlberto';
@@ -6,19 +7,43 @@ import { DEFAULT_HERO_VARIANT, type HeroVariantSlug } from '@/tokens/heroVariant
 const FOTO_ALT =
   'Alberto Aguado Calvo, psicólogo general sanitario y neuropsicólogo clínico';
 
+// Copy context — lets sub-components read CMS copy without prop-drilling
+type HeroCopy = {
+  eyebrow: string;
+  headlineLead: string;
+  headlineEmphasis: string;
+  tagline: string;
+  cta: string;
+  preguntaQuestion: string;
+  preguntaResponseLead: string;
+  preguntaResponseEmphasis: string;
+};
+
+const HeroCopyCtx = createContext<HeroCopy>({
+  eyebrow: site.eyebrow,
+  headlineLead: site.hero.headlineLead,
+  headlineEmphasis: site.hero.headlineEmphasis,
+  tagline: site.tagline,
+  cta: site.cta,
+  preguntaQuestion: site.hero.preguntaQuestion,
+  preguntaResponseLead: site.hero.preguntaResponseLead,
+  preguntaResponseEmphasis: site.hero.preguntaResponseEmphasis,
+});
+
 /* ── Shared building blocks ─────────────────────────────────────────────────
    The opening line (with the italic `sentido` accent), the letterhead signature,
    and the quiet text-link CTA. Composed differently by each grammar below. Only
    one variant renders at a time, so the single id="hero-h1" stays unique. */
 
 function Headline({ withId = true, className = '' }: { withId?: boolean; className?: string }) {
+  const copy = useContext(HeroCopyCtx);
   return (
     <h1
       {...(withId ? { id: 'hero-h1' } : {})}
       className={`font-display text-h1 font-bold leading-[1.07] tracking-[-0.01em] text-ink ${className}`}
     >
-      {site.hero.headlineLead}{' '}
-      <em className="italic text-accent-deep">{site.hero.headlineEmphasis}</em>.
+      {copy.headlineLead}{' '}
+      <em className="italic text-accent-deep">{copy.headlineEmphasis}</em>.
     </h1>
   );
 }
@@ -26,11 +51,12 @@ function Headline({ withId = true, className = '' }: { withId?: boolean; classNa
 /* Letterhead signature — a short hairline rule, then the name in display type and
    the credential in quiet body. Replaces the uppercase kicker badge. */
 function Signature() {
+  const copy = useContext(HeroCopyCtx);
   return (
     <div className="mt-9 md:mt-10">
       <div className="w-10 h-px bg-line mb-4" aria-hidden="true" />
       <p className="font-display text-h3 text-ink leading-tight">{site.name}</p>
-      <p className="font-body text-body-sm text-ink-soft mt-1.5">{site.eyebrow}</p>
+      <p className="font-body text-body-sm text-ink-soft mt-1.5">{copy.eyebrow}</p>
     </div>
   );
 }
@@ -38,12 +64,13 @@ function Signature() {
 /* Quiet text-link CTA — accent text + a nudging arrow on hover, no box. The
    action green is reserved for this one role in the authored grammars. */
 function CtaLink() {
+  const copy = useContext(HeroCopyCtx);
   return (
     <a
       href="#contacto"
       className="group/cta inline-flex items-center gap-2 mt-8 w-fit font-ui text-label-btn font-semibold text-action underline-offset-[6px] decoration-1 hover:underline transition-colors duration-fast"
     >
-      {site.cta}
+      {copy.cta}
       <span aria-hidden="true" className="transition-transform duration-fast group-hover/cta:translate-x-1">
         →
       </span>
@@ -54,14 +81,15 @@ function CtaLink() {
 /* Legacy hero copy (eyebrow → headline → tagline → boxed CTA) — the original
    landing-page skeleton, kept for the photo-led legacy variants. */
 function HeroCopy() {
+  const copy = useContext(HeroCopyCtx);
   return (
     <>
       <p className="font-ui text-label font-semibold text-ink-soft uppercase tracking-[0.08em] mb-5">
-        {site.eyebrow}
+        {copy.eyebrow}
       </p>
       <Headline className="mb-5" />
       <p className="font-body text-body-md text-ink-soft leading-[1.65] mb-9 max-w-[400px]">
-        {site.tagline}
+        {copy.tagline}
       </p>
       {/* CTA: the action green as border + text at rest, then filling solid on
           hover (label flips to action-ink). One color, outline → fill. Left-anchored
@@ -70,7 +98,7 @@ function HeroCopy() {
         href="#contacto"
         className="inline-flex items-center justify-center w-fit font-ui text-label-btn font-semibold bg-action text-action-ink border border-action rounded-sm px-7 py-3.5 hover:bg-transparent hover:text-action transition-colors duration-fast"
       >
-        {site.cta}
+        {copy.cta}
       </a>
     </>
   );
@@ -150,6 +178,7 @@ function Carta() {
    left, photo right (the wide hero shot, column-cropped; foto-frame picks up the
    organica fotoShape preset). NEW copy — pending sign-off (see tokens/site.ts). */
 function Pregunta({ fotoUrl }: { fotoUrl: string }) {
+  const copy = useContext(HeroCopyCtx);
   return (
     <section
       id="hero"
@@ -169,11 +198,11 @@ function Pregunta({ fotoUrl }: { fotoUrl: string }) {
           id="hero-h1"
           className="font-display text-h1 font-bold leading-[1.07] tracking-[-0.01em] text-ink mb-6"
         >
-          {site.hero.preguntaQuestion}
+          {copy.preguntaQuestion}
         </h1>
         <p className="font-display text-h3-lg text-ink-soft leading-[1.4] max-w-[34ch]">
-          {site.hero.preguntaResponseLead}{' '}
-          <em className="italic text-accent-deep">{site.hero.preguntaResponseEmphasis}</em>.
+          {copy.preguntaResponseLead}{' '}
+          <em className="italic text-accent-deep">{copy.preguntaResponseEmphasis}</em>.
         </p>
         <Signature />
         <CtaLink />
@@ -268,28 +297,56 @@ function SoloTexto() {
   );
 }
 
+type HeroProps = {
+  fotoUrl: string;
+  variant?: HeroVariantSlug;
+  eyebrow?: string;
+  headlineLead?: string;
+  headlineEmphasis?: string;
+  tagline?: string;
+  cta?: string;
+  preguntaQuestion?: string;
+  preguntaResponseLead?: string;
+  preguntaResponseEmphasis?: string;
+};
+
 export default function Hero({
   fotoUrl,
   variant = DEFAULT_HERO_VARIANT,
-}: {
-  fotoUrl: string;
-  variant?: HeroVariantSlug;
-}) {
+  eyebrow,
+  headlineLead,
+  headlineEmphasis,
+  tagline,
+  cta,
+  preguntaQuestion,
+  preguntaResponseLead,
+  preguntaResponseEmphasis,
+}: HeroProps) {
+  const copy: HeroCopy = {
+    eyebrow: eyebrow ?? site.eyebrow,
+    headlineLead: headlineLead ?? site.hero.headlineLead,
+    headlineEmphasis: headlineEmphasis ?? site.hero.headlineEmphasis,
+    tagline: tagline ?? site.tagline,
+    cta: cta ?? site.cta,
+    preguntaQuestion: preguntaQuestion ?? site.hero.preguntaQuestion,
+    preguntaResponseLead: preguntaResponseLead ?? site.hero.preguntaResponseLead,
+    preguntaResponseEmphasis: preguntaResponseEmphasis ?? site.hero.preguntaResponseEmphasis,
+  };
+
+  let variant_component: React.ReactNode;
   switch (variant) {
-    // Authored grammars (from-scratch).
-    case 'carta':
-      return <Carta />;
-    case 'pregunta':
-      return <Pregunta fotoUrl={fotoUrl} />;
-    // Legacy landing grammars (photo-led).
-    case 'fondo':
-      return <Fondo fotoUrl={fotoUrl} />;
-    case 'dividido':
-      return <Dividido fotoUrl={fotoUrl} />;
-    case 'texto':
-      return <SoloTexto />;
+    case 'carta':     variant_component = <Carta />; break;
+    case 'pregunta':  variant_component = <Pregunta fotoUrl={fotoUrl} />; break;
+    case 'fondo':     variant_component = <Fondo fotoUrl={fotoUrl} />; break;
+    case 'dividido':  variant_component = <Dividido fotoUrl={fotoUrl} />; break;
+    case 'texto':     variant_component = <SoloTexto />; break;
     case 'emblema':
-    default:
-      return <Emblema />;
+    default:          variant_component = <Emblema />; break;
   }
+
+  return (
+    <HeroCopyCtx.Provider value={copy}>
+      {variant_component}
+    </HeroCopyCtx.Provider>
+  );
 }

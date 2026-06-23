@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import type { ServicioCms } from '@/sanity/queries';
 
-const servicios = [
+const FALLBACK_ITEMS: ServicioCms[] = [
   {
     featured: true,
     titulo: 'Terapia psicológica',
@@ -21,18 +22,25 @@ const servicios = [
   },
 ];
 
-export default function Servicios() {
+type Props = {
+  eyebrow?: string;
+  heading?: string;
+  items?: ServicioCms[];
+};
+
+export default function Servicios({ eyebrow, heading, items }: Props) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const servicios = items?.length ? items : FALLBACK_ITEMS;
 
   return (
     <section id="servicios" className="bg-paper py-[clamp(3rem,6vw,5rem)] relative z-[1]" aria-labelledby="servicios-h2">
       <div className="max-w-[calc(var(--space-container)+16rem)] mx-auto px-section-x-sm md:px-section-x">
         <div className="mb-10" data-reveal>
           <p className="font-ui text-label font-semibold text-accent-deep uppercase tracking-[0.08em] mb-3.5">
-            Cómo puedo ayudarte
+            {eyebrow ?? 'Cómo puedo ayudarte'}
           </p>
           <h2 id="servicios-h2" className="font-display text-h2 font-semibold leading-[1.1] tracking-[-0.005em] text-ink">
-            Especialidades
+            {heading ?? 'Especialidades'}
           </h2>
         </div>
 
@@ -91,14 +99,18 @@ export default function Servicios() {
                 >
                   <div className="overflow-hidden">
                     <div className="pb-5 pl-5 pr-4">
-                      <p className="font-body text-body-base text-ink-soft mb-3">
-                        {s.desc}
-                      </p>
-                      <ul className="font-ui text-body-base text-ink-soft list-disc pl-5 marker:text-accent space-y-1">
-                        {s.tags.map(tag => (
-                          <li key={tag}>{tag}</li>
-                        ))}
-                      </ul>
+                      {s.desc && (
+                        <p className="font-body text-body-base text-ink-soft mb-3">
+                          {s.desc}
+                        </p>
+                      )}
+                      {s.tags && s.tags.length > 0 && (
+                        <ul className="font-ui text-body-base text-ink-soft list-disc pl-5 marker:text-accent space-y-1">
+                          {s.tags.map(tag => (
+                            <li key={tag}>{tag}</li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
                   </div>
                 </div>
