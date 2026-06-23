@@ -5,9 +5,9 @@ import { defineConfig } from 'sanity';
 import { structureTool, type StructureBuilder } from 'sanity/structure';
 import { schema } from '@/sanity/schema';
 
-// Apariencia is a singleton: one fixed-ID document, edited in place (no list /
-// "create new"). siteSettings stays a normal list so its existing photo doc is
-// untouched.
+// Apariencia and Redes are singletons: one fixed-ID document each, edited in
+// place (no list / "create new"). siteSettings stays a normal list so its
+// existing photo doc is untouched.
 const structure = (S: StructureBuilder) =>
   S.list()
     .title('Contenido')
@@ -16,6 +16,10 @@ const structure = (S: StructureBuilder) =>
         .title('Apariencia')
         .id('apariencia')
         .child(S.document().schemaType('apariencia').documentId('apariencia')),
+      S.listItem()
+        .title('Instagram (Sígueme en redes)')
+        .id('redes')
+        .child(S.document().schemaType('redes').documentId('redes')),
       S.documentTypeListItem('siteSettings').title('Ajustes del sitio'),
     ]);
 
