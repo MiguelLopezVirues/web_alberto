@@ -3,13 +3,9 @@ import { revalidateTag } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
 function verify(body: string, header: string, secret: string): boolean {
-  // Sanity sends: "t=<timestamp>,v1=<hex_signature>"
-  // Signature is HMAC-SHA256 of "<timestamp>.<body>"
-  const ts = header.match(/t=([^,]+)/)?.[1];
-  const v1 = header.match(/v1=([^,]+)/)?.[1];
-  if (!ts || !v1) return false;
-  const expected = createHmac('sha256', secret).update(`${ts}.${body}`).digest('hex');
-  return v1 === expected;
+  // Sanity sends the raw HMAC-SHA256 hex of the body in sanity-webhook-signature
+  const expected = createHmac('sha256', secret).update(body).digest('hex');
+  return header === expected;
 }
 
 export async function POST(req: NextRequest) {
