@@ -14,8 +14,9 @@ export async function POST(req: NextRequest) {
 
   if (secret) {
     const signature = req.headers.get('sanity-webhook-signature') ?? '';
+    const expected = createHmac('sha256', secret).update(body).digest('hex');
     if (!verify(body, signature, secret)) {
-      return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
+      return NextResponse.json({ error: 'Invalid signature', signature, expected }, { status: 401 });
     }
   }
 
