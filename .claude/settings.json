@@ -10,7 +10,13 @@
       "Read(//c/Users/miguel.lopez/Projects/design-system-forge/.claude/commands/**)",
       "Read(//c/Users/miguel.lopez/Projects/design-system-forge/.claude/docs/references/**)",
       "Read(//c/Users/miguel.lopez/Projects/design-system-forge/inputs/references/**)",
-      "Read(//c/Users/miguel.lopez/Projects/design-system-forge/inputs/extracted/**)"
+      "Read(//c/Users/miguel.lopez/Projects/design-system-forge/inputs/extracted/**)",
+      "Bash(node -e \"const n = require\\('next/package.json'\\); console.log\\(n.version\\)\")",
+      "Bash(npx tsc *)",
+      "Bash(mkdir -p \"c:/Users/miguel.lopez/Projects/web_alberto/app/[slug]\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\miguel.lopez\\Projects\\web_alberto\\app"
     ]
   }
 }

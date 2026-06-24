@@ -14,16 +14,13 @@ function verify(body: string, header: string, secret: string): boolean {
 
 export async function POST(req: NextRequest) {
   const secret = process.env.SANITY_WEBHOOK_SECRET;
-
-  if (!secret) {
-    return NextResponse.json({ error: 'Missing config' }, { status: 500 });
-  }
-
   const body = await req.text();
-  const signature = req.headers.get('sanity-webhook-signature') ?? '';
 
-  if (!verify(body, signature, secret)) {
-    return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
+  if (secret) {
+    const signature = req.headers.get('sanity-webhook-signature') ?? '';
+    if (!verify(body, signature, secret)) {
+      return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
+    }
   }
 
   revalidateTag('sanity', 'max');
