@@ -29,8 +29,10 @@ export default async function Home() {
   const FALLBACK_FOTO = '/images/alberto.png';
   const heroFoto = siteSettings?.fotoHero ?? siteSettings?.foto;
   const sobreFoto = siteSettings?.fotoSobreMi ?? siteSettings?.foto;
-  const heroFotoUrl = heroFoto ? urlFor(heroFoto).width(1600).url() : FALLBACK_FOTO;
-  const sobreFotoUrl = sobreFoto ? urlFor(sobreFoto).width(1000).url() : FALLBACK_FOTO;
+  const cacheBust = siteSettings?._updatedAt ? encodeURIComponent(siteSettings._updatedAt) : '';
+  const bust = (url: string) => (cacheBust ? `${url}${url.includes('?') ? '&' : '?'}v=${cacheBust}` : url);
+  const heroFotoUrl = heroFoto ? bust(urlFor(heroFoto).width(1600).url()) : FALLBACK_FOTO;
+  const sobreFotoUrl = sobreFoto ? bust(urlFor(sobreFoto).width(1000).url()) : FALLBACK_FOTO;
 
   const heroVariant = resolveHeroVariant(appearance?.heroVariant);
   const igLayout = resolveIgLayout(appearance?.igLayout);

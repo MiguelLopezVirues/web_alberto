@@ -78,6 +78,7 @@ export type ContactoCms = {
 };
 
 export type SiteSettingsCms = {
+  _updatedAt?: string;
   siteName?: string;
   seoTitle?: string;
   seoDescription?: string;
@@ -122,6 +123,7 @@ export async function getPageContent(): Promise<PageContent> {
   return client.fetch(
     `{
       "siteSettings": *[_type == "siteSettings"][0]{
+        _updatedAt,
         siteName, seoTitle, seoDescription, copyright,
         fotoHero, fotoSobreMi, foto
       },
