@@ -1,32 +1,45 @@
 import { NextResponse } from 'next/server';
 import { client } from '@/sanity/client';
-import { urlFor } from '@/sanity/queries';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  const raw = await client.fetch(
-    `*[_type == "siteSettings"][0]{ _id, _updatedAt, _rev, fotoHero, fotoSobreMi, foto }`,
+  const allSiteSettings = await client.fetch(
+    `*[_type == "siteSettings"]{ _id, _updatedAt, _rev, "fotoHeroRef": fotoHero.asset._ref }`,
     {},
     { cache: 'no-store' },
   );
 
-  const safeUrl = (img: unknown) => {
-    try {
-      return img ? urlFor(img as Parameters<typeof urlFor>[0]).width(1600).url() : null;
-    } catch (e) {
-      return `ERR: ${(e as Error).message}`;
-    }
-  };
+  const allLegalPages = await client.fetch(
+    `*[_type == "legalPage"]{ _id, _updatedAt, "slug": slug.current, title }`,
+    {},
+    { cache: 'no-store' },
+  );
+
+  const allHero = await client.fetch(
+    `*[_type == "hero"]{ _id, _updatedAt }`,
+    {},
+    { cache: 'no-store' },
+  );
+
+  const allApariencia = await client.fetch(
+    `*[_type == "apariencia"]{ _id, _updatedAt }`,
+    {},
+    { cache: 'no-store' },
+  );
 
   return NextResponse.json({
     fetchedAt: new Date().toISOString(),
-    raw,
-    computedUrls: {
-      fotoHero: safeUrl(raw?.fotoHero),
-      fotoSobreMi: safeUrl(raw?.fotoSobreMi),
-      foto: safeUrl(raw?.foto),
+    counts: {
+      siteSettings: allSiteSettings.length,
+      legalPage: allLegalPages.length,
+      hero: allHero.length,
+      apariencia: allApariencia.length,
     },
+    allSiteSettings,
+    allLegalPages,
+    allHero,
+    allApariencia,
     env: {
       projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
       dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
