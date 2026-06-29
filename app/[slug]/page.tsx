@@ -5,7 +5,7 @@ import Footer from '@/components/layout/Footer';
 import PortableTextRenderer from '@/components/ui/PortableTextRenderer';
 import { getLegalPage, getLegalSlugs } from '@/sanity/queries';
 
-export const revalidate = 0;
+export const dynamic = 'force-dynamic';
 
 type Props = { params: Promise<{ slug: string }> };
 

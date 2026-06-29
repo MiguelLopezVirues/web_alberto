@@ -14,6 +14,8 @@ import { resolveHeroVariant } from '@/tokens/heroVariant';
 import { resolveIgLayout, resolveIgContentType } from '@/tokens/igLayout';
 import { site } from '@/tokens/site';
 
+export const dynamic = 'force-dynamic';
+
 export default async function Home() {
   const [content, appearance, redes] = await Promise.all([
     getPageContent(),

@@ -149,7 +149,7 @@ export async function getPageContent(): Promise<PageContent> {
       }
     }`,
     {},
-    { next: { tags: ['sanity'] } },
+    { cache: 'no-store' },
   );
 }
 
@@ -165,7 +165,7 @@ export async function getAppearance(): Promise<{
   return client.fetch(
     `*[_type == "apariencia"][0]{ palette, fotoShape, heroVariant, seam, igLayout, igContentType, fontPreset }`,
     {},
-    { next: { tags: ['sanity'] } },
+    { cache: 'no-store' },
   );
 }
 
@@ -176,7 +176,7 @@ export async function getRedes(): Promise<Redes | null> {
       posts[]{ image, alt, caption, postUrl, featured }
     }`,
     {},
-    { next: { tags: ['sanity'] } },
+    { cache: 'no-store' },
   );
 }
 
@@ -190,7 +190,7 @@ export async function getLegalSlugs(): Promise<string[]> {
   const docs = await client.fetch<{ slug: string }[]>(
     `*[_type == "legalPage"]{ "slug": slug.current }`,
     {},
-    { next: { tags: ['sanity'] } },
+    { cache: 'no-store' },
   );
   return docs.map(d => d.slug).filter(Boolean);
 }
@@ -199,7 +199,7 @@ export async function getLegalPage(slug: string): Promise<LegalPage | null> {
   return client.fetch(
     `*[_type == "legalPage" && slug.current == $slug][0]{ title, "slug": slug.current, body }`,
     { slug },
-    { next: { tags: ['sanity'] } },
+    { cache: 'no-store' },
   );
 }
 
@@ -208,6 +208,6 @@ export async function getSiteSettings() {
   return client.fetch(
     `*[_type == "siteSettings"][0]{ fotoHero, fotoSobreMi, foto }`,
     {},
-    { next: { tags: ['sanity'] } },
+    { cache: 'no-store' },
   );
 }
