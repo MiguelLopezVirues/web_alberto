@@ -122,31 +122,31 @@ export type Redes = {
 export async function getPageContent(): Promise<PageContent> {
   return client.fetch(
     `{
-      "siteSettings": *[_type == "siteSettings"][0]{
+      "siteSettings": *[_id == "siteSettings"][0]{
         _updatedAt,
         siteName, seoTitle, seoDescription, copyright,
         fotoHero, fotoSobreMi, foto
       },
-      "hero": *[_type == "hero"][0]{
+      "hero": *[_id == "hero"][0]{
         eyebrow, headlineLead, headlineEmphasis, tagline, cta,
         preguntaQuestion, preguntaResponseLead, preguntaResponseEmphasis
       },
-      "sobreMi": *[_type == "sobreMi"][0]{
+      "sobreMi": *[_id == "sobreMi"][0]{
         greeting, heading, body, credentials
       },
-      "servicios": *[_type == "servicios"][0]{
+      "servicios": *[_id == "servicios"][0]{
         eyebrow, heading,
         items[]{ titulo, desc, tags, featured }
       },
-      "proceso": *[_type == "proceso"][0]{
+      "proceso": *[_id == "proceso"][0]{
         eyebrow, heading,
         steps[]{ sub, titulo, desc }
       },
-      "testimonios": *[_type == "testimonios"][0]{
+      "testimonios": *[_id == "testimonios"][0]{
         eyebrow,
         items[]{ cita, autor }
       },
-      "contacto": *[_type == "contacto"][0]{
+      "contacto": *[_id == "contacto"][0]{
         heading, intro, ctaButton, successMsg, errorMsg, subtext
       }
     }`,
@@ -165,7 +165,7 @@ export async function getAppearance(): Promise<{
   fontPreset?: string;
 } | null> {
   return client.fetch(
-    `*[_type == "apariencia"][0]{ palette, fotoShape, heroVariant, seam, igLayout, igContentType, fontPreset }`,
+    `*[_id == "apariencia"][0]{ palette, fotoShape, heroVariant, seam, igLayout, igContentType, fontPreset }`,
     {},
     { cache: 'no-store' },
   );
@@ -173,7 +173,7 @@ export async function getAppearance(): Promise<{
 
 export async function getRedes(): Promise<Redes | null> {
   return client.fetch(
-    `*[_type == "redes"][0]{
+    `*[_id == "redes"][0]{
       eyebrow, heading, intro, handle, profileUrl,
       posts[]{ image, alt, caption, postUrl, featured }
     }`,
@@ -208,7 +208,7 @@ export async function getLegalPage(slug: string): Promise<LegalPage | null> {
 // Legacy — kept for any callers that haven't migrated to getPageContent yet
 export async function getSiteSettings() {
   return client.fetch(
-    `*[_type == "siteSettings"][0]{ fotoHero, fotoSobreMi, foto }`,
+    `*[_id == "siteSettings"][0]{ fotoHero, fotoSobreMi, foto }`,
     {},
     { cache: 'no-store' },
   );
