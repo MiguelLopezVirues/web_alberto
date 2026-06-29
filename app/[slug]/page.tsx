@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import Nav from '@/components/layout/Nav';
 import Footer from '@/components/layout/Footer';
 import PortableTextRenderer from '@/components/ui/PortableTextRenderer';
-import { getLegalPage, getLegalSlugs } from '@/sanity/queries';
+import { getLegalPage, getLegalSlugs, getFooterCopyright } from '@/sanity/queries';
 
 export const dynamic = 'force-dynamic';
 
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function LegalPage({ params }: Props) {
   const { slug } = await params;
-  const page = await getLegalPage(slug);
+  const [page, copyright] = await Promise.all([getLegalPage(slug), getFooterCopyright()]);
   if (!page) notFound();
 
   return (
@@ -32,7 +32,7 @@ export default async function LegalPage({ params }: Props) {
       <main className="bg-paper min-h-screen">
         <div className="max-w-[720px] mx-auto px-section-x-sm md:px-section-x py-[clamp(4rem,8vw,6rem)]">
           <a
-            href="/#contacto"
+            href="/"
             className="inline-flex items-center gap-1.5 font-ui text-label text-accent-deep hover:text-ink transition-colors duration-fast mb-10"
           >
             <span aria-hidden="true">←</span> Volver al inicio
@@ -43,7 +43,7 @@ export default async function LegalPage({ params }: Props) {
           <PortableTextRenderer value={page.body} />
         </div>
       </main>
-      <Footer />
+      <Footer copyright={copyright} />
     </>
   );
 }

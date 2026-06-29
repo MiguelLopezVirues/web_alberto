@@ -205,6 +205,15 @@ export async function getLegalPage(slug: string): Promise<LegalPage | null> {
   );
 }
 
+export async function getFooterCopyright(): Promise<string | undefined> {
+  const res = await client.fetch<{ copyright?: string } | null>(
+    `*[_id == "siteSettings"][0]{ copyright }`,
+    {},
+    { cache: 'no-store' },
+  );
+  return res?.copyright;
+}
+
 // Legacy — kept for any callers that haven't migrated to getPageContent yet
 export async function getSiteSettings() {
   return client.fetch(

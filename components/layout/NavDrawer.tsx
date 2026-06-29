@@ -67,7 +67,7 @@ export default function NavDrawer() {
             </a>
           ))}
           <a
-            href="#contacto"
+            href="/#contacto"
             onClick={() => setOpen(false)}
             className="mt-6 inline-flex items-center justify-center font-ui text-label-btn font-semibold text-action border border-action px-7 py-3.5 rounded-btn hover:bg-action hover:text-action-ink transition-colors duration-fast"
           >

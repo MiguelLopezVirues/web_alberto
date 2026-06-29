@@ -24,9 +24,9 @@ export const site = {
   },
   copyright:   '© 2025 · Col. [número pendiente]',
   navLinks: [
-    { href: '#sobre-mi',  label: 'Sobre mí'   },
-    { href: '#servicios', label: 'Servicios'  },
-    { href: '#proceso',   label: 'Proceso'    },
-    { href: '#contacto',  label: 'Contacto'   },
+    { href: '/#sobre-mi',  label: 'Sobre mí'   },
+    { href: '/#servicios', label: 'Servicios'  },
+    { href: '/#proceso',   label: 'Proceso'    },
+    { href: '/#contacto',  label: 'Contacto'   },
   ],
 } as const;
