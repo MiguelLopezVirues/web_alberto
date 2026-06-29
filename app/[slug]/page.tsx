@@ -5,7 +5,7 @@ import Footer from '@/components/layout/Footer';
 import PortableTextRenderer from '@/components/ui/PortableTextRenderer';
 import { getLegalPage, getLegalSlugs } from '@/sanity/queries';
 
-export const revalidate = false; // ISR via on-demand revalidation (webhook)
+export const revalidate = 0;
 
 type Props = { params: Promise<{ slug: string }> };
 

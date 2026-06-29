@@ -23,6 +23,6 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  revalidateTag('sanity', 'max');
+  revalidateTag('sanity', { expire: 0 });
   return NextResponse.json({ revalidated: true });
 }

@@ -111,7 +111,7 @@ const apariencia = defineType({
       name: 'heroVariant',
       title: 'Cabecera (Hero)',
       description:
-        'Emblema (la marca/logo como protagonista junto al texto, sin foto), Carta (texto a gran tamaño con firma, sin foto), Pregunta (cercana; texto pendiente de revisión), o las variantes con foto: Imagen de fondo, Retrato dividido y Solo texto.',
+        'Composición de la cabecera. Con foto: Pregunta (texto + foto en columna lateral), Imagen de fondo (foto a sangre con texto encima), Retrato dividido (columna texto + columna foto). Sin foto: Solo texto. La foto se sube en "Ajustes del sitio → Foto de cabecera (apaisada)".',
       type: 'string',
       options: { list: heroVariantOptions, layout: 'radio' },
       initialValue: DEFAULT_HERO_VARIANT,
