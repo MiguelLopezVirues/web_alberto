@@ -31,19 +31,23 @@ export default async function Home() {
   // Alberto sees in the Studio is exactly what ships. Square for the framed
   // variants (Pregunta / Dividido / Sobre mí); a wider crop for the full-bleed
   // Fondo backdrop, both centered on the same focal point.
+  // NOTE: we intentionally do NOT chain `.crop('focalpoint')` — a quirk of
+  // @sanity/image-url drops the auto `rect=` param when you do, breaking the
+  // Studio crop. With just `.fit('crop')`, the builder computes `rect=` itself
+  // from the image's crop rectangle + hotspot to fit the requested aspect ratio.
   const FALLBACK_FOTO = '/images/alberto.png';
   const heroFoto = siteSettings?.fotoHero ?? siteSettings?.foto;
   const sobreFoto = siteSettings?.fotoSobreMi ?? siteSettings?.foto;
   const cacheBust = siteSettings?._updatedAt ? encodeURIComponent(siteSettings._updatedAt) : '';
   const bust = (url: string) => (cacheBust ? `${url}${url.includes('?') ? '&' : '?'}v=${cacheBust}` : url);
   const heroFotoUrl = heroFoto
-    ? bust(urlFor(heroFoto).width(1200).height(1200).fit('crop').crop('focalpoint').url())
+    ? bust(urlFor(heroFoto).width(1200).height(1200).fit('crop').url())
     : FALLBACK_FOTO;
   const heroFotoWideUrl = heroFoto
-    ? bust(urlFor(heroFoto).width(1920).height(1080).fit('crop').crop('focalpoint').url())
+    ? bust(urlFor(heroFoto).width(1920).height(1080).fit('crop').url())
     : FALLBACK_FOTO;
   const sobreFotoUrl = sobreFoto
-    ? bust(urlFor(sobreFoto).width(1200).height(1200).fit('crop').crop('focalpoint').url())
+    ? bust(urlFor(sobreFoto).width(1200).height(1200).fit('crop').url())
     : FALLBACK_FOTO;
 
   const heroVariant = resolveHeroVariant(appearance?.heroVariant);

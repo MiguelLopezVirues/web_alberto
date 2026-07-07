@@ -1,11 +1,15 @@
 import { NextResponse } from 'next/server';
 import { client } from '@/sanity/client';
+import { urlFor } from '@/sanity/queries';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  const allSiteSettings = await client.fetch(
-    `*[_type == "siteSettings"]{ _id, _updatedAt, _rev, "fotoHeroRef": fotoHero.asset._ref }`,
+  const siteSettings = await client.fetch(
+    `*[_id == "siteSettings"][0]{
+      _id, _updatedAt, _rev,
+      fotoHero, fotoSobreMi, foto
+    }`,
     {},
     { cache: 'no-store' },
   );
@@ -28,15 +32,26 @@ export async function GET() {
     { cache: 'no-store' },
   );
 
+  const heroFoto = siteSettings?.fotoHero ?? siteSettings?.foto;
+  const sobreFoto = siteSettings?.fotoSobreMi ?? siteSettings?.foto;
+
+  const generatedUrls = {
+    heroFoto1200: heroFoto ? urlFor(heroFoto).width(1200).height(1200).fit('crop').url() : null,
+    heroFotoWide1920: heroFoto ? urlFor(heroFoto).width(1920).height(1080).fit('crop').url() : null,
+    sobreFoto1200: sobreFoto ? urlFor(sobreFoto).width(1200).height(1200).fit('crop').url() : null,
+  };
+
   return NextResponse.json({
     fetchedAt: new Date().toISOString(),
     counts: {
-      siteSettings: allSiteSettings.length,
       legalPage: allLegalPages.length,
       hero: allHero.length,
       apariencia: allApariencia.length,
     },
-    allSiteSettings,
+    siteSettings,
+    heroFoto,
+    sobreFoto,
+    generatedUrls,
     allLegalPages,
     allHero,
     allApariencia,
