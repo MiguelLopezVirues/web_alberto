@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { site } from '@/tokens/site';
 import LogoAlberto from '@/components/ui/LogoAlberto';
 import { DEFAULT_HERO_VARIANT, type HeroVariantSlug } from '@/tokens/heroVariant';
+import { DEFAULT_MOBILE_PHOTO, type MobilePhotoSlug } from '@/tokens/mobilePhoto';
 
 const FOTO_ALT =
   'Alberto Aguado Calvo, psicólogo general sanitario y neuropsicólogo clínico';
@@ -178,18 +179,20 @@ function Carta() {
 /* Pregunta — mirrors the visitor's state (the question as the h1), then grounds
    it with Alberto's response (carrying the `sentido` accent). Split layout: copy
    left, photo right (the wide hero shot, column-cropped; foto-frame picks up the
-   organica fotoShape preset). NEW copy — pending sign-off (see tokens/site.ts). */
-function Pregunta({ fotoUrl }: { fotoUrl: string }) {
+   organica fotoShape preset). NEW copy — pending sign-off (see tokens/site.ts).
+   `mobilePhoto="ocultar"` hides the photo column on mobile (solo-texto mobile). */
+function Pregunta({ fotoUrl, mobilePhoto }: { fotoUrl: string; mobilePhoto: MobilePhotoSlug }) {
   const copy = useContext(HeroCopyCtx);
+  const photoColMobile = mobilePhoto === 'ocultar' ? 'hidden md:block' : '';
   return (
     <section
       id="hero"
       className="bg-paper flex flex-col md:flex-row min-h-[clamp(28rem,56vh,38rem)] relative z-[1] overflow-hidden"
       aria-labelledby="hero-h1"
     >
-      <div className="foto-col order-first md:order-last h-[55vw] min-h-[240px] max-h-[400px] md:h-auto md:min-h-0 md:max-h-none md:[flex:42]">
+      <div className={`foto-col order-first md:order-last h-[55vw] min-h-[240px] max-h-[400px] md:h-auto md:min-h-0 md:max-h-none md:[flex:42] ${photoColMobile}`}>
         <div className="foto-frame foto-frame-a relative overflow-hidden bg-accent w-full h-full">
-          <Image src={fotoUrl} alt={FOTO_ALT} fill sizes="(min-width: 768px) 42vw, 100vw" className="object-cover object-top" priority />
+          <Image src={fotoUrl} alt={FOTO_ALT} fill sizes="(min-width: 768px) 42vw, 100vw" className="object-cover object-center" priority />
         </div>
       </div>
       <div
@@ -216,28 +219,34 @@ function Pregunta({ fotoUrl }: { fotoUrl: string }) {
 /* Imagen de fondo (DEFAULT) — responsive by design:
    - Desktop: full-bleed photo backdrop with the copy overlaid on a left→right paper
      scrim (.hero-scrim) for photo-independent legibility.
-   - Mobile: an editorial TEXT hero (no photo). A full-bleed background can't read on
-     a narrow portrait screen, and any hero photo here would collide with the
-     Sobre-mí portrait directly below. So the message leads and the face arrives in
-     context one scroll down, beside his name + credentials — no card, no SaaS tell.
+   - Mobile: driven by `mobilePhoto`. Default (`mostrar`) puts the photo behind the
+     copy with a bottom→up scrim (text anchored at the foot). `ocultar` drops the
+     photo entirely — an editorial text hero, since a full-bleed photo can't read
+     on a narrow portrait screen and would collide with the Sobre-mí portrait
+     directly below. In that case, the face arrives one scroll down, beside his
+     name + credentials — no card, no SaaS tell.
    Background stays rectangular regardless of fotoShape (organica only frames the
    portrait columns, not a full-bleed backdrop). */
-function Fondo({ fotoUrl }: { fotoUrl: string }) {
+function Fondo({ fotoUrl, mobilePhoto }: { fotoUrl: string; mobilePhoto: MobilePhotoSlug }) {
+  const isHiddenMobile = mobilePhoto === 'ocultar';
+  const photoWrap = isHiddenMobile ? 'hidden md:block' : 'block';
+  const photoSizes = isHiddenMobile
+    ? '(min-width: 768px) 100vw, 1px'
+    : '100vw';
   return (
     <section
       id="hero"
       className="bg-paper relative z-[1] flex flex-col justify-center md:flex-row md:justify-start md:items-center min-h-[clamp(23rem,56vh,29rem)] md:min-h-[clamp(32rem,72vh,42rem)] overflow-hidden"
       aria-labelledby="hero-h1"
     >
-      {/* Photo — desktop only: full-bleed backdrop + scrim. Hidden on mobile (the
-          portrait lives just below in Sobre mí). `sizes` stops phones downloading
-          the wide hero image they never see. */}
-      <div className="hidden overflow-hidden bg-accent md:block md:absolute md:inset-0">
+      {/* Photo — desktop: full-bleed backdrop + scrim. Mobile: visibility follows
+          `mobilePhoto`. `sizes` skips the wide download on mobile when hidden. */}
+      <div className={`${photoWrap} absolute inset-0 overflow-hidden bg-accent`}>
         <Image
           src={fotoUrl}
           alt={FOTO_ALT}
           fill
-          sizes="(min-width: 768px) 100vw, 1px"
+          sizes={photoSizes}
           className="object-cover object-center"
           priority
         />
@@ -255,17 +264,19 @@ function Fondo({ fotoUrl }: { fotoUrl: string }) {
 }
 
 /* Retrato dividido — the original split: text column + photo column, stacked on
-   mobile. foto-frame picks up the organica fotoShape preset. */
-function Dividido({ fotoUrl }: { fotoUrl: string }) {
+   mobile. foto-frame picks up the organica fotoShape preset.
+   `mobilePhoto="ocultar"` hides the photo column on mobile (solo-texto mobile). */
+function Dividido({ fotoUrl, mobilePhoto }: { fotoUrl: string; mobilePhoto: MobilePhotoSlug }) {
+  const photoColMobile = mobilePhoto === 'ocultar' ? 'hidden md:block' : '';
   return (
     <section
       id="hero"
       className="bg-paper flex flex-col md:flex-row min-h-[clamp(28rem,48vh,36rem)] relative z-[1] overflow-hidden"
       aria-labelledby="hero-h1"
     >
-      <div className="foto-col order-first md:order-last h-[55vw] min-h-[240px] max-h-[400px] md:h-auto md:min-h-0 md:max-h-none md:[flex:42]">
+      <div className={`foto-col order-first md:order-last h-[55vw] min-h-[240px] max-h-[400px] md:h-auto md:min-h-0 md:max-h-none md:[flex:42] ${photoColMobile}`}>
         <div className="foto-frame foto-frame-a relative overflow-hidden bg-accent w-full h-full">
-          <Image src={fotoUrl} alt={FOTO_ALT} fill sizes="(min-width: 768px) 42vw, 100vw" className="object-cover object-top" priority />
+          <Image src={fotoUrl} alt={FOTO_ALT} fill sizes="(min-width: 768px) 42vw, 100vw" className="object-cover object-center" priority />
         </div>
       </div>
       <div
@@ -301,7 +312,9 @@ function SoloTexto() {
 
 type HeroProps = {
   fotoUrl: string;
+  fotoWideUrl?: string;
   variant?: HeroVariantSlug;
+  mobilePhoto?: MobilePhotoSlug;
   eyebrow?: string;
   headlineLead?: string;
   headlineEmphasis?: string;
@@ -314,7 +327,9 @@ type HeroProps = {
 
 export default function Hero({
   fotoUrl,
+  fotoWideUrl,
   variant = DEFAULT_HERO_VARIANT,
+  mobilePhoto = DEFAULT_MOBILE_PHOTO,
   eyebrow,
   headlineLead,
   headlineEmphasis,
@@ -338,9 +353,9 @@ export default function Hero({
   let variant_component: React.ReactNode;
   switch (variant) {
     case 'carta':     variant_component = <Carta />; break;
-    case 'pregunta':  variant_component = <Pregunta fotoUrl={fotoUrl} />; break;
-    case 'fondo':     variant_component = <Fondo fotoUrl={fotoUrl} />; break;
-    case 'dividido':  variant_component = <Dividido fotoUrl={fotoUrl} />; break;
+    case 'pregunta':  variant_component = <Pregunta fotoUrl={fotoUrl} mobilePhoto={mobilePhoto} />; break;
+    case 'fondo':     variant_component = <Fondo fotoUrl={fotoWideUrl ?? fotoUrl} mobilePhoto={mobilePhoto} />; break;
+    case 'dividido':  variant_component = <Dividido fotoUrl={fotoUrl} mobilePhoto={mobilePhoto} />; break;
     case 'texto':     variant_component = <SoloTexto />; break;
     case 'emblema':
     default:          variant_component = <Emblema />; break;

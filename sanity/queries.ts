@@ -13,7 +13,11 @@ export function urlFor(source: SanityImageSource) {
 // Types
 // ---------------------------------------------------------------------------
 
-export type SanityImage = { asset: { _ref: string } } & Record<string, unknown>;
+export type SanityImage = {
+  asset: { _ref: string };
+  hotspot?: { x: number; y: number; height?: number; width?: number };
+  crop?: { top: number; bottom: number; left: number; right: number };
+};
 
 export type HeroCms = {
   eyebrow?: string;
@@ -159,13 +163,14 @@ export async function getAppearance(): Promise<{
   palette?: string;
   fotoShape?: string;
   heroVariant?: string;
+  mobilePhoto?: string;
   seam?: string;
   igLayout?: string;
   igContentType?: string;
   fontPreset?: string;
 } | null> {
   return client.fetch(
-    `*[_id == "apariencia"][0]{ palette, fotoShape, heroVariant, seam, igLayout, igContentType, fontPreset }`,
+    `*[_id == "apariencia"][0]{ palette, fotoShape, heroVariant, mobilePhoto, seam, igLayout, igContentType, fontPreset }`,
     {},
     { cache: 'no-store' },
   );

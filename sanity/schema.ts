@@ -2,6 +2,7 @@ import { defineType, defineField, defineArrayMember } from 'sanity';
 import { paletteOptions, DEFAULT_PALETTE } from '../tokens/palettes';
 import { fotoShapeOptions, DEFAULT_FOTO_SHAPE } from '../tokens/fotoShape';
 import { heroVariantOptions, DEFAULT_HERO_VARIANT } from '../tokens/heroVariant';
+import { mobilePhotoOptions, DEFAULT_MOBILE_PHOTO } from '../tokens/mobilePhoto';
 import { seamOptions, DEFAULT_SEAM } from '../tokens/seam';
 import {
   igLayoutOptions,
@@ -63,14 +64,14 @@ const siteSettings = defineType({
       name: 'fotoHero',
       title: 'Foto de cabecera (apaisada)',
       description:
-        'Imagen ancha/apaisada para la cabecera (Hero). Ideal: Alberto a un lado con espacio libre al otro para el texto. Se usa en la variante "Imagen de fondo"; en "Retrato dividido" se recorta a columna (ajusta el punto focal con el hotspot).',
+        'Imagen ancha/apaisada para la cabecera (Hero). Ideal: Alberto a un lado con espacio libre al otro para el texto. Se usa en la variante "Imagen de fondo"; en "Retrato dividido" se recorta a columna. Arrastra el punto (hotspot) sobre la cara para fijar el encuadre — se mantendrá estable en móvil, tablet y escritorio.',
       type: 'image',
       options: { hotspot: true },
     }),
     defineField({
       name: 'fotoSobreMi',
       title: 'Foto de Sobre mí (retrato)',
-      description: 'Retrato vertical, primer plano cálido, para la sección "Sobre mí".',
+      description: 'Retrato vertical, primer plano cálido, para la sección "Sobre mí". Arrastra el punto (hotspot) sobre la cara para que el encuadre sea consistente en todos los tamaños de pantalla.',
       type: 'image',
       options: { hotspot: true },
     }),
@@ -115,6 +116,15 @@ const apariencia = defineType({
       type: 'string',
       options: { list: heroVariantOptions, layout: 'radio' },
       initialValue: DEFAULT_HERO_VARIANT,
+    }),
+    defineField({
+      name: 'mobilePhoto',
+      title: 'Foto en móvil (cabecera)',
+      description:
+        'Solo afecta a las variantes con foto (Pregunta, Imagen de fondo, Retrato dividido). "Mostrar" lleva la foto también al móvil (apilada arriba del texto en Pregunta/Dividido, o de fondo con velo en Imagen de fondo). "Ocultar" deja solo el texto en móvil — el retrato de "Sobre mí" aparece justo debajo.',
+      type: 'string',
+      options: { list: mobilePhotoOptions, layout: 'radio' },
+      initialValue: DEFAULT_MOBILE_PHOTO,
     }),
     defineField({
       name: 'seam',

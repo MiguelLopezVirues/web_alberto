@@ -89,13 +89,24 @@ html[data-texture="off"] body::before { display: none; }
    adds no rules, so it renders identically to before. The .foto-frame elements
    already carry `relative overflow-hidden`, so rounding + an inset margin lifts
    the photo off the section as a soft organic shape. -a/-b alternate the radius
-   between Hero and Sobre mí for variety. */
+   between Hero and Sobre mí for variety.
+
+   Locked to a portrait 4/5 aspect and centered in the column so the blob keeps
+   its organic-portrait shape at any viewport width — % border-radius stretches
+   with the box, so without this the shape flattens on wide desktop columns. */
 html[data-foto-shape="organica"] .foto-col {
   padding: clamp(0.75rem, 2.5vw, 2rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  container-type: size;
 }
 html[data-foto-shape="organica"] .foto-frame {
   border-radius: var(--shape-a);
   transition: border-radius 1.2s cubic-bezier(0.33, 0, 0.2, 1);
+  width: min(100cqmin, 460px);
+  height: auto;
+  aspect-ratio: 1 / 1;
 }
 html[data-foto-shape="organica"] .foto-frame-b {
   border-radius: var(--shape-b);

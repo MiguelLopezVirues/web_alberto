@@ -70,7 +70,8 @@ export default function SobreMi({ fotoUrl, greeting, heading, body, credentials 
       aria-labelledby="sobre-h2"
     >
       {/* Photo — top on mobile (full-width), left on desktop (42%). `foto-frame`
-          is keyed by data-foto-shape on <html>: organic preset rounds + insets it. */}
+          is keyed by data-foto-shape on <html>: organic preset rounds + insets it.
+          `objectPosition` follows Sanity's hotspot so Alberto's face stays framed. */}
       <div className="foto-col w-full h-[60vw] min-h-[260px] max-h-[420px] md:h-auto md:min-h-0 md:max-h-none md:w-[42%] md:shrink-0">
         <div className="foto-frame foto-frame-b relative overflow-hidden w-full h-full">
           <Image
@@ -78,7 +79,7 @@ export default function SobreMi({ fotoUrl, greeting, heading, body, credentials 
             alt="Alberto Aguado Calvo"
             fill
             sizes="(min-width: 768px) 42vw, 100vw"
-            className="object-cover object-top"
+            className="object-cover object-center"
           />
         </div>
       </div>

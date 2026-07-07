@@ -95,70 +95,89 @@ function sendNotification({ nombre, email, telefono, motivo }) {
 }
 
 function buildEmailHtml({ nombre, email, telefono, motivo }) {
-  const accent      = '#476250';
-  const accentDeep  = '#607b68';
-  const accentLight = '#ccead3';
+  // Palette: tokens/palettes.ts → 'presencia-fluida' (default).
+  const paper       = '#f9f9f7';
+  const paperAlt    = '#ffffff';
   const ink         = '#1a1c1b';
+  const inkSoft     = '#424843';
   const inkGhost    = '#727973';
-  const inkMuted    = '#424843';
-  const border      = '#c2c8c1';
-  const ground      = '#f9f9f7';
+  const line        = '#c2c8c1';
+  const accentDeep  = '#495a51';
 
-  function row(label, value) {
-    return '<tr>'
-      + '<td style="padding:10px 16px;font-family:Arial,sans-serif;font-size:11px;font-weight:600;'
-      + 'letter-spacing:.07em;text-transform:uppercase;color:' + inkGhost + ';'
-      + 'white-space:nowrap;vertical-align:top;border-bottom:1px solid ' + border + '">' + label + '</td>'
-      + '<td style="padding:10px 16px;font-family:Arial,sans-serif;font-size:15px;color:' + ink + ';'
-      + 'vertical-align:top;border-bottom:1px solid ' + border + '">' + value + '</td>'
-      + '</tr>';
-  }
+  // Web-safe email stacks. Fraunces/Atkinson don't load reliably in Gmail/Outlook,
+  // so we fall back to Georgia (serif) + system sans for a warm, editorial read.
+  const serif = "Georgia, 'Times New Roman', serif";
+  const sans  = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif";
 
-  return '<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"></head>'
-    + '<body style="margin:0;padding:0;background:' + ground + ';font-family:Arial,sans-serif;">'
-    + '<table width="100%" cellpadding="0" cellspacing="0" style="background:' + ground + ';padding:40px 16px">'
+  const phoneRow = telefono
+    ? '<tr><td style="padding:8px 0 0;font:14px/1.5 ' + sans + ';color:' + inkSoft + '">'
+      + '<span style="color:' + inkGhost + '">Tel&nbsp;·&nbsp;</span>'
+      + '<a href="tel:' + esc(telefono) + '" style="color:' + inkSoft + ';text-decoration:none">' + esc(telefono) + '</a>'
+      + '</td></tr>'
+    : '';
+
+  const replyBody = encodeURIComponent('Hola ' + nombre + ',\n\n');
+
+  return '<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">'
+    + '<meta name="viewport" content="width=device-width,initial-scale=1"></head>'
+    + '<body style="margin:0;padding:0;background:' + paper + ';font-family:' + sans + ';color:' + ink + '">'
+    + '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:' + paper + ';padding:56px 20px">'
     + '<tr><td align="center">'
-    + '<table width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%">'
 
-    // Header
-    + '<tr><td style="background:' + accentDeep + ';padding:28px 32px;border-radius:8px 8px 0 0">'
-    + '<p style="margin:0;font-size:13px;color:rgba(255,255,255,.7);letter-spacing:.06em;text-transform:uppercase">Nuevo contacto desde</p>'
-    + '<p style="margin:4px 0 0;font-size:20px;font-weight:600;color:#fff;letter-spacing:-.01em">albertoaguadopsicologo.com</p>'
+    // Card
+    + '<table role="presentation" width="580" cellpadding="0" cellspacing="0" '
+    + 'style="max-width:580px;width:100%;background:' + paperAlt + ';border:1px solid ' + line + ';border-radius:4px">'
+
+    // Letterhead — hairline rule + small caps eyebrow + serif line
+    + '<tr><td style="padding:44px 44px 0">'
+    + '<div style="width:32px;height:1px;background:' + line + ';margin:0 0 22px;font-size:0;line-height:0">&nbsp;</div>'
+    + '<p style="margin:0 0 10px;font:11px/1 ' + sans + ';font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:' + inkGhost + '">'
+    + 'Nuevo mensaje</p>'
+    + '<p style="margin:0;font:22px/1.3 ' + serif + ';color:' + ink + ';letter-spacing:-.005em">'
+    + esc(nombre) + ' <span style="color:' + inkGhost + ';font-style:italic">te ha escrito</span>'
+    + '</p>'
     + '</td></tr>'
 
-    // Eyebrow
-    + '<tr><td style="background:' + accentLight + ';padding:10px 32px">'
-    + '<p style="margin:0;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:' + accent + '">'
-    + 'Alguien quiere ponerse en contacto contigo</p>'
+    // Message — the star of the email, generous line-height, serif to feel like a letter
+    + '<tr><td style="padding:28px 44px 0">'
+    + '<p style="margin:0;font:16px/1.75 ' + serif + ';color:' + inkSoft + ';white-space:pre-wrap">'
+    + esc(motivo) + '</p>'
     + '</td></tr>'
 
-    // Data rows
-    + '<tr><td style="background:#fff;border:1px solid ' + border + ';border-top:none">'
-    + '<table width="100%" cellpadding="0" cellspacing="0">'
-    + row('Nombre', esc(nombre))
-    + row('Email', '<a href="mailto:' + esc(email) + '" style="color:' + accentDeep + ';text-decoration:none">' + esc(email) + '</a>')
-    + (telefono ? row('Teléfono', '<a href="tel:' + esc(telefono) + '" style="color:' + accentDeep + ';text-decoration:none">' + esc(telefono) + '</a>') : '')
-    + '<tr>'
-    + '<td style="padding:10px 16px;font-family:Arial,sans-serif;font-size:11px;font-weight:600;'
-    + 'letter-spacing:.07em;text-transform:uppercase;color:' + inkGhost + ';vertical-align:top">Mensaje</td>'
-    + '<td style="padding:10px 16px;font-family:Arial,sans-serif;font-size:15px;color:' + ink + ';'
-    + 'vertical-align:top;line-height:1.65;white-space:pre-wrap">' + esc(motivo) + '</td>'
-    + '</tr>'
-    + '</table></td></tr>'
-
-    // Reply CTA
-    + '<tr><td style="background:#fff;padding:20px 32px 28px;border:1px solid ' + border + ';border-top:none;border-radius:0 0 8px 8px;text-align:center">'
-    + '<a href="mailto:' + esc(email) + '?subject=Re:%20Tu%20consulta&body=Hola%20' + encodeURIComponent(nombre) + ',"'
-    + ' style="display:inline-block;font-size:14px;font-weight:700;color:#fff;background:' + accentDeep + ';'
-    + 'padding:12px 28px;border-radius:6px;text-decoration:none">Responder a ' + esc(nombre) + '</a>'
+    // Divider
+    + '<tr><td style="padding:32px 44px 0">'
+    + '<div style="height:1px;background:' + line + ';font-size:0;line-height:0">&nbsp;</div>'
     + '</td></tr>'
 
-    // Footer
-    + '<tr><td style="padding:20px 0 0;text-align:center">'
-    + '<p style="margin:0;font-size:11px;color:' + inkMuted + '">Alberto Aguado Calvo · Psicólogo General Sanitario</p>'
+    // Sender details — quiet, no uppercase labels, just prefixed with a hairline dot
+    + '<tr><td style="padding:20px 44px 0">'
+    + '<table role="presentation" width="100%" cellpadding="0" cellspacing="0">'
+    + '<tr><td style="font:14px/1.5 ' + sans + ';color:' + inkSoft + '">'
+    + '<span style="color:' + inkGhost + '">De&nbsp;·&nbsp;</span>'
+    + '<a href="mailto:' + esc(email) + '" style="color:' + inkSoft + ';text-decoration:none;border-bottom:1px solid ' + line + '">'
+    + esc(email) + '</a>'
+    + '</td></tr>'
+    + phoneRow
+    + '</table>'
     + '</td></tr>'
 
-    + '</table></td></tr></table></body></html>';
+    // Reply link — quiet text-link with arrow (mirrors the site's CtaLink), not a solid button
+    + '<tr><td style="padding:36px 44px 44px">'
+    + '<a href="mailto:' + esc(email) + '?subject=Re:%20Tu%20consulta&body=' + replyBody + '" '
+    + 'style="font:14px/1 ' + sans + ';font-weight:600;color:' + accentDeep + ';text-decoration:none;letter-spacing:.01em">'
+    + 'Responder a ' + esc(nombre)
+    + ' <span style="display:inline-block;padding-left:4px">&rarr;</span>'
+    + '</a>'
+    + '</td></tr>'
+
+    + '</table>'
+
+    // Outer footer — outside the card, ultra-quiet
+    + '<p style="margin:20px 0 0;font:11px/1.5 ' + sans + ';color:' + inkGhost + ';text-align:center">'
+    + 'Formulario &middot; albertoaguadopsicologo.com'
+    + '</p>'
+
+    + '</td></tr></table></body></html>';
 }
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
